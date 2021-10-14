@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
+gem 'rexml', '~> 3.2', '>= 3.2.5'
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
