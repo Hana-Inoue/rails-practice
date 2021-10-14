@@ -1,1 +1,4 @@
 --require spec_helper
+
+# テストの出力結果をドキュメント形式で表示する
+--format documentation
