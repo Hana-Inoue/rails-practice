@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 0) do
     table.string 'email'
     table.integer 'gender'
     table.date 'birthday'
+    table.string 'status'
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
-    table.string "status"
   end
 end
