@@ -11,7 +11,9 @@
   </div>
   <div>
     <%= form.label :gender %>
-    <%= form.select :gender, [['男性', 0], ['女性', 1], ['その他', 2]], include_blank: true %>
+    <%= form.select :gender,
+                    [['男性', :men], ['女性', :women], ['その他', :others]],
+                    include_blank: true %>
   </div>
   <div>
     <%= form.label :birthday %>
