@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 0) do
   enable_extension "plpgsql"
 
   create_table 'users', force: :cascade do |table|
-    table.string 'name'
-    table.string 'email'
-    table.integer 'gender'
-    table.date 'birthday'
-    table.string 'status'
+    table.string 'name', null: false
+    table.string 'email', null: false
+    table.integer 'gender', null: false
+    table.date 'birthday', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
+    table.index ['email'], name: 'index_users_on_email', unique: true
   end
 end
