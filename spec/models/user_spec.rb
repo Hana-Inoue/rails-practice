@@ -39,6 +39,15 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context 'emailの大文字・小文字が異なる場合' do
+    let(:user) { build(:user, email: email) }
+    let(:email) { 'H_Inoue2+test-1@ga-tech.co.jp' }
+    it '無効になる' do
+      create(:user, email: email.downcase)
+      expect(user).not_to be_valid
+    end
+  end
+
   context 'genderがない場合' do
     let(:user_without_gender) { build(:user, gender: '') }
     it '無効になる' do
