@@ -1,9 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # TODO: バリデーションを元にテスを実装
-  # 現在はバリデーションを設定していないため、有効になることのみをテスト
-  it '有効になる' do
-    expect(build(:user)).to be_valid
+  context '適切な値が全て入力された場合' do
+    let(:user) { build(:user) }
+    it '有効になる' do
+      expect(user).to be_valid
+    end
+  end
+
+  context 'nameがない場合' do
+    let(:user_without_name) { build(:user, name: '') }
+    it '無効になる' do
+      expect(user_without_name).not_to be_valid
+    end
   end
 end
