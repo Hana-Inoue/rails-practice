@@ -2,22 +2,41 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   describe "GET /users" do
-    it 'indexページの表示に成功すること' do
+    it '200番ステータスが返される' do
       get users_path
       expect(response).to have_http_status(200)
     end
   end
 
+  describe "POST /users" do
+    let(:user_params) { attributes_for(:user) }
+    context '適切なデータが渡された場合' do
+      it 'showページへリダイレクトされる' do
+        post users_path, params: { user: user_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_path(User.last)
+      end
+    end
+
+    context '不適切なデータが渡された場合' do
+      it '200番ステータスが返される' do
+        user_params[:name] = ''
+        post users_path, params: { user: user_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
   describe "GET /users/:id" do
     let(:user) { create(:user) }
-    it 'showページの表示に成功すること' do
+    it '200番ステータスが返される' do
       get user_path(user)
       expect(response).to have_http_status(200)
     end
   end
 
   describe "GET /users/new" do
-    it 'newページの表示に成功すること' do
+    it '200番ステータスが返される' do
       get new_user_path
       expect(response).to have_http_status(200)
     end
