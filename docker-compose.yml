@@ -11,6 +11,8 @@ services:
     stdin_open: true
     depends_on:
       - db
+    env_file:
+      - .env
   db:
     image: postgres
     volumes:
