@@ -15,4 +15,11 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "GET /users/new" do
+    it 'newページの表示に成功すること' do
+      get new_user_path
+      expect(response).to have_http_status(200)
+    end
+  end
 end
