@@ -38,4 +38,11 @@ RSpec.describe User, type: :model do
       expect(duplicated_user).not_to be_valid
     end
   end
+
+  context 'genderがない場合' do
+    let(:user_without_gender) { build(:user, gender: '') }
+    it '無効になる' do
+      expect(user_without_gender).not_to be_valid
+    end
+  end
 end
