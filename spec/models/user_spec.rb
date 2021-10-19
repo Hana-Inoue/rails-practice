@@ -15,6 +15,14 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context 'nameが重複している場合' do
+    let(:duplicated_user) { build(:user) }
+    it '無効になる' do
+      create(:user)
+      expect(duplicated_user).not_to be_valid
+    end
+  end
+
   context 'emailがない場合' do
     let(:user_without_email) { build(:user, email: '') }
     it '無効になる' do
