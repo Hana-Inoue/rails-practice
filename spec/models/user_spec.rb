@@ -45,4 +45,11 @@ RSpec.describe User, type: :model do
       expect(user_without_gender).not_to be_valid
     end
   end
+
+  context 'birthdayがない場合' do
+    let(:user_without_birthday) { build(:user, birthday: '') }
+    it '無効になる' do
+      expect(user_without_birthday).not_to be_valid
+    end
+  end
 end
