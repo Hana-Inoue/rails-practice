@@ -29,4 +29,13 @@ RSpec.describe User, type: :model do
       expect(user_without_email).not_to be_valid
     end
   end
+
+  context 'emailが重複している場合' do
+    let(:duplicated_user) { build(:user, email: email) }
+    let(:email) { 'h_inoue2+test-1@ga-tech.co.jp' }
+    it '無効になる' do
+      create(:user, email: email)
+      expect(duplicated_user).not_to be_valid
+    end
+  end
 end
