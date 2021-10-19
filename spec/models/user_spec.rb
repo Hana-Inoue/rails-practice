@@ -14,4 +14,11 @@ RSpec.describe User, type: :model do
       expect(user_without_name).not_to be_valid
     end
   end
+
+  context 'emailがない場合' do
+    let(:user_without_email) { build(:user, email: '') }
+    it '無効になる' do
+      expect(user_without_email).not_to be_valid
+    end
+  end
 end
