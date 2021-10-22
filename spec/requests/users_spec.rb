@@ -40,6 +40,14 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
+  describe 'GET /users/:id/edit' do
+    let(:user) { create(:user) }
+    it '200番ステータスが返される' do
+      get edit_user_path(user)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'GET /users/:id' do
     let(:user) { create(:user) }
     it '200番ステータスが返される' do
