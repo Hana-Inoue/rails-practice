@@ -16,6 +16,12 @@ RSpec.describe "Users", type: :request do
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_path(User.last)
       end
+
+      it 'Userが1増える' do
+        expect {
+          post users_path, params: { user: user_params }
+        }.to change(User, :count).by(1)
+      end
     end
 
     context '不適切なデータが渡された場合' do
