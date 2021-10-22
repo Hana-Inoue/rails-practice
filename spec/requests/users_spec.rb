@@ -55,4 +55,35 @@ RSpec.describe 'Users', type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'PATCH /users/:id' do
+    before { user_params[:gender] = gender }
+    let(:user_params) { attributes_for(:user) }
+    let!(:user) { create(:user) }
+
+    context '適切なデータが渡された場合' do
+      let(:gender) { :women }
+
+      it 'showページへリダイレクトされる' do
+        patch user_path(user), params: { user: user_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_path(User.last)
+      end
+
+      it 'データが変更される' do
+        expect {
+          patch user_path(user), params: { user: user_params }
+        }.to change { User.last[:gender] }.from('men').to('women')
+      end
+    end
+
+    context '不適切なデータが渡された場合' do
+      let(:gender) { '' }
+
+      it '200番ステータスが返される' do
+        patch user_path(user), params: { user: user_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
