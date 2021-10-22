@@ -11,48 +11,51 @@ RSpec.describe User, type: :model do
     end
 
     context 'nameがない場合' do
+      before { user.name = '' }
       it '無効になる' do
-        user.name = ''
         expect(user).not_to be_valid
       end
     end
 
-    describe 'email' do
-      before { user.email = email }
+    context 'emailがない場合' do
+      before { user.email = '' }
+      it '無効になる' do
+        expect(user).not_to be_valid
+      end
+    end
+
+    context 'emailが重複している場合' do
+      before do
+        create(:user, email: email)
+        user.email = email
+      end
       let(:email) { 'h_inoue2+test-1@ga-tech.co.jp' }
-
-      context 'emailがない場合' do
-        let(:email) { '' }
-        it '無効になる' do
-          expect(user).not_to be_valid
-        end
+      it '無効になる' do
+        expect(user).not_to be_valid
       end
+    end
 
-      context 'emailが重複している場合' do
-        before { create(:user, email: email) }
-        it '無効になる' do
-          expect(user).not_to be_valid
-        end
+    context 'emailの大文字・小文字が異なる場合' do
+      before do
+        create(:user, email: email.upcase)
+        user.email = email
       end
-
-      context 'emailの大文字・小文字が異なる場合' do
-        it '無効になる' do
-          create(:user, email: email.upcase)
-          expect(user).not_to be_valid
-        end
+      let(:email) { 'h_inoue2+test-1@ga-tech.co.jp' }
+      it '無効になる' do
+        expect(user).not_to be_valid
       end
     end
 
     context 'genderがない場合' do
+      before { user.gender = '' }
       it '無効になる' do
-        user.gender = ''
         expect(user).not_to be_valid
       end
     end
 
     context 'birthdayがない場合' do
+      before { user.birthday = '' }
       it '無効になる' do
-        user.birthday = ''
         expect(user).not_to be_valid
       end
     end
