@@ -7,7 +7,7 @@ class User < ApplicationRecord
     others: 2
   }
 
-  validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: true }
+  validates :name, presence: true, length: { maximum: 30 }
   validates :email,
             presence: true,
             format: { with: VALID_EMAIL_REGEX },

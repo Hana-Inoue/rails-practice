@@ -17,13 +17,6 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'nameが重複している場合' do
-      before { create(:user) }
-      it '無効になる' do
-        expect(user).not_to be_valid
-      end
-    end
-
     describe 'email' do
       before { user.email = email }
       let(:email) { 'h_inoue2+test-1@ga-tech.co.jp' }
