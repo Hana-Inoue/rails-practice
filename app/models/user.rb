@@ -7,13 +7,12 @@ class User < ApplicationRecord
     others: 2
   }
 
-  validates :name, presence: true, length: { maximum: 30 }
-  validates :email,
-            presence: true,
-            format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false }
-  validates :gender, presence: true, inclusion: { in: genders.keys }
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :name, length: { maximum: 30 }
+    validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+    validates :birthday
+  end
+  validates :gender, inclusion: { in: genders.keys }
 
   before_save { downcase_email }
 
