@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
-  describe "GET /users" do
+RSpec.describe 'Users', type: :request do
+  describe 'GET /users' do
     it '200番ステータスが返される' do
       get users_path
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "POST /users" do
+  describe 'POST /users' do
     let(:user_params) { attributes_for(:user) }
     context '適切なデータが渡された場合' do
       it 'showページへリダイレクトされる' do
@@ -33,17 +33,17 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "GET /users/:id" do
-    let(:user) { create(:user) }
+  describe 'GET /users/new' do
     it '200番ステータスが返される' do
-      get user_path(user)
+      get new_user_path
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET /users/new" do
+  describe 'GET /users/:id' do
+    let(:user) { create(:user) }
     it '200番ステータスが返される' do
-      get new_user_path
+      get user_path(user)
       expect(response).to have_http_status(200)
     end
   end
