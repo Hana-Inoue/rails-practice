@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
-    it '200番ステータスが返される' do
+    it '200番ステータスを返す' do
       get users_path
       expect(response).to have_http_status(200)
     end
@@ -11,8 +11,8 @@ RSpec.describe 'Users', type: :request do
   describe 'POST /users' do
     let(:user_params) { attributes_for(:user) }
 
-    context '適切なデータが渡された場合' do
-      it 'showページへリダイレクトされる' do
+    context '有効なリクエストパラメータが渡された場合' do
+      it 'showページへリダイレクトする' do
         post users_path, params: { user: user_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_path(User.last)
@@ -25,8 +25,8 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    context '不適切なデータが渡された場合' do
-      it '200番ステータスが返される' do
+    context '無効なリクエストパラメータが渡された場合' do
+      it '200番ステータスを返す' do
         user_params[:name] = ''
         post users_path, params: { user: user_params }
         expect(response).to have_http_status(200)
@@ -35,7 +35,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET /users/new' do
-    it '200番ステータスが返される' do
+    it '200番ステータスを返す' do
       get new_user_path
       expect(response).to have_http_status(200)
     end
@@ -44,7 +44,7 @@ RSpec.describe 'Users', type: :request do
   describe 'GET /users/:id/edit' do
     let(:user) { create(:user) }
 
-    it '200番ステータスが返される' do
+    it '200番ステータスを返す' do
       get edit_user_path(user)
       expect(response).to have_http_status(200)
     end
@@ -53,7 +53,7 @@ RSpec.describe 'Users', type: :request do
   describe 'GET /users/:id' do
     let(:user) { create(:user) }
 
-    it '200番ステータスが返される' do
+    it '200番ステータスを返す' do
       get user_path(user)
       expect(response).to have_http_status(200)
     end
@@ -64,26 +64,26 @@ RSpec.describe 'Users', type: :request do
     let(:user_params) { attributes_for(:user) }
     let!(:user) { create(:user) }
 
-    context '適切なデータが渡された場合' do
+    context '有効なリクエストパラメータが渡された場合' do
       let(:gender) { :women }
 
-      it 'showページへリダイレクトされる' do
+      it 'showページへリダイレクトする' do
         patch user_path(user), params: { user: user_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_path(User.last)
       end
 
-      it 'データが変更される' do
+      it '任意のUserの値を変更する' do
         expect {
           patch user_path(user), params: { user: user_params }
         }.to change { User.last[:gender] }.from('men').to('women')
       end
     end
 
-    context '不適切なデータが渡された場合' do
+    context '無効なリクエストパラメータが渡された場合' do
       let(:gender) { '' }
 
-      it '200番ステータスが返される' do
+      it '200番ステータスを返す' do
         patch user_path(user), params: { user: user_params }
         expect(response).to have_http_status(200)
       end
@@ -93,7 +93,7 @@ RSpec.describe 'Users', type: :request do
   describe 'DELETE /users/:id' do
     let!(:user) { create(:user) }
 
-    it 'indexページへリダイレクトされる' do
+    it 'indexページへリダイレクトする' do
       delete user_path(user)
       expect(response).to have_http_status(302)
       expect(response).to redirect_to root_path
