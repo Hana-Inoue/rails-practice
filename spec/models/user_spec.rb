@@ -25,22 +25,14 @@ RSpec.describe User, type: :model do
     end
 
     context 'emailが重複している場合' do
-      before do
-        create(:user, email: email)
-        user.email = email
-      end
-      let(:email) { 'h_inoue2+test-1@ga-tech.co.jp' }
+      before { create(:user, email: user.email) }
       it '無効になる' do
         expect(user).not_to be_valid
       end
     end
 
     context 'emailの大文字・小文字が異なる場合' do
-      before do
-        create(:user, email: email.upcase)
-        user.email = email
-      end
-      let(:email) { 'h_inoue2+test-1@ga-tech.co.jp' }
+      before { create(:user, email: user.email.upcase) }
       it '無効になる' do
         expect(user).not_to be_valid
       end
