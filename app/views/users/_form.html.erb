@@ -2,37 +2,19 @@
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>
-    <% if user.errors.include?(:name) %>
-      <ul>
-        <% user.errors.full_messages_for(:name).each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :name } %>
   </div>
 
   <div>
     <%= form.label :email %>
     <%= form.text_field :email %>
-    <% if user.errors.include?(:email) %>
-      <ul>
-        <% user.errors.full_messages_for(:email).each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :email } %>
   </div>
 
   <div>
     <%= form.label :gender %>
     <%= form.select :gender, options_for_select(User.genders.keys), include_blank: true %>
-    <% if user.errors.include?(:gender) %>
-      <ul>
-        <% user.errors.full_messages_for(:gender).each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :gender } %>
   </div>
 
   <div>
@@ -43,13 +25,7 @@
                          start_year: Time.now.year,
                          end_year: 1900,
                          date_separator: '/ ' %>
-    <% if user.errors.include?(:birthday) %>
-      <ul>
-        <% user.errors.full_messages_for(:birthday).each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :birthday } %>
   </div>
 
   <div>
