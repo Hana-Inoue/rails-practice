@@ -2,13 +2,15 @@
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>
-    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :name } %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :name } %>
   </div>
 
   <div>
     <%= form.label :email %>
     <%= form.text_field :email %>
-    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :email } %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :email } %>
   </div>
 
   <div>
@@ -16,7 +18,8 @@
     <%= form.select :gender,
                     options_for_select(User.genders.keys, selected: user.gender),
                     include_blank: true %>
-    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :gender } %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :gender } %>
   </div>
 
   <div>
@@ -27,7 +30,8 @@
                          start_year: Time.now.year,
                          end_year: 1900,
                          date_separator: '/ ' %>
-    <%= render partial: 'shared/error_messages', locals: { model: user, attribute: :birthday } %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :birthday } %>
   </div>
 
   <div>
