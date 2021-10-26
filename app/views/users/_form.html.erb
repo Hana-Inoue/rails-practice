@@ -9,7 +9,9 @@
   </div>
   <div>
     <%= form.label :gender %>
-    <%= form.select :gender, options_for_select(User.genders.keys), include_blank: true %>
+    <%= form.select :gender,
+                    options_for_select(User.genders.keys, selected: user.gender),
+                    include_blank: true %>
   </div>
   <div>
     <%= form.label :birthday %>
