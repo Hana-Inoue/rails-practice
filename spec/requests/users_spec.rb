@@ -1,14 +1,39 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  describe 'GET /users' do
+  describe 'GET indexページ' do
     it '200番ステータスを返す' do
       get users_path
       expect(response).to have_http_status(200)
     end
   end
 
-  describe 'POST /users' do
+  describe 'GET showページ' do
+    let(:user) { create(:user) }
+
+    it '200番ステータスを返す' do
+      get user_path(user)
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET newページ' do
+    it '200番ステータスを返す' do
+      get new_user_path
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET editページ' do
+    let(:user) { create(:user) }
+
+    it '200番ステータスを返す' do
+      get edit_user_path(user)
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'POST 新規User情報' do
     let(:user_params) { attributes_for(:user) }
 
     context '有効なリクエストパラメータが渡された場合' do
@@ -34,32 +59,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'GET /users/new' do
-    it '200番ステータスを返す' do
-      get new_user_path
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe 'GET /users/:id/edit' do
-    let(:user) { create(:user) }
-
-    it '200番ステータスを返す' do
-      get edit_user_path(user)
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe 'GET /users/:id' do
-    let(:user) { create(:user) }
-
-    it '200番ステータスを返す' do
-      get user_path(user)
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe 'PATCH /users/:id' do
+  describe 'PATCH User更新情報' do
     before { user_params[:gender] = gender }
     let(:user_params) { attributes_for(:user) }
     let!(:user) { create(:user) }
@@ -90,7 +90,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'DELETE /users/:id' do
+  describe 'DELETE User情報' do
     let!(:user) { create(:user) }
 
     it 'indexページへリダイレクトする' do
