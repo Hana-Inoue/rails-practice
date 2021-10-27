@@ -1,0 +1,16 @@
+ja:
+  users:
+    index:
+      title: ユーザー一覧
+      links:
+        new: 新規登録
+    show:
+      title: ユーザー詳細
+      links:
+        index: 一覧
+        edit: 編集
+        delete: 削除
+    new:
+      title: 新規ユーザー登録
+    edit:
+      title: ユーザー情報編集
