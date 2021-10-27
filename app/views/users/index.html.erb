@@ -1,4 +1,4 @@
-<h1>Users</h1>
+<h1><%= I18n.t('users.index.title') %></h1>
 
 <ul>
   <% @users.each do |user| %>
@@ -6,4 +6,4 @@
   <% end %>
 </ul>
 
-<%= link_to '新規ユーザー登録', new_user_path %>
+<%= link_to I18n.t('users.index.links.new'), new_user_path %>
