@@ -1,7 +1,9 @@
-<h1>
+<h1><%= I18n.t('users.show.title') %></h1>
+
+<p>
   <%= "#{User.human_attribute_name(:name)}:" %>
   <%= @user.name %>
-</h1>
+</p>
 
 <p>
   <%= "#{User.human_attribute_name(:gender)}:" %>
@@ -14,9 +16,9 @@
 </p>
 
 <ul>
-  <li><%= link_to 'ユーザー一覧', users_path %></li>
-  <li><%= link_to '編集', edit_user_path(@user) %></li>
-  <li><%= link_to '削除',
+  <li><%= link_to I18n.t('users.show.links.index'), users_path %></li>
+  <li><%= link_to I18n.t('users.show.links.edit'), edit_user_path(@user) %></li>
+  <li><%= link_to I18n.t('users.show.links.delete'),
                   user_path(@user),
                   method: :delete,
                   data: { confirm: "#{@user.name}を削除しますか？" } %></li>
