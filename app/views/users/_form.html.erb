@@ -16,7 +16,7 @@
   <div>
     <%= form.label :gender %>
     <%= form.select :gender,
-                    options_for_select(User.genders.keys, selected: user.gender),
+                    User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] },
                     include_blank: true %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: user, attribute: :gender } %>

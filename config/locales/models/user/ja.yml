@@ -8,3 +8,9 @@ ja:
         email: メールアドレス
         gender: 性別
         birthday: 生年月日
+  enums:
+    user:
+      gender:
+        men: 男性
+        women: 女性
+        others: その他
