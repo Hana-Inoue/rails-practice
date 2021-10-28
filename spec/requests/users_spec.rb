@@ -59,7 +59,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'PATCH User更新情報' do
+  describe 'PATCH User情報' do
     before { user_params[:gender] = gender }
     let(:user_params) { attributes_for(:user) }
     let!(:user) { create(:user) }
