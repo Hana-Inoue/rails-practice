@@ -7,7 +7,7 @@
 
 <p>
   <%= "#{User.human_attribute_name(:gender)}:" %>
-  <%= @user.gender_in_japanese %>
+  <%= t("enums.user.gender.#{@user.gender}") %>
 </p>
 
 <p>
