@@ -1,0 +1,12 @@
+<h1>アカウント名: <%= @user.name %></h1>
+<p>性別: <%= @user.gender_in_japanese %></p>
+<p>誕生日: <%= @user.birthday %></p>
+
+<ul>
+  <li><%= link_to 'ユーザー一覧', users_path %></li>
+  <li><%= link_to '編集', edit_user_path(@user) %></li>
+  <li><%= link_to '削除',
+                  user_path(@user),
+                  method: :delete,
+                  data: { confirm: "#{@user.name}を削除しますか？" } %></li>
+</ul>
