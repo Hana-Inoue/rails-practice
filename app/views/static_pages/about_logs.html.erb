@@ -1,0 +1,44 @@
+<h1>Rails ログについて</h1>
+
+<table border='1'>
+  <thead>
+    <tr>
+      <th>Rails ログ</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Started GET "/static_pages/about_logs" for 172.18.0.1 at 2021-10-31 07:54:33 +0000</td>
+      <td>実行されたHTTPメソッドとURI、リクエスト元のIPアドレスと時刻</td>
+    </tr>
+    <tr>
+      <td>Processing by StaticPagesController#about_logs as HTML</td>
+      <td>実行されたcontrollerとactionと出力形式</td>
+    </tr>
+    <tr>
+      <td>Rendering layout layouts/application.html.erb</td>
+      <td>レイアウトファイルのレンダリング</td>
+    </tr>
+    <tr>
+      <td>Rendering static_pages/about_logs.html.erb within layouts/application</td>
+      <td>viewファイルのレンダリング</td>
+    </tr>
+    <tr>
+      <td>Rendered static_pages/about_logs.html.erb within layouts/application (Duration: 13.9ms | Allocations: 162)</td>
+      <td>viewファイルのレンダリングに要した実行時間とそれによって作成されたオブジェクトの数</td>
+    </tr>
+    <tr>
+      <td>[Webpacker] Everything's up-to-date. Nothing to do</td>
+      <td>Webpackerが走り、実行内容が出力される</td>
+    </tr>
+    <tr>
+      <td>Rendered layout layouts/application.html.erb (Duration: 319.3ms | Allocations: 3636)</td>
+      <td>レイアウトファイルのレンダリングに要した実行時間とそれによって作成されたオブジェクトの数</td>
+    </tr>
+    <tr>
+      <td>Completed 200 OK in 380ms (Views: 363.7ms | Allocations: 4840)</td>
+      <td>ステータスコードと実行時間、作成されたオブジェクトの数</td>
+    </tr>
+  </tbody>
+</table>
