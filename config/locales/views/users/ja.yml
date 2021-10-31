@@ -10,8 +10,8 @@ ja:
         index: 一覧
         edit: 編集
         delete: 削除
-      modals:
-        delete_confirm: "%{name}を削除しますか?"
+      confirm:
+        delete: "%{name}を削除しますか?"
     new:
       title: 新規ユーザー登録
     edit:
