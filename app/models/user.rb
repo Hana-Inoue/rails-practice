@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  GENDERS_IN_JAPANESE = { men: '男性', women: '女性', others: 'その他' }
 
   enum gender: {
     men: 0,
@@ -17,10 +16,6 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   before_save { downcase_email }
-
-  def gender_in_japanese
-    GENDERS_IN_JAPANESE[gender.to_sym]
-  end
 
   private
 

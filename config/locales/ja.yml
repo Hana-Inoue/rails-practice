@@ -1,0 +1,8 @@
+ja:
+  errors:
+    messages:
+      inclusion: を選択してください
+  helpers:
+    submit:
+      create: 登録
+      update: 更新
