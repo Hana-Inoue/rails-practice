@@ -1,3 +1,5 @@
+require 'digest/sha2'
+
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -14,8 +16,16 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
   validates :gender, inclusion: { in: genders.keys }
   validates :birthday, presence: true
+  validates :password, length: { minimum: 8 }, confirmation: true
+  # TODO: エラーメッセージが適切な内容になるよう修正
+  validates :password_confirmation, presence: true
 
   before_save { downcase_email }
+
+  # TODO: 呼び出し元の実装
+  def password_digest
+    password = Digest::SHA256.hexdigest(password)
+  end
 
   private
 
