@@ -8,6 +8,8 @@ ja:
         email: メールアドレス
         gender: 性別
         birthday: 生年月日
+        password: パスワード
+        password_confirmation: パスワード(確認用)
   enums:
     user:
       gender:
