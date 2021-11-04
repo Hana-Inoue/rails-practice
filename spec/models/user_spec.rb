@@ -87,5 +87,12 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
     end
+
+    context 'password_confirmationがpasswordと一致しない場合' do
+      before { user.password_confirmation = 'a' * 8 }
+      it '無効になる' do
+        expect(user).not_to be_valid
+      end
+    end
   end
 end
