@@ -17,14 +17,12 @@ class User < ApplicationRecord
   validates :gender, inclusion: { in: genders.keys }
   validates :birthday, presence: true
   validates :password, length: { minimum: 8 }, confirmation: true
-  # TODO: エラーメッセージが適切な内容になるよう修正
   validates :password_confirmation, presence: true
 
   before_save { downcase_email }
 
-  # TODO: 呼び出し元の実装
   def password_digest
-    password = Digest::SHA256.hexdigest(password)
+    self.password = Digest::SHA256.hexdigest(self.password)
   end
 
   private
