@@ -21,6 +21,10 @@ class User < ApplicationRecord
 
   before_save :downcase_email, :password_digest
 
+  def valid_password?(password)
+    self.password == digest(password)
+  end
+
   private
 
   def downcase_email
@@ -28,6 +32,10 @@ class User < ApplicationRecord
   end
 
   def password_digest
-    self.password = Digest::SHA256.hexdigest(self.password)
+    self.password = digest(self.password)
+  end
+
+  def digest(string)
+    Digest::SHA256.hexdigest(string)
   end
 end
