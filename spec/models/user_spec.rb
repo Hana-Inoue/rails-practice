@@ -1,3 +1,4 @@
+require 'digest/sha2'
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -93,6 +94,14 @@ RSpec.describe User, type: :model do
       it '無効になる' do
         expect(user).not_to be_valid
       end
+    end
+  end
+
+  describe '#password_digest' do
+    before { user.password = password }
+    let(:password) { 'a' * 5 }
+    it 'passwordが渡された値をハッシュ化した文字列と一致する' do
+      expect(user.password_digest).to eq Digest::SHA256.hexdigest(password)
     end
   end
 end
