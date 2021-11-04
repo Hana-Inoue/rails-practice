@@ -1,19 +1,19 @@
-<h1>Log in</h1>
+<h1><%= t('sessions.new.title') %></h1>
 
 <%= form_with url: login_path do |form| %>
   <div>
-    <%= form.label :email %>
+    <%= form.label :email, User.human_attribute_name(:email) %>
     <%= form.text_field :email %>
   </div>
 
   <div>
-    <%= form.label :password %>
+    <%= form.label :password, User.human_attribute_name(:password) %>
     <%= form.password_field :password %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit t('sessions.new.buttons.create') %>
   </div>
 <% end %>
 
-<%= link_to t('users.index.links.new'), signup_path %>
+<%= link_to t('sessions.new.links.user_new'), signup_path %>
