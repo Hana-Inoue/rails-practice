@@ -80,5 +80,12 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
     end
+
+    context 'password_confirmationがない場合' do
+      before { user.password_confirmation = '' }
+      it '無効になる' do
+        expect(user).not_to be_valid
+      end
+    end
   end
 end
