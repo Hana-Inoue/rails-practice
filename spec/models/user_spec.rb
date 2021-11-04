@@ -97,6 +97,24 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#valid_password?' do
+    before { allow(user).to receive(:digest).and_return(password) }
+
+    context '引数で渡された値がpasswordと一致した場合' do
+      let(:password) { user.password }
+      it 'trueを返す' do
+        expect(user.valid_password?(password)).to eq true
+      end
+    end
+
+    context '引数で渡された値がpasswordと一致しない場合' do
+      let(:password) { 'invalid_password' }
+      it 'falseを返す' do
+        expect(user.valid_password?(password)).to eq false
+      end
+    end
+  end
+
   describe '#downcase_email' do
     before { user.email = upcase_email }
     let(:upcase_email) { user.email.upcase }
@@ -106,10 +124,20 @@ RSpec.describe User, type: :model do
   end
 
   describe '#password_digest' do
-    before { user.password = password }
-    let(:password) { 'a' * 8 }
-    it 'passwordが渡された値をハッシュ化した文字列と一致する' do
-      expect(user.send(:password_digest)).to eq Digest::SHA256.hexdigest(password)
+    before do
+      allow(user).to receive(:digest).and_return(password_digest)
+      user.send(:password_digest)
+    end
+    let(:password_digest) { 'digested' }
+    it 'passwordにdigestメソッドの返り値を代入する' do
+      expect(user.password).to eq password_digest
+    end
+  end
+
+  describe '#digest' do
+    let(:string) { 'a' * 8 }
+    it '引数に渡された値をハッシュ化した文字列を返す' do
+      expect(user.send(:digest, string)).to eq Digest::SHA256.hexdigest(string)
     end
   end
 end
