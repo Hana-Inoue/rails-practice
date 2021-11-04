@@ -66,5 +66,12 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
     end
+
+    context 'passwordがない場合' do
+      before { user.password = '' }
+      it '無効になる' do
+        expect(user).not_to be_valid
+      end
+    end
   end
 end
