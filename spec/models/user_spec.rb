@@ -97,19 +97,19 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#password_digest' do
-    before { user.password = password }
-    let(:password) { 'a' * 8 }
-    it 'passwordが渡された値をハッシュ化した文字列と一致する' do
-      expect(user.password_digest).to eq Digest::SHA256.hexdigest(password)
-    end
-  end
-
   describe '#downcase_email' do
     before { user.email = upcase_email }
     let(:upcase_email) { user.email.upcase }
     it 'emailが全て小文字になる' do
       expect(user.send(:downcase_email)).to eq upcase_email.downcase
+    end
+  end
+
+  describe '#password_digest' do
+    before { user.password = password }
+    let(:password) { 'a' * 8 }
+    it 'passwordが渡された値をハッシュ化した文字列と一致する' do
+      expect(user.send(:password_digest)).to eq Digest::SHA256.hexdigest(password)
     end
   end
 end
