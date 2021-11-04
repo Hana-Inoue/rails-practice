@@ -73,5 +73,12 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
     end
+
+    context 'passwordが8文字未満の場合' do
+      before { user.password = 'a' * 5 }
+      it '無効になる' do
+        expect(user).not_to be_valid
+      end
+    end
   end
 end
