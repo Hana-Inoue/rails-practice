@@ -1,6 +1,6 @@
 <h1><%= t('sessions.new.title') %></h1>
 
-<%= form_with url: login_path do |form| %>
+<%= form_with(scope: :session, url: login_path) do |form| %>
   <div>
     <%= form.label :email, User.human_attribute_name(:email) %>
     <%= form.text_field :email %>
