@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  def about_logs; end
+  def about_rails_logs; end
 
-  def about_activerecord; end
+  def about_activerecord_logs; end
 end
