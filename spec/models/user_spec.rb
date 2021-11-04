@@ -24,6 +24,14 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context 'nameが31文字以上の場合' do
+      before { user.name = 'a' * 31 }
+      it '無効になる' do
+        p user.name
+        expect(user).not_to be_valid
+      end
+    end
+
     context 'emailが重複している場合' do
       before { create(:user, email: user.email) }
       it '無効になる' do
