@@ -99,7 +99,7 @@ RSpec.describe User, type: :model do
 
   describe '#password_digest' do
     before { user.password = password }
-    let(:password) { 'a' * 5 }
+    let(:password) { 'a' * 8 }
     it 'passwordが渡された値をハッシュ化した文字列と一致する' do
       expect(user.password_digest).to eq Digest::SHA256.hexdigest(password)
     end
