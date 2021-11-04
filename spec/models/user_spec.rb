@@ -39,8 +39,15 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'emailの大文字・小文字が異なる場合' do
+    context 'emailの大文字・小文字が異なって重複している場合' do
       before { create(:user, email: user.email.upcase) }
+      it '無効になる' do
+        expect(user).not_to be_valid
+      end
+    end
+
+    context 'emailの形式ではない文字列が入力された場合' do
+      before { user.email = 'a' * 10 }
       it '無効になる' do
         expect(user).not_to be_valid
       end
