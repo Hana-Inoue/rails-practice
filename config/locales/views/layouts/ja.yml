@@ -5,5 +5,7 @@ ja:
         logout: ログアウト
     flash:
       messages:
-      notice: ログインに成功しました。
-      alert: ログインに失敗しました。
+        log_in:
+          success: ログインに成功しました。
+          fail: ログインに失敗しました。
+        log_out: ログアウトしました。
