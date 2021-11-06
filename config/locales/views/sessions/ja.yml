@@ -6,3 +6,6 @@ ja:
         create: ログイン
       links:
         user_new: 新規登録
+      flash:
+        notice: ログインに成功しました。
+        alert: ログインに失敗しました。
