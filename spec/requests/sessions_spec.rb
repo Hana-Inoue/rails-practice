@@ -33,4 +33,12 @@ RSpec.describe "Sessions", type: :request do
       end
     end
   end
+
+  describe 'DELETE ログイン情報' do
+    it 'ログインページへリダイレクトする' do
+      delete logout_path
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to login_path
+    end
+  end
 end
