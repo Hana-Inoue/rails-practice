@@ -1,0 +1,6 @@
+<% if logged_in? %>
+  <ul>
+    <li><%= @current_user.name %></li>
+    <li><%= link_to t('layouts.header.links.logout'), logout_path, method: :delete %></li>
+  </ul>
+<% end %>

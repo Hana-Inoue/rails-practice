@@ -1,0 +1,9 @@
+ja:
+  layouts:
+    header:
+      links:
+        logout: ログアウト
+    flash:
+      messages:
+      notice: ログインに成功しました。
+      alert: ログインに失敗しました。

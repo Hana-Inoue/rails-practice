@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 
     if user && user.registered_password_match_with?(params[:session][:password])
       log_in(user)
-      redirect_to root_path, notice: t('sessions.new.flash.notice')
+      redirect_to root_path, notice: t('layouts.flash.messages.notice')
     else
-      flash.now[:alert] = t('sessions.new.flash.alert')
+      flash.now[:alert] = t('layouts.flash.messages.alert')
       render :new
     end
   end
