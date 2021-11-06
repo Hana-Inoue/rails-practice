@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
 
     if user && user.registered_password_match_with?(params[:session][:password])
-      # TODO: trueだった(ログインに成功した)場合の挙動を実装
+      log_in(user)
+      redirect_to root_path, notice: t('sessions.new.flash.notice')
     else
       flash.now[:alert] = t('sessions.new.flash.alert')
       render :new
