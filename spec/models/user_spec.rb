@@ -96,20 +96,20 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#valid_password?' do
+  describe '#registered_password_match_with?' do
     before { allow(user).to receive(:digest).and_return(password) }
 
     context '引数で渡された値がpasswordと一致した場合' do
       let(:password) { user.password }
       it 'trueを返す' do
-        expect(user.valid_password?(password)).to eq true
+        expect(user.registered_password_match_with?(password)).to eq true
       end
     end
 
     context '引数で渡された値がpasswordと一致しない場合' do
       let(:password) { 'invalid_password' }
       it 'falseを返す' do
-        expect(user.valid_password?(password)).to eq false
+        expect(user.registered_password_match_with?(password)).to eq false
       end
     end
   end

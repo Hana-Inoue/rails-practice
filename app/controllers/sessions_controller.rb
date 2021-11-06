@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
 
-    if user && user.valid_password?(params[:session][:password])
+    if user && user.registered_password_match_with?(params[:session][:password])
       # TODO: trueだった(ログインに成功した)場合の挙動を実装
     else
       # TODO: エラーメッセージの表示

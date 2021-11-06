@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   before_save :downcase_email, :password_digest
 
-  def valid_password?(password)
+  def registered_password_match_with?(password)
     self.password == digest(password)
   end
 
