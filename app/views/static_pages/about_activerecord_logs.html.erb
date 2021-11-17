@@ -1,0 +1,57 @@
+<h1>ActiveRecordについて</h1>
+
+<table border='1'>
+  <thead>
+    <tr>
+      <th>メソッド</th>
+      <th>クエリ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>User.new(name: 'Mike', email: 'h_inoue2+test-1@ga-tech.co.jp', gender: 'men', birthday: '1999-01-01').save</td>
+      <td>
+        SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2<br>
+        INSERT INTO "users" ("name", "email", "gender", "birthday", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"
+      </td>
+    </tr>
+    <tr>
+      <td>User.create(name: 'Mike', email: 'h_inoue2+test-1@ga-tech.co.jp', gender: 'men', birthday: '1999-01-01')</td>
+      <td>
+        SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2<br>
+        INSERT INTO "users" ("name", "email", "gender", "birthday", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"
+      </td>
+    </tr>
+    <tr>
+      <td>User.all</td>
+      <td>SELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1</td>
+    </tr>
+    <tr>
+      <td>User.first</td>
+      <td>SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1</td>
+    </tr>
+    <tr>
+      <td>User.find_by(name: 'Mike')</td>
+      <td>SELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2</td>
+    </tr>
+    <tr>
+      <td>User.where(gender: 'men')</td>
+      <td>SELECT "users".* FROM "users" WHERE "users"."gender" = $1 /* loading for inspect */ LIMIT $2</td>
+    </tr>
+    <tr>
+      <td>User.find_by(name: 'Mike').update(birthday: '1999-10-10')</td>
+      <td>
+        SELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2<br>
+        SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."id" != $2 LIMIT $3<br>
+        UPDATE "users" SET "birthday" = $1, "updated_at" = $2 WHERE "users"."id" = $3
+      </td>
+    </tr>
+    <tr>
+      <td>User.find_by(name: 'Mike').destroy</td>
+      <td>
+        SELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2<br>
+        DELETE FROM "users" WHERE "users"."id" = $1
+      </td>
+    </tr>
+  </tbody>
+</table>
