@@ -7,9 +7,9 @@ RSpec.describe 'StaticPages', type: :request do
   let(:user) { create(:user) }
   let(:password) { attributes_for(:user)[:password] }
 
-  describe 'GET about_rails_logsページ' do
+  describe 'GET about_server_logsページ' do
     it '200番ステータスを返す' do
-      get static_pages_about_rails_logs_path
+      get static_pages_about_server_logs_path
       expect(response).to have_http_status(200)
     end
   end
