@@ -4,5 +4,3 @@ ja:
       title: ログイン
       buttons:
         create: ログイン
-      links:
-        user_new: 新規登録
