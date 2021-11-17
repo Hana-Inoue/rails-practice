@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }, confirmation: true
   validates :password_confirmation, presence: true
 
-  before_save :downcase_email, :digest_password
+  before_save :downcase_email, :set_password_digest
 
   def registered_password_match_with?(password)
     self.password == digest(email + password)
@@ -31,7 +31,7 @@ class User < ApplicationRecord
     email.downcase!
   end
 
-  def digest_password
+  def set_password_digest
     self.password = digest(email + self.password)
   end
 

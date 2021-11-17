@@ -122,10 +122,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#digest_password' do
+  describe '#set_password_digest' do
     before do
       allow(user).to receive(:digest).and_return(password_digest)
-      user.send(:digest_password)
+      user.send(:set_password_digest)
     end
     let(:password_digest) { 'digested' }
     it 'passwordにdigestメソッドの返り値を代入する' do
