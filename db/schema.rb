@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 0) do
     table.string 'email', null: false
     table.integer 'gender', null: false
     table.date 'birthday', null: false
-    table.string 'password', null: false
+    table.string 'password_digest', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
     table.index ['email'], name: 'index_users_on_email', unique: true
