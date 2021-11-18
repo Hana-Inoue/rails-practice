@@ -1,3 +1,13 @@
+User.create!(
+  name: 'admin',
+  email: 'h_inoue2+test-0@ga-tech.co.jp',
+  gender: 0,
+  birthday: '2010-12-31',
+  password: 'testtest',
+  password_confirmation: 'testtest',
+  admin: true
+)
+
 5.times do |number|
   User.create!(
     name: "user#{number + 1}",
@@ -15,5 +25,6 @@ User.create!(
   gender: 0,
   birthday: '2020-01-01',
   password: 'a_endo@ga-tech.co.jp',
-  password_confirmation: 'a_endo@ga-tech.co.jp'
+  password_confirmation: 'a_endo@ga-tech.co.jp',
+  admin: true
 )
