@@ -19,23 +19,13 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }, confirmation: true
   validates :password_confirmation, presence: true
 
-  before_save :downcase_email, :set_password_digest
+  before_save :downcase_email
 
-  def registered_password_match_with?(password)
-    self.password == digest(email + password)
-  end
+  has_secure_password
 
   private
 
   def downcase_email
     email.downcase!
-  end
-
-  def set_password_digest
-    self.password = digest(email + self.password)
-  end
-
-  def digest(string)
-    Digest::SHA256.hexdigest(string)
   end
 end
