@@ -1,3 +1,5 @@
+require 'digest/sha2'
+
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -14,8 +16,12 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
   validates :gender, inclusion: { in: genders.keys }
   validates :birthday, presence: true
+  validates :password, length: { minimum: 8 }, confirmation: true
+  validates :password_confirmation, presence: true
 
-  before_save { downcase_email }
+  before_save :downcase_email
+
+  has_secure_password
 
   private
 

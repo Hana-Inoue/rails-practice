@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user
+      redirect_to @user, notice: t('layouts.flash.messages.created_user')
     else
       render :new
     end
@@ -43,6 +43,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :gender, :birthday)
+    params
+      .require(:user)
+      .permit(:name, :email, :gender, :birthday, :password, :password_confirmation)
   end
 end

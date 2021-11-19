@@ -1,0 +1,6 @@
+ja:
+  sessions:
+    new:
+      title: ログイン
+      buttons:
+        create: ログイン

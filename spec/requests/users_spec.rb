@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
+  before { post login_path, params: params }
+  let(:params) { { session: { email: email, password: password } } }
+  let(:email) { user.email }
+  let(:user) { create(:user) }
+  let(:password) { attributes_for(:user)[:password] }
+
   describe 'GET indexページ' do
     it '200番ステータスを返す' do
       get users_path
@@ -9,8 +15,6 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET showページ' do
-    let(:user) { create(:user) }
-
     it '200番ステータスを返す' do
       get user_path(user)
       expect(response).to have_http_status(200)
@@ -25,8 +29,6 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET editページ' do
-    let(:user) { create(:user) }
-
     it '200番ステータスを返す' do
       get edit_user_path(user)
       expect(response).to have_http_status(200)
@@ -62,7 +64,6 @@ RSpec.describe 'Users', type: :request do
   describe 'PATCH User情報' do
     before { user_params[:gender] = gender }
     let(:user_params) { attributes_for(:user) }
-    let!(:user) { create(:user) }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:gender) { :women }
@@ -91,8 +92,6 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'DELETE User情報' do
-    let!(:user) { create(:user) }
-
     it 'indexページへリダイレクトする' do
       delete user_path(user)
       expect(response).to have_http_status(302)
