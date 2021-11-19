@@ -23,7 +23,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET newページ' do
     it '200番ステータスを返す' do
-      get signup_path
+      get new_user_path
       expect(response).to have_http_status(200)
     end
   end
