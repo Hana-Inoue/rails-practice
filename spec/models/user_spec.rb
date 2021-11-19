@@ -11,14 +11,14 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'nameがない場合' do
+    context 'nameが空文字の場合' do
       before { user.name = '' }
       it '無効になる' do
         expect(user).not_to be_valid
       end
     end
 
-    context 'emailがない場合' do
+    context 'emailが空文字の場合' do
       before { user.email = '' }
       it '無効になる' do
         expect(user).not_to be_valid
@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'emailの大文字・小文字が異なって重複している場合' do
+    context 'downcase版とupcase版でemailが重複している場合' do
       before { create(:user, email: user.email.upcase) }
       it '無効になる' do
         expect(user).not_to be_valid
@@ -53,21 +53,21 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'genderがない場合' do
+    context 'genderが空文字の場合' do
       before { user.gender = '' }
       it '無効になる' do
         expect(user).not_to be_valid
       end
     end
 
-    context 'birthdayがない場合' do
+    context 'birthdayが空文字の場合' do
       before { user.birthday = '' }
       it '無効になる' do
         expect(user).not_to be_valid
       end
     end
 
-    context 'passwordがない場合' do
+    context 'passwordが空文字の場合' do
       let(:user) { build(:user, password: '') }
       it '無効になる' do
         expect(user).not_to be_valid
@@ -81,7 +81,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'password_confirmationがない場合' do
+    context 'password_confirmationが空文字の場合' do
       before { user.password_confirmation = '' }
       it '無効になる' do
         expect(user).not_to be_valid
