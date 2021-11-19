@@ -5,7 +5,13 @@ User.create!(
   birthday: '2010-12-31',
   password: 'testtest',
   password_confirmation: 'testtest',
-  admin: true
+  index_action: true,
+  show_action: true,
+  new_action: true,
+  edit_action: true,
+  create_action: true,
+  update_action: true,
+  destroy_action: true
 )
 
 5.times do |number|
@@ -26,5 +32,11 @@ User.create!(
   birthday: '2020-01-01',
   password: 'a_endo@ga-tech.co.jp',
   password_confirmation: 'a_endo@ga-tech.co.jp',
-  admin: true
+  index_action: true,
+  show_action: true,
+  new_action: true,
+  edit_action: true,
+  create_action: true,
+  update_action: true,
+  destroy_action: true
 )

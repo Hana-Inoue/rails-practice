@@ -21,7 +21,13 @@ ActiveRecord::Schema.define(version: 0) do
     table.integer 'gender', null: false
     table.date 'birthday', null: false
     table.string 'password_digest', null: false
-    table.boolean 'admin', default: false, null: false
+    table.boolean 'index_action', default: true, null: false
+    table.boolean 'show_action', default: true, null: false
+    table.boolean 'new_action', default: true, null: false
+    table.boolean 'edit_action', default: false, null: false
+    table.boolean 'create_action', default: true, null: false
+    table.boolean 'update_action', default: false, null: false
+    table.boolean 'destroy_action', default: false, null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
     table.index ['email'], name: 'index_users_on_email', unique: true
