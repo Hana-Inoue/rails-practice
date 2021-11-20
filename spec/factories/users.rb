@@ -9,7 +9,7 @@ FactoryBot.define do
 
     after(:create) do |user|
       Authorization.actions.each_key do |action|
-        user.authorizations << build(:authorization, user: user, action: action)
+        user.authorizations << build(:authorization, action: action)
       end
     end
   end
