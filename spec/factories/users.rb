@@ -7,9 +7,11 @@ FactoryBot.define do
     password { 'testtest' }
     password_confirmation { 'testtest' }
 
-    after(:create) do |user|
-      Authorization.actions.each_key do |action|
-        user.authorizations << build(:authorization, action: action)
+    trait :admin do
+      after(:create) do |user|
+        Authorization.actions.each_key do |action|
+          user.authorizations << build(:authorization, action: action)
+        end
       end
     end
   end
