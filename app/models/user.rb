@@ -25,6 +25,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  def authorized?(action)
+    authorizations.map(&:action).include?(action)
+  end
+
   private
 
   def downcase_email
