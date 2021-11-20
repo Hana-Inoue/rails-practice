@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
   def index
-    check_authorization('index_action')
+    check_authorization
 
     @users = User.all
   end
 
   def show
-    check_authorization('show_action')
+    check_authorization
 
     @user = User.find(params[:id])
   end
 
   def new
-    check_authorization('new_action')
+    check_authorization
 
     @user = User.new
   end
@@ -20,11 +20,11 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
 
-    check_authorization('edit_action', permit_own_user: true, target_user_id: @user.id)
+    check_authorization(permit_own_user: true, target_user_id: @user.id)
   end
 
   def create
-    check_authorization('create_action')
+    check_authorization
 
     @user = User.new(user_params)
     if @user.save
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    check_authorization('update_action', permit_own_user: true, target_user_id: @user.id)
+    check_authorization(permit_own_user: true, target_user_id: @user.id)
 
     if @user.update(user_params)
       redirect_to @user
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
 
-    check_authorization('destroy_action', permit_own_user: true, target_user_id: user.id)
+    check_authorization(permit_own_user: true, target_user_id: user.id)
 
     user.destroy
     redirect_to root_path
@@ -63,14 +63,14 @@ class UsersController < ApplicationController
       .permit(:name, :email, :gender, :birthday, :password, :password_confirmation)
   end
 
-  def check_authorization(action, permit_own_user: false, target_user_id: nil)
-    unless permit_own_user
-      raise NotAuthorizedError if !current_user.authorizations.find_by(action: action)
-      return
-    end
-
-    if !current_user.authorizations.find_by(action: action) && current_user.id != target_user_id
-      raise NotAuthorizedError
+  def check_authorization(permit_own_user: false, target_user_id: nil)
+    if permit_own_user
+      unless current_user.authorized?("#{params[:action]}_action") ||
+             current_user.id == target_user_id
+        raise NotAuthorizedError
+      end
+    else
+      raise NotAuthorizedError unless current_user.authorized?("#{params[:action]}_action")
     end
   end
 end
