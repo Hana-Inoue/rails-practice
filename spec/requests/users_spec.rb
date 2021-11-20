@@ -4,8 +4,8 @@ RSpec.describe 'Users', type: :request do
   before { post login_path, params: params }
   let(:params) { { session: { email: email, password: password } } }
   let(:email) { user.email }
-  let(:user) { create(:user) }
   let(:password) { attributes_for(:user)[:password] }
+  let(:user) { create(:user) }
 
   describe 'GET indexページ' do
     it '200番ステータスを返す' do

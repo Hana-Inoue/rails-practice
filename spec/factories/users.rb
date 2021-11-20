@@ -6,5 +6,11 @@ FactoryBot.define do
     birthday { '2021-10-14' }
     password { 'testtest' }
     password_confirmation { 'testtest' }
+
+    after(:create) do |user|
+      Authorization.actions.each_key do |action|
+        user.authorizations << build(:authorization, user: user, action: action)
+      end
+    end
   end
 end
