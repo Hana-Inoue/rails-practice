@@ -11,3 +11,4 @@ ja:
         log_out: ログアウトしました。
         require_login: ログインしてください。
         created_user: ユーザー情報を登録しました。
+        require_authorization: アクセス権限がありません。
