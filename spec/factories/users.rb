@@ -9,8 +9,8 @@ FactoryBot.define do
 
     trait :admin do
       after(:create) do |user|
-        Authorization.actions.each_key do |action|
-          user.authorizations << build(:authorization, action: action)
+        Actions.all.each do |action|
+          user.authorizations << build(:authorization, action: action.id)
         end
       end
     end
