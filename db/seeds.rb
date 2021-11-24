@@ -28,10 +28,7 @@ users = (1..5).map do |number|
 end
 
 ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
-  Action.create!(
-    controller: 'user',
-    action: action,
-  )
+  Action.create!(controller: 'user', action: action)
 end
 
 [admin, endo_san].each do |user|
