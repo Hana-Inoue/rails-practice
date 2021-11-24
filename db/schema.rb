@@ -26,13 +26,22 @@ ActiveRecord::Schema.define(version: 0) do
     table.index ['email'], name: 'index_users_on_email', unique: true
   end
 
+  create_table 'actions', force: :cascade do |table|
+    table.string 'controller', null: false
+    table.string 'action', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'authorizations', force: :cascade do |table|
     table.bigint 'user_id', null: false
-    table.integer 'action', null: false
+    table.integer 'action_id', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
     table.index ['user_id'], name: 'index_authorizations_on_user_id'
+    table.index ['action_id'], name: 'index_authorizations_on_action_id'
   end
 
   add_foreign_key 'authorizations', 'users'
+  add_foreign_key 'authorizations', 'actions'
 end
