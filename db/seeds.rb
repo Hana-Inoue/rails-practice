@@ -1,4 +1,4 @@
-User.create!(
+admin = User.create!(
   name: 'admin',
   email: 'h_inoue2+test-0@ga-tech.co.jp',
   gender: 0,
@@ -7,7 +7,7 @@ User.create!(
   password_confirmation: 'testtest'
 )
 
-User.create!(
+endo_san = User.create!(
   name: 'a_endo@ga-tech.co.jp',
   email: 'a_endo@ga-tech.co.jp',
   gender: 0,
@@ -16,7 +16,7 @@ User.create!(
   password_confirmation: 'a_endo@ga-tech.co.jp'
 )
 
-(1..5).each do |number|
+users = (1..5).map do |number|
   User.create!(
     name: "user#{number}",
     email: "h_inoue2+test-#{number}@ga-tech.co.jp",
@@ -27,19 +27,19 @@ User.create!(
   )
 end
 
-admin = User.find_by(email: 'h_inoue2+test-0@ga-tech.co.jp')
-Authorization.actions.each_key do |key|
-  admin.authorizations.create!(action: key)
+['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
+  Action.create!(
+    controller: 'user',
+    action: action,
+  )
 end
 
-endo_san = User.find_by(email: 'a_endo@ga-tech.co.jp')
-Authorization.actions.each_key do |key|
-  endo_san.authorizations.create!(action: key)
+[admin, endo_san].each do |user|
+  Action.all.each { |action| user.authorizations.create!(action_id: action.id) }
 end
 
-users = (1..5).map { |number| User.find_by(email: "h_inoue2+test-#{number}@ga-tech.co.jp") }
 users.each do |user|
-  ['index_action', 'show_action', 'new_action', 'create_action'].each do |action|
-    user.authorizations.create!(action: action)
+  ['index', 'show', 'new', 'create'].map do |action|
+    user.authorizations.create!(action_id: Action.find_by(controller: 'user', action: action).id)
   end
 end
