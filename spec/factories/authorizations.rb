@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :authorization do
-    action { 'index_action' }
+    action_id { 1 }
   end
 end
