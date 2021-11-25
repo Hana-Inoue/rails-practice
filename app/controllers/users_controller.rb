@@ -65,12 +65,12 @@ class UsersController < ApplicationController
 
   def check_authorization(permit_own_user: false, target_user_id: nil)
     if permit_own_user
-      unless current_user.authorized?("#{params[:action]}_action") ||
+      unless current_user.authorized?(params[:action]) ||
              current_user.id == target_user_id
         raise NotAuthorizedError
       end
     else
-      raise NotAuthorizedError unless current_user.authorized?("#{params[:action]}_action")
+      raise NotAuthorizedError unless current_user.authorized?(params[:action])
     end
   end
 end
