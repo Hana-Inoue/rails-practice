@@ -33,15 +33,15 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table 'authorizations', force: :cascade do |table|
+  create_table 'user_authorizations', force: :cascade do |table|
     table.bigint 'user_id', null: false
     table.integer 'action_id', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
-    table.index ['user_id'], name: 'index_authorizations_on_user_id'
-    table.index ['action_id'], name: 'index_authorizations_on_action_id'
+    table.index ['user_id'], name: 'index_user_authorizations_on_user_id'
+    table.index ['action_id'], name: 'index_user_authorizations_on_action_id'
   end
 
-  add_foreign_key 'authorizations', 'users'
-  add_foreign_key 'authorizations', 'actions'
+  add_foreign_key 'user_authorizations', 'users'
+  add_foreign_key 'user_authorizations', 'actions'
 end
