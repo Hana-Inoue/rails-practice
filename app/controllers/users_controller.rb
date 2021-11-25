@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
 
-    check_authorization(permit_own_user: true, target_user_id: @user.id)
+    check_authorization(authorize_self_resource: true, resource_owner_id: @user.id)
   end
 
   def create
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    check_authorization(permit_own_user: true, target_user_id: @user.id)
+    check_authorization(authorize_self_resource: true, resource_owner_id: @user.id)
 
     if @user.update(user_params)
       redirect_to @user
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
 
-    check_authorization(permit_own_user: true, target_user_id: user.id)
+    check_authorization(authorize_self_resource: true, resource_owner_id: user.id)
 
     user.destroy
     redirect_to root_path
@@ -63,10 +63,10 @@ class UsersController < ApplicationController
       .permit(:name, :email, :gender, :birthday, :password, :password_confirmation)
   end
 
-  def check_authorization(permit_own_user: false, target_user_id: nil)
-    if permit_own_user
+  def check_authorization(authorize_self_resource: false, resource_owner_id: nil)
+    if authorize_self_resource
       unless current_user.authorized?(params[:action]) ||
-             current_user.id == target_user_id
+             current_user.id == resource_owner_id
         raise NotAuthorizedError
       end
     else
