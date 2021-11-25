@@ -27,7 +27,9 @@ class User < ApplicationRecord
   has_secure_password
 
   def authorized?(action)
-    authorizations.map(&:action).include?(action)
+    user_authorizations
+      .map(&:action_id)
+      .include?(Action.find_by(controller: 'user', action: action).id)
   end
 
   private
