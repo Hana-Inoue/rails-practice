@@ -12,7 +12,7 @@ FactoryBot.define do
     end
 
     # indexの権限のみを所有するtest userの作成
-    trait :test_user do
+    trait :user_with_index_authorization do
       after(:create) do |user|
         user.user_authorizations <<
           build(

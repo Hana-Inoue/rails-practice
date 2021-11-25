@@ -25,7 +25,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context '権限を持たないユーザがアクセスしようとした場合' do
-      let(:user) { create(:user, :test_user) }
+      let(:user) { create(:user, :user_with_index_authorization) }
 
       it 'リダイレクトされる' do
         expect(response).to have_http_status(302)
@@ -44,7 +44,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context '権限を持たないユーザがアクセスしようとした場合' do
-      let(:user) { create(:user, :test_user) }
+      let(:user) { create(:user, :user_with_index_authorization) }
 
       it 'リダイレクトされる' do
         expect(response).to have_http_status(302)
@@ -63,7 +63,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context '権限を持たないユーザがアクセスしようとした場合' do
-      let(:user) { create(:user, :test_user) }
+      let(:user) { create(:user, :user_with_index_authorization) }
 
       it 'リダイレクトされる' do
         expect(response).to have_http_status(302)
@@ -98,7 +98,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context '権限を持たないユーザが実行しようとした場合' do
-      let(:user) { create(:user, :test_user) }
+      let(:user) { create(:user, :user_with_index_authorization) }
 
       it 'リダイレクトされる' do
         post users_path, params: { user: user_params }
@@ -138,7 +138,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context '権限を持たないユーザが実行しようとした場合' do
-      let(:user) { create(:user, :test_user) }
+      let(:user) { create(:user, :user_with_index_authorization) }
       let(:gender) { :women }
 
       it 'リダイレクトされる' do
@@ -165,7 +165,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context '権限を持たないユーザが実行しようとした場合' do
-      let(:user) { create(:user, :test_user) }
+      let(:user) { create(:user, :user_with_index_authorization) }
 
       it 'リダイレクトされる' do
         delete user_path(other_user)
