@@ -1,4 +1,4 @@
-class Authorization < ApplicationRecord
+class UserAuthorization < ApplicationRecord
   belongs_to :user
   belongs_to :action
 
