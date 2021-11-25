@@ -32,11 +32,11 @@ end
 end
 
 [admin, endo_san].each do |user|
-  Action.all.each { |action| user.authorizations.create!(action_id: action.id) }
+  Action.all.each { |action| user.user_authorizations.create!(action_id: action.id) }
 end
 
 users.each do |user|
   ['index', 'show', 'new', 'create'].map do |action|
-    user.authorizations.create!(action_id: Action.find_by(controller: 'user', action: action).id)
+    user.user_authorizations.create!(action_id: Action.find_by(controller: 'user', action: action).id)
   end
 end
