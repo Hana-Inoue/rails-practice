@@ -37,6 +37,8 @@ end
 
 users.each do |user|
   ['index', 'show', 'new', 'create'].map do |action|
-    user.user_authorizations.create!(action_id: Action.find_by(controller: 'user', action: action).id)
+    user
+      .user_authorizations
+      .create!(action_id: Action.find_by(controller: 'user', action: action).id)
   end
 end
