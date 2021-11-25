@@ -1,8 +1,8 @@
 require 'digest/sha2'
 
 class User < ApplicationRecord
-  has_many :authorizations
-  has_many :actions, through: :authorizations, dependent: :destroy
+  has_many :user_authorizations
+  has_many :actions, through: :user_authorizations, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
