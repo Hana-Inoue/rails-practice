@@ -8,7 +8,7 @@ FactoryBot.define do
     password_confirmation { 'testtest' }
 
     ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
-      ControllerAction.create!(controller: 'user', action: action)
+      ControllerAction.create!(controller: 'users', action: action)
     end
 
     # indexの権限のみを所有するtest userの作成
@@ -17,7 +17,7 @@ FactoryBot.define do
         user.user_authorizations <<
           build(
             :user_authorization,
-            controlelr_action_id: ControllerAction.find_by(controller: 'user', action: 'index').id
+            controller_action_id: ControllerAction.find_by(controller: 'user', action: 'index').id
           )
       end
     end
