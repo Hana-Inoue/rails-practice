@@ -2,7 +2,7 @@ require 'digest/sha2'
 
 class User < ApplicationRecord
   has_many :user_authorizations
-  has_many :actions, through: :user_authorizations, dependent: :destroy
+  has_many :controller_actions, through: :user_authorizations, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -27,7 +27,9 @@ class User < ApplicationRecord
   has_secure_password
 
   def authorized?(action)
-    actions.any? { |action| action.controller == 'user' && action.action == action }
+    controller_actions.any? do |controller_action|
+      controller_action.controller == 'users' && controller_action.action == action
+    end
   end
 
   private
