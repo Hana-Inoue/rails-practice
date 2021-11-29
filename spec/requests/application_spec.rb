@@ -10,10 +10,7 @@ RSpec.describe 'Application', type: :request do
   end
 
   describe '#user_not_authorized' do
-    before { post login_path, params: params }
-    let(:params) { { session: { email: email, password: password } } }
-    let(:email) { user.email }
-    let(:password) { attributes_for(:user)[:password] }
+    before { log_in(user) }
     let(:user) { create(:user, :user_with_index_authorization) }
 
     it 'リダイレクトされる' do
