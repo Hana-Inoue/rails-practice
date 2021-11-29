@@ -26,9 +26,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def authorized?(action)
+  def authorized?(controller, action)
     controller_actions.any? do |controller_action|
-      controller_action.controller == 'users' && controller_action.action == action
+      controller_action.controller == controller && controller_action.action == action
     end
   end
 
