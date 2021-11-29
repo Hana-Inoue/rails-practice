@@ -1,3 +1,4 @@
+# 管理者用アカウントの作成
 admin = User.create!(
   name: 'admin',
   email: 'h_inoue2+test-0@ga-tech.co.jp',
@@ -7,6 +8,7 @@ admin = User.create!(
   password_confirmation: 'testtest'
 )
 
+# 遠藤さん用アカウントの作成
 endo_san = User.create!(
   name: 'a_endo@ga-tech.co.jp',
   email: 'a_endo@ga-tech.co.jp',
@@ -16,6 +18,7 @@ endo_san = User.create!(
   password_confirmation: 'a_endo@ga-tech.co.jp'
 )
 
+# テスト用アカウントの作成
 users = (1..5).map do |number|
   User.create!(
     name: "user#{number}",
@@ -27,18 +30,25 @@ users = (1..5).map do |number|
   )
 end
 
+# controller_actionsテーブルへ値を挿入
 ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
-  Action.create!(controller: 'user', action: action)
+  ControllerAction.create!(controller: 'users', action: action)
 end
 
+# 管理者・遠藤さん用アカウントに全アクセス権限を付与
 [admin, endo_san].each do |user|
-  Action.all.each { |action| user.user_authorizations.create!(action_id: action.id) }
+  ControllerAction.all.each do |controller_action|
+    user.user_authorizations.create!(controller_action_id: controller_action.id)
+  end
 end
 
+# テスト用アカウントに一部のアクセス権限を付与
 users.each do |user|
   ['index', 'show', 'new', 'create'].map do |action|
     user
       .user_authorizations
-      .create!(action_id: Action.find_by(controller: 'user', action: action).id)
+      .create!(
+        controller_action_id: ControllerAction.find_by(controller: 'users', action: action).id
+      )
   end
 end
