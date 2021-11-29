@@ -6,6 +6,6 @@
   <% end %>
 </ul>
 
-<%# if current_user.authorized?('new') %>
+<% if current_user.authorized?('users', 'new') %>
   <%= link_to t('users.index.links.new'), new_user_path %>
-<%# end %>
+<% end %>
