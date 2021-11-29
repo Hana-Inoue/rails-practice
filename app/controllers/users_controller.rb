@@ -62,15 +62,4 @@ class UsersController < ApplicationController
       .require(:user)
       .permit(:name, :email, :gender, :birthday, :password, :password_confirmation)
   end
-
-  def check_authorization(authorize_self_resource: false, resource_owner_id: nil)
-    if authorize_self_resource
-      unless current_user.authorized?(params[:controller], params[:action]) ||
-             current_user.id == resource_owner_id
-        raise NotAuthorizedError
-      end
-    else
-      raise NotAuthorizedError unless current_user.authorized?(params[:controller], params[:action])
-    end
-  end
 end

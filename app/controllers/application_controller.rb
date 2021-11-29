@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
       alert: t('layouts.flash.messages.require_authorization')
     )
   end
+
+  def check_authorization
+    unless current_user.authorized?(params[:controller], params[:action])
+      raise NotAuthorizedError
+    end
+  end
 end
