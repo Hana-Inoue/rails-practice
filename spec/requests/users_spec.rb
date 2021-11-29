@@ -1,10 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  before { post login_path, params: params }
-  let(:params) { { session: { email: email, password: password } } }
-  let(:email) { user.email }
-  let(:password) { attributes_for(:user)[:password] }
+  before { log_in(user) }
   let(:user) { create(:user, :admin) }
   let(:other_user) { create(:user) }
 
