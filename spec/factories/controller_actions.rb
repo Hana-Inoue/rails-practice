@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :action do
+  factory :controller_action do
     controller { 'user' }
     action { 'index' }
   end
