@@ -17,7 +17,7 @@ FactoryBot.define do
         user.user_authorizations <<
           build(
             :user_authorization,
-            controller_action_id: ControllerAction.find_by(controller: 'user', action: 'index').id
+            controller_action_id: ControllerAction.find_by(controller: 'users', action: 'index').id
           )
       end
     end
