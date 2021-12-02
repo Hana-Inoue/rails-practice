@@ -34,6 +34,9 @@ end
 ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
   ControllerAction.create!(controller: 'users', action: action)
 end
+['about_server_logs', 'about_activerecord_logs'].each do |action|
+  ControllerAction.create!(controller: 'static_pages', action: action)
+end
 
 # 管理者・遠藤さん用アカウントに全アクセス権限を付与
 [admin, endo_san].each do |user|
