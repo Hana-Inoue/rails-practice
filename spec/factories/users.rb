@@ -7,10 +7,6 @@ FactoryBot.define do
     password { 'testtest' }
     password_confirmation { 'testtest' }
 
-    ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
-      ControllerAction.create!(controller: 'users', action: action)
-    end
-
     # indexの権限のみを所有するtest userの作成
     trait :user_with_index_authorization do
       after(:create) do |user|

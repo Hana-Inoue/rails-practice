@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  before { log_in(user) }
+  before do
+    ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
+      ControllerAction.create!(controller: 'users', action: action)
+    end
+    log_in(user)
+  end
   let(:user) { create(:user, :admin) }
   let(:other_user) { create(:user) }
 
