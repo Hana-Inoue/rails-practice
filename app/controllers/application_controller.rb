@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
 
-  before_action :require_login
+  before_action :require_login, :check_authorization
   rescue_from NotAuthorizedError, with: :user_not_authorized
 
   private
