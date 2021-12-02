@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'StaticPages', type: :request do
-  before { post login_path, params: params }
-  let(:params) { { session: { email: email, password: password } } }
-  let(:email) { user.email }
-  let(:password) { attributes_for(:user)[:password] }
-  let(:user) { create(:user) }
+  before do
+    create_controller_actions
+    log_in(user)
+  end
+  let(:user) { create(:user, :admin) }
+  let(:other_user) { create(:user) }
 
   describe 'GET about_server_logsページ' do
     it '200番ステータスを返す' do
