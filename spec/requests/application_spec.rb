@@ -16,10 +16,10 @@ RSpec.describe 'Application', type: :request do
     end
     let(:user) { create(:user, :user_with_index_authorization) }
 
-    it 'リダイレクトされる' do
+    it 'ログインページへリダイレクトする' do
       get user_path(user)
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to login_path
     end
   end
 end

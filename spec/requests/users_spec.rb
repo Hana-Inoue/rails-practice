@@ -27,9 +27,9 @@ RSpec.describe 'Users', type: :request do
     context '権限を持たないユーザがアクセスしようとした場合' do
       let(:user) { create(:user, :user_with_index_authorization) }
 
-      it 'リダイレクトされる' do
+      it 'ログインページへリダイレクトする' do
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -46,9 +46,9 @@ RSpec.describe 'Users', type: :request do
     context '権限を持たないユーザがアクセスしようとした場合' do
       let(:user) { create(:user, :user_with_index_authorization) }
 
-      it 'リダイレクトされる' do
+      it 'ログインページへリダイレクトする' do
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -65,9 +65,9 @@ RSpec.describe 'Users', type: :request do
     context '権限を持たないユーザがアクセスしようとした場合' do
       let(:user) { create(:user, :user_with_index_authorization) }
 
-      it 'リダイレクトされる' do
+      it 'ログインページへリダイレクトする' do
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -100,10 +100,10 @@ RSpec.describe 'Users', type: :request do
     context '権限を持たないユーザが実行しようとした場合' do
       let(:user) { create(:user, :user_with_index_authorization) }
 
-      it 'リダイレクトされる' do
+      it 'ログインページへリダイレクトする' do
         post users_path, params: { user: user_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -141,10 +141,10 @@ RSpec.describe 'Users', type: :request do
       let(:user) { create(:user, :user_with_index_authorization) }
       let(:gender) { :women }
 
-      it 'リダイレクトされる' do
+      it 'ログインページへリダイレクトする' do
         patch user_path(other_user), params: { user: user_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
       end
     end
   end
@@ -167,10 +167,10 @@ RSpec.describe 'Users', type: :request do
     context '権限を持たないユーザが実行しようとした場合' do
       let(:user) { create(:user, :user_with_index_authorization) }
 
-      it 'リダイレクトされる' do
+      it 'ログインページへリダイレクトする' do
         delete user_path(other_user)
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
       end
     end
   end
