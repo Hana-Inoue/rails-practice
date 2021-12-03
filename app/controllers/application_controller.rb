@@ -13,10 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    redirect_back(
-      fallback_location: root_path,
-      alert: t('layouts.flash.messages.require_authorization')
-    )
+    log_out
+    redirect_to login_path, alert: t('layouts.flash.messages.require_authorization')
   end
 
   def check_authorization
