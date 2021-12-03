@@ -1,2 +1,28 @@
 <h1><%= t('controller_actions.edit.title') %></h1>
 
+<%= form_with model: @user do |form| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Controller</th>
+        <th>Action</th>
+        <th>アクセス権限</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= form.collection_check_boxes(:controller_action_ids, @controller_actions, :id, :action) do |controller_action| %>
+        <%= controller_action.label do %>
+          <tr>
+            <td><%= controller_action.object.controller %></td>
+            <td><%= controller_action.object.action %></td>
+            <td><%= controller_action.check_box %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
