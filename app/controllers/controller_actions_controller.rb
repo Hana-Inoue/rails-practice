@@ -6,4 +6,10 @@ class ControllerActionsController < ApplicationController
 
   def update
   end
+
+  private
+
+  def controller_action_params
+    params.require(:user).permit(controller_action_ids: [])
+  end
 end
