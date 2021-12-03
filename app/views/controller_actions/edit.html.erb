@@ -1,6 +1,6 @@
 <h1><%= t('controller_actions.edit.title') %></h1>
 
-<%= form_with model: @user do |form| %>
+<%= form_with model: @user, url: user_controller_actions_path(@user) do |form| %>
   <table>
     <thead>
       <tr>
