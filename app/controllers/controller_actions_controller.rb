@@ -5,6 +5,14 @@ class ControllerActionsController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:user_id])
+
+    # TODO: 修正
+    if @user.update(controller_action_params)
+      redirect_to @user
+    else
+      render :edit
+    end
   end
 
   private
