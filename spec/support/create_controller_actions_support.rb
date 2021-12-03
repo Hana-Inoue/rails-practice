@@ -3,6 +3,9 @@ module CreateControllerActionsSupport
     ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
       ControllerAction.create!(controller: 'users', action: action)
     end
+    ['edit', 'update'].each do |action|
+      ControllerAction.create!(controller: 'controller_actions', action: action)
+    end
     ['about_server_logs', 'about_activerecord_logs'].each do |action|
       ControllerAction.create!(controller: 'static_pages', action: action)
     end
