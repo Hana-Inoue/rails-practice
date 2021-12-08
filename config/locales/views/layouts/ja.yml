@@ -12,3 +12,6 @@ ja:
         require_login: ログインしてください。
         created_user: ユーザー情報を登録しました。
         require_authorization: アクセス権限がありません。
+        change_user_authorizations:
+          success: アクセス権限を変更しました。
+          fail: アクセス権限の変更に失敗しました。
