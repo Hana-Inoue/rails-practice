@@ -6,11 +6,8 @@ class ControllerActionsController < ApplicationController
 
   def update
     @user = User.find(params[:user_id])
-    old_controller_action_ids = @user.user_authorizations.pluck(:controller_action_id)
-    new_controller_action_ids = controller_action_params[:controller_action_ids].map(&:to_i)
 
-    if add_user_authorizations(new_controller_action_ids - old_controller_action_ids).all? &&
-        delete_user_authorizations(old_controller_action_ids - new_controller_action_ids).all?
+    if update_user_authorizations
       redirect_to @user, notice: t('layouts.flash.messages.change_user_authorizations.success')
     else
       flash.now[:alert] = t('layouts.flash.messages.change_user_authorizations.fail')
@@ -24,15 +21,32 @@ class ControllerActionsController < ApplicationController
     params.require(:user).permit(controller_action_ids: [])
   end
 
-  def add_user_authorizations(add_controller_action_ids)
-    add_controller_action_ids.each do |add_controller_action_id|
+  def update_user_authorizations
+    ActiveRecord::Base.transaction do
+      add_user_authorizations
+      delete_user_authorizations
+    end
+  rescue
+    return false
+  end
+
+  def add_user_authorizations
+    (new_controller_action_ids - old_controller_action_ids).each do |add_controller_action_id|
       ControllerAction.find_by(id: add_controller_action_id).users << @user
     end
   end
 
-  def delete_user_authorizations(delete_controller_action_ids)
-    delete_controller_action_ids.each do |delete_controller_action_id|
+  def delete_user_authorizations
+    (old_controller_action_ids - new_controller_action_ids).each do |delete_controller_action_id|
       ControllerAction.find_by(id: delete_controller_action_id).users.delete(@user)
     end
+  end
+
+  def old_controller_action_ids
+    @old_controller_action_ids ||= @user.user_authorizations.pluck(:controller_action_id)
+  end
+
+  def new_controller_action_ids
+    @new_controller_action_ids ||= controller_action_params[:controller_action_ids].map(&:to_i)
   end
 end
