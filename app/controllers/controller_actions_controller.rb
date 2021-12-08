@@ -7,12 +7,16 @@ class ControllerActionsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
 
-    # TODO: 修正
-    if @user.update(controller_action_params)
-      redirect_to @user
-    else
-      render :edit
+    controller_action_params[:controller_action_ids].each do |controller_action_id|
+      ControllerAction.find_by(id: controller_action_id).users << @user
     end
+
+    # TODO: 修正
+    #if @user.update(controller_action_params)
+    #  redirect_to @user
+    #else
+    #  render :edit
+    #end
   end
 
   private
