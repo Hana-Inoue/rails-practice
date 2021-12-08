@@ -6,12 +6,13 @@ class ControllerActionsController < ApplicationController
 
   def update
     @user = User.find(params[:user_id])
-    former_controller_action_ids = @user.user_authorizations.pluck(:controller_action_id)
+    old_controller_action_ids = @user.user_authorizations.pluck(:controller_action_id)
+    new_controller_action_ids = controller_action_params[:controller_action_ids].map(&:to_i)
 
-    (controller_action_params[:controller_action_ids].map(&:to_i) - former_controller_action_ids).each do |controller_action_id|
+    (new_controller_action_ids - old_controller_action_ids).each do |controller_action_id|
       ControllerAction.find_by(id: controller_action_id).users << @user
     end
-    (former_controller_action_ids - controller_action_params[:controller_action_ids].map(&:to_i)).each do |controller_action_id|
+    (old_controller_action_ids - new_controller_action_ids).each do |controller_action_id|
       ControllerAction.find_by(id: controller_action_id).users.delete(@user)
     end
 
