@@ -10,7 +10,11 @@
       </tr>
     </thead>
     <tbody>
-      <%= form.collection_check_boxes(:controller_action_ids, @controller_actions, :id, :action, include_hidden: false) do |controller_action| %>
+      <%= form.collection_check_boxes(:controller_action_ids,
+                                      @controller_actions,
+                                      :id,
+                                      :action,
+                                      include_hidden: false) do |controller_action| %>
         <%= controller_action.label do %>
           <tr>
             <td><%= controller_action.object.controller %></td>
