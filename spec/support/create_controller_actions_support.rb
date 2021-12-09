@@ -1,13 +1,13 @@
 module CreateControllerActionsSupport
   def create_controller_actions
-    ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
-      ControllerAction.create!(controller: 'users', action: action)
+    UsersController.instance_methods(false).map(&:to_s).each do |action|
+      ControllerAction.create!(controller: UsersController.name, action: action)
     end
-    ['edit', 'update'].each do |action|
-      ControllerAction.create!(controller: 'controller_actions', action: action)
+    ControllerActionsController.instance_methods(false).map(&:to_s).each do |action|
+      ControllerAction.create!(controller: ControllerActionsController.name, action: action)
     end
-    ['about_server_logs', 'about_activerecord_logs'].each do |action|
-      ControllerAction.create!(controller: 'static_pages', action: action)
+    StaticPagesController.instance_methods(false).map(&:to_s).each do |action|
+      ControllerAction.create!(controller: StaticPagesController.name, action: action)
     end
   end
 end
