@@ -42,7 +42,8 @@
   </div>
 
   <div>
-    <%= form.label :password_confirmation, t('activerecord.attributes.user.password_confirmation') %>
+    <%= form.label :password_confirmation,
+                   t('activerecord.attributes.user.password_confirmation') %>
     <%= form.password_field :password_confirmation %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: user, attribute: :password_confirmation } %>
