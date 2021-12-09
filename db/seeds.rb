@@ -33,7 +33,8 @@ end
 # controller_actionsテーブルへ値を挿入
 [UsersController, ControllerActionsController, StaticPagesController].each do |controller|
   controller.instance_methods(false).map(&:to_s).each do |action|
-    ControllerAction.create!(controller: controller.name, action: action)
+    ControllerAction
+      .create!(controller: controller.name.delete_suffix('Controller').underscore, action: action)
   end
 end
 
@@ -51,7 +52,10 @@ users.each do |user|
       .user_authorizations
       .create!(
         controller_action_id:
-          ControllerAction.find_by(controller: UsersController.name, action: action).id
+          ControllerAction
+            .find_by(controller: UsersController.name.delete_suffix('Controller').underscore,
+                     action: action)
+            .id
       )
   end
 end

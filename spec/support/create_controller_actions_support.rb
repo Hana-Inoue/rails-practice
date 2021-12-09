@@ -2,7 +2,9 @@ module CreateControllerActionsSupport
   def create_controller_actions
     [UsersController, ControllerActionsController, StaticPagesController].each do |controller|
       controller.instance_methods(false).map(&:to_s).each do |action|
-        ControllerAction.create!(controller: controller.name, action: action)
+        ControllerAction
+          .create!(controller: controller.name.delete_suffix('Controller').underscore,
+                   action: action)
       end
     end
   end
