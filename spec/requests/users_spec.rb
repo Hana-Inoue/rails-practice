@@ -16,66 +16,30 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET showページ' do
-    before { get user_path(other_user) }
-
-    context '権限を持つユーザがアクセスした場合' do
-      it '200番ステータスを返す' do
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    context '権限を持たないユーザがアクセスしようとした場合' do
-      let(:user) { create(:user, :user_with_index_authorization) }
-
-      it 'ログインページへリダイレクトする' do
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to login_path
-      end
+    it '200番ステータスを返す' do
+      get user_path(other_user)
+      expect(response).to have_http_status(200)
     end
   end
 
   describe 'GET newページ' do
-    before { get new_user_path }
-
-    context '権限を持つユーザがアクセスした場合' do
-      it '200番ステータスを返す' do
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    context '権限を持たないユーザがアクセスしようとした場合' do
-      let(:user) { create(:user, :user_with_index_authorization) }
-
-      it 'ログインページへリダイレクトする' do
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to login_path
-      end
+    it '200番ステータスを返す' do
+      get new_user_path
+      expect(response).to have_http_status(200)
     end
   end
 
   describe 'GET editページ' do
-    before { get edit_user_path(other_user) }
-
-    context '権限を持つユーザがアクセスした場合' do
-      it '200番ステータスを返す' do
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    context '権限を持たないユーザがアクセスしようとした場合' do
-      let(:user) { create(:user, :user_with_index_authorization) }
-
-      it 'ログインページへリダイレクトする' do
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to login_path
-      end
+    it '200番ステータスを返す' do
+      get edit_user_path(other_user) 
+      expect(response).to have_http_status(200)
     end
   end
 
   describe 'POST 新規User情報' do
     let(:user_params) { attributes_for(:user) }
 
-    context '権限を持つユーザによって有効なリクエストパラメータが渡された場合' do
+    context '有効なリクエストパラメータが渡された場合' do
       it 'showページへリダイレクトする' do
         post users_path, params: { user: user_params }
         expect(response).to have_http_status(302)
@@ -89,21 +53,11 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    context '権限を持つユーザによって無効なリクエストパラメータが渡された場合' do
+    context '無効なリクエストパラメータが渡された場合' do
       it '200番ステータスを返す' do
         user_params[:name] = ''
         post users_path, params: { user: user_params }
         expect(response).to have_http_status(200)
-      end
-    end
-
-    context '権限を持たないユーザが実行しようとした場合' do
-      let(:user) { create(:user, :user_with_index_authorization) }
-
-      it 'ログインページへリダイレクトする' do
-        post users_path, params: { user: user_params }
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to login_path
       end
     end
   end
@@ -112,7 +66,7 @@ RSpec.describe 'Users', type: :request do
     before { user_params[:gender] = gender }
     let(:user_params) { attributes_for(:user) }
 
-    context '権限を持つユーザによって有効なリクエストパラメータが渡された場合' do
+    context '有効なリクエストパラメータが渡された場合' do
       let(:gender) { :women }
 
       it 'showページへリダイレクトする' do
@@ -128,7 +82,7 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    context '権限を持つユーザによって無効なリクエストパラメータが渡された場合' do
+    context '無効なリクエストパラメータが渡された場合' do
       let(:gender) { '' }
 
       it '200番ステータスを返す' do
@@ -136,42 +90,19 @@ RSpec.describe 'Users', type: :request do
         expect(response).to have_http_status(200)
       end
     end
-
-    context '権限を持たないユーザが実行しようとした場合' do
-      let(:user) { create(:user, :user_with_index_authorization) }
-      let(:gender) { :women }
-
-      it 'ログインページへリダイレクトする' do
-        patch user_path(other_user), params: { user: user_params }
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to login_path
-      end
-    end
   end
 
   describe 'DELETE User情報' do
-    context '権限を持つユーザが実行した場合' do
-      before { other_user }
+    before { other_user }
 
-      it 'indexページへリダイレクトする' do
-        delete user_path(other_user)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to root_path
-      end
-
-      it 'Userが1減る' do
-        expect { delete user_path(other_user) }.to change(User, :count).by(-1)
-      end
+    it 'indexページへリダイレクトする' do
+      delete user_path(other_user)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to root_path
     end
 
-    context '権限を持たないユーザが実行しようとした場合' do
-      let(:user) { create(:user, :user_with_index_authorization) }
-
-      it 'ログインページへリダイレクトする' do
-        delete user_path(other_user)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to login_path
-      end
+    it 'Userが1減る' do
+      expect { delete user_path(other_user) }.to change(User, :count).by(-1)
     end
   end
 end
