@@ -1,6 +1,7 @@
 ja:
   layouts:
     header:
+      title: BootCamp
       links:
         logout: ログアウト
     flash:
