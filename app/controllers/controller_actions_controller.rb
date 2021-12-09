@@ -31,20 +31,12 @@ class ControllerActionsController < ApplicationController
   end
 
   def delete_user_authorizations
-    @user.authorizations.destroy_all
+    @user.user_authorizations.destroy_all
   end
 
   def add_user_authorizations
-    (new_controller_action_ids - old_controller_action_ids).each do |add_controller_action_id|
+    controller_action_params[:controller_action_ids].map(&:to_i).each do |add_controller_action_id|
       ControllerAction.find_by(id: add_controller_action_id).users << @user
     end
-  end
-
-  def old_controller_action_ids
-    @old_controller_action_ids ||= @user.user_authorizations.pluck(:controller_action_id)
-  end
-
-  def new_controller_action_ids
-    @new_controller_action_ids ||= controller_action_params[:controller_action_ids].map(&:to_i)
   end
 end
