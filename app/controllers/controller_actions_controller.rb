@@ -23,22 +23,20 @@ class ControllerActionsController < ApplicationController
 
   def update_user_authorizations
     ActiveRecord::Base.transaction do
-      add_user_authorizations
       delete_user_authorizations
+      add_user_authorizations
     end
   rescue
     return false
   end
 
+  def delete_user_authorizations
+    @user.authorizations.destroy_all
+  end
+
   def add_user_authorizations
     (new_controller_action_ids - old_controller_action_ids).each do |add_controller_action_id|
       ControllerAction.find_by(id: add_controller_action_id).users << @user
-    end
-  end
-
-  def delete_user_authorizations
-    (old_controller_action_ids - new_controller_action_ids).each do |delete_controller_action_id|
-      ControllerAction.find_by(id: delete_controller_action_id).users.delete(@user)
     end
   end
 
