@@ -31,14 +31,10 @@ users = (1..5).map do |number|
 end
 
 # controller_actionsテーブルへ値を挿入
-['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'].each do |action|
-  ControllerAction.create!(controller: 'users', action: action)
-end
-['edit', 'update'].each do |action|
-  ControllerAction.create!(controller: 'controller_actions', action: action)
-end
-['about_server_logs', 'about_activerecord_logs'].each do |action|
-  ControllerAction.create!(controller: 'static_pages', action: action)
+[UsersController, ControllerActionsController, StaticPagesController].each do |controller|
+  controller.instance_methods(false).map(&:to_s).each do |action|
+    ControllerAction.create!(controller: controller.name, action: action)
+  end
 end
 
 # 管理者・遠藤さん用アカウントに全アクセス権限を付与
@@ -54,7 +50,8 @@ users.each do |user|
     user
       .user_authorizations
       .create!(
-        controller_action_id: ControllerAction.find_by(controller: 'users', action: action).id
+        controller_action_id:
+          ControllerAction.find_by(controller: UsersController.name, action: action).id
       )
   end
 end
