@@ -22,5 +22,11 @@ RSpec.describe "ControllerActions", type: :request do
       patch user_controller_actions_path(other_user), params: { user: controller_action_ids }
       expect(response).to have_http_status(302)
     end
+
+    it '任意のUserに紐づくuser_authorizationsを変更' do
+      expect {
+        patch user_controller_actions_path(other_user), params: { user: controller_action_ids }
+      }.to change(other_user.user_authorizations, :count).by(1)
+    end
   end
 end
