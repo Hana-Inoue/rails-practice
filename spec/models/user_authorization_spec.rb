@@ -21,22 +21,8 @@ RSpec.describe UserAuthorization, type: :model do
       end
     end
 
-    context 'user_idがusersテーブルのidカラムに存在しない値の場合' do
-      before { user_authorization.user_id = User.last.id + 1 }
-      it '無効になる' do
-        expect(user_authorization).not_to be_valid
-      end
-    end
-
     context 'controller_action_idが空文字の場合' do
       before { user_authorization.controller_action_id = '' }
-      it '無効になる' do
-        expect(user_authorization).not_to be_valid
-      end
-    end
-
-    context 'controller_action_idがcontroller_actionsテーブルのidカラムに存在しない値の場合' do
-      before { user_authorization.controller_action_id = ControllerAction.last.id + 1 }
       it '無効になる' do
         expect(user_authorization).not_to be_valid
       end
