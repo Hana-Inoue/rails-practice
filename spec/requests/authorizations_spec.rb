@@ -16,7 +16,7 @@ RSpec.describe "Authorizations", type: :request do
   end
 
   describe 'PATCH アクセス権限' do
-    let(:authorization_ids) { { authorization_ids: ["#{ControllerAction.first.id}"] } }
+    let(:authorization_ids) { { authorization_ids: ["#{Authorization.first.id}"] } }
 
     it '302番ステータスを返す' do
       patch user_authorizations_path(other_user), params: { user: authorization_ids }
