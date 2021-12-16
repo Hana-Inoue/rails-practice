@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 0) do
     table.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  create_table 'controller_actions', force: :cascade do |table|
+  create_table 'authorizations', force: :cascade do |table|
     table.string 'controller', null: false
     table.string 'action', null: false
     table.datetime 'created_at', precision: 6, null: false
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table 'user_authorizations', force: :cascade do |table|
     table.bigint 'user_id', null: false
-    table.integer 'controller_action_id', null: false
+    table.integer 'authorization_id', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
     table.index ['user_id'], name: 'index_user_authorizations_on_user_id'
-    table.index ['controller_action_id'], name: 'index_user_authorizations_on_controller_action_id'
+    table.index ['authorization_id'], name: 'index_user_authorizations_on_authorization_id'
   end
 
   add_foreign_key 'user_authorizations', 'users'
-  add_foreign_key 'user_authorizations', 'controller_actions'
+  add_foreign_key 'user_authorizations', 'authorizations'
 end
