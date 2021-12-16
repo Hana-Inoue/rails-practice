@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'static_pages/about_activerecord_logs'
 
   resources :users do
-    resource :controller_actions, only: [:edit, :update]
+    resource :authorizations, only: [:edit, :update]
   end
 
   root 'users#index'
