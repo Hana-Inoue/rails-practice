@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
   def add_user_authorizations(authorization_ids)
     authorization_ids.each do |authorization_id|
-      ControllerAction.find_by(id: authorization_id).users << self
+      Authorization.find_by(id: authorization_id).users << self
     end
   end
 end
