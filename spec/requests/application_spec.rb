@@ -11,7 +11,7 @@ RSpec.describe 'Application', type: :request do
 
   describe '#user_not_authorized' do
     before do
-      create_controller_actions
+      create_authorizations
       log_in(user)
     end
     let(:user) { create(:user, :user_with_index_authorization) }
