@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :user_authorization do
-    controller_action_id { ControllerAction.first.id }
+    authorization_id { Authorization.first.id }
   end
 end

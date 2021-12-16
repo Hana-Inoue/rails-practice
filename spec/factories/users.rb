@@ -13,8 +13,8 @@ FactoryBot.define do
         user.user_authorizations <<
           build(
             :user_authorization,
-            controller_action_id:
-              ControllerAction
+            authorization_id:
+              Authorization
                 .find_by(
                   controller: UsersController.name.delete_suffix('Controller').underscore,
                   action: 'index')
@@ -26,9 +26,9 @@ FactoryBot.define do
     # 全ての権限を所有するadmin userの作成
     trait :admin do
       after(:create) do |user|
-        ControllerAction.all.each do |controller_action|
+        Authorization.all.each do |authorization|
           user.user_authorizations <<
-            build(:user_authorization, controller_action_id: controller_action.id)
+            build(:user_authorization, authorization_id: authorization.id)
         end
       end
     end
