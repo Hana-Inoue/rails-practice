@@ -30,12 +30,16 @@ users = (1..5).map do |number|
   )
 end
 
+# controllerとそのcontrollerが持つactionをcontrollers変数に定義
+controllers = {
+  users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
+  controller_actions: ['update', 'edit'],
+  static_pages: ['about_server_logs', 'about_activerecord_logs']
+}
+
 # controller_actionsテーブルへ値を挿入
-[UsersController, ControllerActionsController, StaticPagesController].each do |controller|
-  controller.instance_methods(false).map(&:to_s).each do |action|
-    ControllerAction
-      .create!(controller: controller.name.delete_suffix('Controller').underscore, action: action)
-  end
+controllers.each do |controller, actions|
+  actions.each { |action| ControllerAction.create!(controller: controller, action: action) }
 end
 
 # 管理者・遠藤さん用アカウントに全アクセス権限を付与
@@ -47,15 +51,9 @@ end
 
 # テスト用アカウントに一部のアクセス権限を付与
 users.each do |user|
-  ['index', 'show', 'new', 'create'].map do |action|
-    user
-      .user_authorizations
-      .create!(
-        controller_action_id:
-          ControllerAction
-            .find_by(controller: UsersController.name.delete_suffix('Controller').underscore,
-                     action: action)
-            .id
-      )
+  controllers[:users].first(4).each do |action|
+    user.user_authorizations.create!(
+      controller_action_id: ControllerAction.find_by(controller: 'users', action: action).id
+    )
   end
 end
