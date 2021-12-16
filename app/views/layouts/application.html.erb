@@ -12,11 +12,9 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <%= render 'layouts/menu' %>
     <div class='main-content'>
       <%= render 'layouts/flash' %>
-      <% if logged_in? %>
-        <%= render 'layouts/menu' %>
-      <% end %>
       <%= yield %>
     <div>
   </body>
