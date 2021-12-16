@@ -1,4 +1,4 @@
 ja:
-  controller_actions:
+  authorizations:
     edit:
       title: アクセス権限編集

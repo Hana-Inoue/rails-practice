@@ -1,8 +1,8 @@
-module CreateControllerActionsSupport
-  def create_controller_actions
-    [UsersController, ControllerActionsController, StaticPagesController].each do |controller|
+module CreateAuthorizationsSupport
+  def create_authorizations
+    [UsersController, AuthorizationsController, StaticPagesController].each do |controller|
       controller.instance_methods(false).map(&:to_s).each do |action|
-        ControllerAction
+        Authorization
           .create!(controller: controller.name.delete_suffix('Controller').underscore,
                    action: action)
       end
@@ -11,5 +11,5 @@ module CreateControllerActionsSupport
 end
 
 RSpec.configure do |config|
-  config.include CreateControllerActionsSupport
+  config.include CreateAuthorizationsSupport
 end

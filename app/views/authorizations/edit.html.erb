@@ -1,0 +1,32 @@
+<h1><%= t('authorizations.edit.title') %></h1>
+
+<%= form_with model: @user, url: user_authorizations_path(@user) do |form| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Controller</th>
+        <th>Action</th>
+        <th>アクセス権限</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= form.collection_check_boxes(:authorization_ids,
+                                      @authorizations,
+                                      :id,
+                                      :action,
+                                      include_hidden: false) do |authorization| %>
+        <%= authorization.label do %>
+          <tr>
+            <td><%= authorization.object.controller %></td>
+            <td><%= authorization.object.action %></td>
+            <td><%= authorization.check_box %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

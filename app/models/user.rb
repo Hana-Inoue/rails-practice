@@ -2,7 +2,7 @@ require 'digest/sha2'
 
 class User < ApplicationRecord
   has_many :user_authorizations
-  has_many :controller_actions, through: :user_authorizations, dependent: :destroy
+  has_many :authorizations, through: :user_authorizations, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -27,15 +27,15 @@ class User < ApplicationRecord
   has_secure_password
 
   def authorized?(controller, action)
-    controller_actions.any? do |controller_action|
-      controller_action.controller == controller && controller_action.action == action
+    authorizations.any? do |authorization|
+      authorization.controller == controller && authorization.action == action
     end
   end
 
-  def update_user_authorizations(controller_action_ids)
+  def update_user_authorizations(authorization_ids)
     ActiveRecord::Base.transaction do
       delete_user_authorizations
-      add_user_authorizations(controller_action_ids)
+      add_user_authorizations(authorization_ids)
     end
   rescue
     return false
@@ -51,9 +51,9 @@ class User < ApplicationRecord
     user_authorizations.destroy_all
   end
 
-  def add_user_authorizations(controller_action_ids)
-    controller_action_ids.each do |controller_action_id|
-      ControllerAction.find_by(id: controller_action_id).users << self
+  def add_user_authorizations(authorization_ids)
+    authorization_ids.each do |authorization_id|
+      Authorization.find_by(id: authorization_id).users << self
     end
   end
 end
