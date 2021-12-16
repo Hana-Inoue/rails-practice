@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe UserAuthorization, type: :model do
   let(:user) { create(:user) }
-  let(:controller_action) { create(:controller_action) }
+  let(:authorization) { create(:authorization) }
   let(:user_authorization) do
-    create(:user_authorization, user: user, controller_action: controller_action)
+    create(:user_authorization, user: user, authorization: authorization)
   end
 
   describe 'validation' do
@@ -21,8 +21,8 @@ RSpec.describe UserAuthorization, type: :model do
       end
     end
 
-    context 'controller_action_idが空文字の場合' do
-      before { user_authorization.controller_action_id = '' }
+    context 'authorization_idが空文字の場合' do
+      before { user_authorization.authorization_id = '' }
       it '無効になる' do
         expect(user_authorization).not_to be_valid
       end
