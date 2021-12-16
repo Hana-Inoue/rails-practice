@@ -1,5 +1,13 @@
 body {
+  margin: 0;
+
   .main-content {
-    padding-top: 85px;
+    margin: 72px 0 0 25%;
+    padding: 48px 5% 0 5%;
+
+    h1 {
+      margin: 0 0 20px 0;
+      font-size: 28px;
+    }
   }
 }
