@@ -11,7 +11,7 @@ ja:
           index: 一覧
           edit: ユーザ情報編集
           delete: 削除
-        controller_actions:
+        authorizations:
           edit: アクセス権限編集
       confirm:
         delete: "%{name}を削除しますか?"
