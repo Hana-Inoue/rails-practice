@@ -1,4 +1,4 @@
-class ControllerAction < ApplicationRecord
+class Authorization < ApplicationRecord
   has_many :user_authorizations
   has_many :users, through: :user_authorizations, dependent: :destroy
 
