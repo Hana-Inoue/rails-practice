@@ -39,12 +39,12 @@ controllers = {
 
 # authorizationsテーブルへ値を挿入
 controllers.each do |controller, actions|
-  actions.each { |action| Authorizations.create!(controller: controller, action: action) }
+  actions.each { |action| Authorization.create!(controller: controller, action: action) }
 end
 
 # 管理者・遠藤さん用アカウントに全アクセス権限を付与
 [admin, endo_san].each do |user|
-  Authorizations.all.each do |authorization|
+  Authorization.all.each do |authorization|
     user.user_authorizations.create!(authorization_id: authorization.id)
   end
 end
@@ -53,7 +53,7 @@ end
 users.each do |user|
   controllers[:users].first(4).each do |action|
     user.user_authorizations.create!(
-      authorization_id: Authorizations.find_by(controller: 'users', action: action).id
+      authorization_id: Authorization.find_by(controller: 'users', action: action).id
     )
   end
 end
