@@ -33,19 +33,19 @@ end
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
-  controller_actions: ['update', 'edit'],
+  authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
 
-# controller_actionsテーブルへ値を挿入
+# authorizationsテーブルへ値を挿入
 controllers.each do |controller, actions|
-  actions.each { |action| ControllerAction.create!(controller: controller, action: action) }
+  actions.each { |action| Authorizations.create!(controller: controller, action: action) }
 end
 
 # 管理者・遠藤さん用アカウントに全アクセス権限を付与
 [admin, endo_san].each do |user|
-  ControllerAction.all.each do |controller_action|
-    user.user_authorizations.create!(controller_action_id: controller_action.id)
+  Authorizations.all.each do |authorization|
+    user.user_authorizations.create!(authorization_id: authorization.id)
   end
 end
 
@@ -53,7 +53,7 @@ end
 users.each do |user|
   controllers[:users].first(4).each do |action|
     user.user_authorizations.create!(
-      controller_action_id: ControllerAction.find_by(controller: 'users', action: action).id
+      authorization_id: Authorizations.find_by(controller: 'users', action: action).id
     )
   end
 end
