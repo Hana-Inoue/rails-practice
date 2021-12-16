@@ -1,14 +1,14 @@
-class ControllerActionsController < ApplicationController
+class AuthorizationsController < ApplicationController
   def edit
     @user = User.find(params[:user_id])
-    @controller_actions = ControllerAction.all
+    @authorizations = Authorization.all
   end
 
   def update
     @user = User.find(params[:user_id])
 
     if @user
-      .update_user_authorizations(controller_action_params[:controller_action_ids].map(&:to_i))
+      .update_user_authorizations(authorization_params[:authorization_ids].map(&:to_i))
       redirect_to @user, notice: t('layouts.flash.messages.change_user_authorizations.success')
     else
       flash.now[:alert] = t('layouts.flash.messages.change_user_authorizations.fail')
@@ -18,7 +18,7 @@ class ControllerActionsController < ApplicationController
 
   private
 
-  def controller_action_params
-    params.require(:user).permit(controller_action_ids: [])
+  def authorization_params
+    params.require(:user).permit(authorization_ids: [])
   end
 end
