@@ -16,10 +16,6 @@
 </p>
 
 <ul>
-  <% if current_user.authorized?('users', 'index') %>
-    <li><%= link_to t('users.show.links.users.index'), users_path %></li>
-  <% end %>
-
   <% if current_user.authorized?('users', 'edit') %>
     <li><%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %></li>
   <% end %>
