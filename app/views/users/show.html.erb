@@ -24,9 +24,9 @@
     <li><%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %></li>
   <% end %>
 
-  <% if current_user.authorized?('controller_actions', 'edit') %>
-    <li><%= link_to t('users.show.links.controller_actions.edit'),
-                    edit_user_controller_actions_path(@user) %></li>
+  <% if current_user.authorized?('authorizations', 'edit') %>
+    <li><%= link_to t('users.show.links.authorizations.edit'),
+                    edit_user_authorizations_path(@user) %></li>
   <% end %>
 
   <% if current_user.authorized?('users', 'destroy') %>
