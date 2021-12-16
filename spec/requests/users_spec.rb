@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   before do
-    create_controller_actions
+    create_authorizations
     log_in(user)
   end
   let(:user) { create(:user, :admin) }
