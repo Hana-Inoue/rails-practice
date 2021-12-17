@@ -15,7 +15,7 @@
     <% if logged_in? %>
       <%= render 'layouts/menu' %>
     <% end %>
-    <div class="main-content<%= ' login' if current_page?(controller: 'sessions', action: 'new') %>">
+    <div class="main-content<%= ' login' unless logged_in? %>">
       <%= render 'layouts/flash' %>
       <% if logged_in? %>
         <%= render 'layouts/menu' %>
