@@ -17,6 +17,9 @@
     <% end %>
     <div class="main-content<%= ' login' if current_page?(controller: 'sessions', action: 'new') %>">
       <%= render 'layouts/flash' %>
+      <% if logged_in? %>
+        <%= render 'layouts/menu' %>
+      <% end %>
       <%= yield %>
     <div>
   </body>

@@ -1,10 +1,21 @@
 <div class='menu'>
   <ul>
-    <li><%= link_to t('layouts.menu.links.users.index'), users_path %></li>
-    <li><%= link_to t('layouts.menu.links.users.new'), new_user_path %></li>
-    <li><%= link_to t('layouts.menu.links.static_pages.about_server_logs'),
-                    static_pages_about_server_logs_path %></li>
-    <li><%= link_to t('layouts.menu.links.static_pages.about_activerecord_logs'),
-                    static_pages_about_activerecord_logs_path %></li>
+    <% if current_user.authorized?('users', 'index') %>
+      <li><%= link_to t('layouts.menu.links.users.index'), users_path %></li>
+    <% end %>
+
+    <% if current_user.authorized?('users', 'new') %>
+      <li><%= link_to t('layouts.menu.links.users.new'), new_user_path %></li>
+    <% end %>
+
+    <% if current_user.authorized?('static_pages', 'about_server_logs') %>
+      <li><%= link_to t('layouts.menu.links.static_pages.about_server_logs'),
+                      static_pages_about_server_logs_path %></li>
+    <% end %>
+
+    <% if current_user.authorized?('static_pages', 'about_activerecord_logs') %>
+      <li><%= link_to t('layouts.menu.links.static_pages.about_activerecord_logs'),
+                      static_pages_about_activerecord_logs_path %></li>
+    <% end %>
   </ul>
 </div>
