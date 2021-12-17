@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'static_pages/about_server_logs'
   get 'static_pages/about_activerecord_logs'
-  resources :users
+
+  resources :users do
+    resource :authorizations, only: [:edit, :update]
+  end
 
   root 'users#index'
 end

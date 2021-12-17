@@ -1,18 +1,21 @@
 ja:
   users:
     index:
-      title: ユーザー一覧
+      title: ユーザ一覧
       links:
-        new: 新規ユーザー登録
+        new: 新規ユーザ登録
     show:
-      title: ユーザー詳細
+      title: ユーザ詳細
       links:
-        index: 一覧
-        edit: 編集
-        delete: 削除
+        users:
+          index: 一覧
+          edit: ユーザ情報編集
+          delete: 削除
+        authorizations:
+          edit: アクセス権限編集
       confirm:
         delete: "%{name}を削除しますか?"
     new:
-      title: 新規ユーザー登録
+      title: 新規ユーザ登録
     edit:
-      title: ユーザー情報編集
+      title: ユーザ情報編集
