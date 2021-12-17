@@ -26,8 +26,8 @@
         <td><%= user.email %></td>
         <td><%= t("enums.user.gender.#{user.gender}") %></td>
         <td><%= user.birthday %></td>
-        <td><%= user.created_at %></td>
-        <td><%= user.updated_at %></td>
+        <td><%= user.created_at.strftime("%F") %></td>
+        <td><%= user.updated_at.strftime("%F") %></td>
       </tr>
     <% end %>
   </tbody>
