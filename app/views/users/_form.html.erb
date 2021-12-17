@@ -2,15 +2,19 @@
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>
-    <%= render partial: 'shared/attribute_error_messages',
-               locals: { model: user, attribute: :name } %>
+    <div class='error_messages'>
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: user, attribute: :name } %>
+    </div>
   </div>
 
   <div>
     <%= form.label :email %>
     <%= form.text_field :email %>
-    <%= render partial: 'shared/attribute_error_messages',
-               locals: { model: user, attribute: :email } %>
+    <div class='error_messages'>
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: user, attribute: :email } %>
+    </div>
   </div>
 
   <div>
@@ -18,8 +22,10 @@
     <%= form.select :gender,
                     User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] },
                     include_blank: true %>
-    <%= render partial: 'shared/attribute_error_messages',
-               locals: { model: user, attribute: :gender } %>
+    <div class='error_messages'>
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: user, attribute: :gender } %>
+    </div>
   </div>
 
   <div>
@@ -30,23 +36,29 @@
                          start_year: Time.now.year,
                          end_year: 1900,
                          date_separator: '/ ' %>
-    <%= render partial: 'shared/attribute_error_messages',
-               locals: { model: user, attribute: :birthday } %>
+    <div class='error_messages'>
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: user, attribute: :birthday } %>
+    </div>
   </div>
 
   <div>
     <%= form.label :password %>
     <%= form.password_field :password %>
-    <%= render partial: 'shared/attribute_error_messages',
-               locals: { model: user, attribute: :password } %>
+    <div class='error_messages'>
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: user, attribute: :password } %>
+    </div>
   </div>
 
   <div>
     <%= form.label :password_confirmation,
                    t('activerecord.attributes.user.password_confirmation') %>
     <%= form.password_field :password_confirmation %>
-    <%= render partial: 'shared/attribute_error_messages',
-               locals: { model: user, attribute: :password_confirmation } %>
+    <div class='error_messages'>
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: user, attribute: :password_confirmation } %>
+    </div>
   </div>
 
   <div>
