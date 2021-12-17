@@ -18,11 +18,8 @@ ja:
           fail: アクセス権限の変更に失敗しました。
     menu:
       links:
-        sessions:
-          destroy: ログアウト
         users:
           index: ユーザ一覧
-          new: 新規ユーザ作成
         controller_actions:
           edit: アクセス権限編集
         static_pages:
