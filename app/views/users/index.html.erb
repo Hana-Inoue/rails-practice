@@ -6,8 +6,29 @@
     </ul>
   <% end %>
 
-<ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.name, user %></li>
-  <% end %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.user.id') %></th>
+      <th><%= t('activerecord.attributes.user.name') %></th>
+      <th><%= t('activerecord.attributes.user.email') %></th>
+      <th><%= t('activerecord.attributes.user.gender') %></th>
+      <th><%= t('activerecord.attributes.user.birthday') %></th>
+      <th><%= t('activerecord.attributes.user.created_at') %></th>
+      <th><%= t('activerecord.attributes.user.updated_at') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.name, user %></td>
+        <td><%= user.email %></td>
+        <td><%= t("enums.user.gender.#{user.gender}") %></td>
+        <td><%= user.birthday %></td>
+        <td><%= user.created_at %></td>
+        <td><%= user.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
