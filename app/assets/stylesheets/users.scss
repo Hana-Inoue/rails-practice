@@ -1,0 +1,23 @@
+.users {
+  .new-user {
+    margin: 0 0 10px auto;
+    width: 100px;
+    text-align: center;
+
+    a {
+      display: block;
+      padding: 5px 0;
+      border: none;
+      border-radius: 2px;
+      width: 100%;
+      color: white;
+      text-decoration: none;
+      background-color: #6e99cf;
+      cursor: pointer;
+
+      &:active {
+        background-color: #8aa2c1;
+      }
+    }
+  }
+}
