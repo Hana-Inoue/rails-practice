@@ -1,9 +1,7 @@
 <h1><%= t('users.index.title') %></h1>
 
   <% if current_user.authorized?('users', 'new') %>
-    <ul>
-      <li><%= link_to t('users.index.links.new'), new_user_path %></li>
-    </ul>
+    <p><%= link_to t('users.index.links.new'), new_user_path %></p>
   <% end %>
 
 <table class='table'>
