@@ -1,20 +1,22 @@
 <div class='users'>
   <h1><%= t('users.show.title') %></h1>
 
-  <p>
-    <%= "#{User.human_attribute_name(:name)}:" %>
-    <%= @user.name %>
-  </p>
+  <div class='user-profile'>
+    <p>
+      <%= "#{User.human_attribute_name(:name)}:" %>
+      <%= @user.name %>
+    </p>
 
-  <p>
-    <%= "#{User.human_attribute_name(:gender)}:" %>
-    <%= t("enums.user.gender.#{@user.gender}") %>
-  </p>
+    <p>
+      <%= "#{User.human_attribute_name(:gender)}:" %>
+      <%= t("enums.user.gender.#{@user.gender}") %>
+    </p>
 
-  <p>
-    <%= "#{User.human_attribute_name(:birthday)}:" %>
-    <%= @user.birthday %>
-  </p>
+    <p>
+      <%= "#{User.human_attribute_name(:birthday)}:" %>
+      <%= @user.birthday %>
+    </p>
+  </div>
 
   <% if current_user.authorized?('users', 'edit') %>
     <p class='button edit-user'><%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %></p>
