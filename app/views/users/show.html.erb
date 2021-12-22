@@ -1,34 +1,36 @@
-<h1><%= t('users.show.title') %></h1>
+<div class='users'>
+  <h1><%= t('users.show.title') %></h1>
 
-<p>
-  <%= "#{User.human_attribute_name(:name)}:" %>
-  <%= @user.name %>
-</p>
+  <p>
+    <%= "#{User.human_attribute_name(:name)}:" %>
+    <%= @user.name %>
+  </p>
 
-<p>
-  <%= "#{User.human_attribute_name(:gender)}:" %>
-  <%= t("enums.user.gender.#{@user.gender}") %>
-</p>
+  <p>
+    <%= "#{User.human_attribute_name(:gender)}:" %>
+    <%= t("enums.user.gender.#{@user.gender}") %>
+  </p>
 
-<p>
-  <%= "#{User.human_attribute_name(:birthday)}:" %>
-  <%= @user.birthday %>
-</p>
+  <p>
+    <%= "#{User.human_attribute_name(:birthday)}:" %>
+    <%= @user.birthday %>
+  </p>
 
-<ul>
-  <% if current_user.authorized?('users', 'edit') %>
-    <li><%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %></li>
-  <% end %>
+  <ul>
+    <% if current_user.authorized?('users', 'edit') %>
+      <li><%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %></li>
+    <% end %>
 
-  <% if current_user.authorized?('authorizations', 'edit') %>
-    <li><%= link_to t('users.show.links.authorizations.edit'),
-                    edit_user_authorizations_path(@user) %></li>
-  <% end %>
+    <% if current_user.authorized?('authorizations', 'edit') %>
+      <li><%= link_to t('users.show.links.authorizations.edit'),
+                      edit_user_authorizations_path(@user) %></li>
+    <% end %>
 
-  <% if current_user.authorized?('users', 'destroy') %>
-    <li><%= link_to t('users.show.links.users.delete'),
-                    user_path(@user),
-                    method: :delete,
-                    data: { confirm: t('users.show.confirm.delete', name: @user.name) } %></li>
-  <% end %>
-</ul>
+    <% if current_user.authorized?('users', 'destroy') %>
+      <li><%= link_to t('users.show.links.users.delete'),
+                      user_path(@user),
+                      method: :delete,
+                      data: { confirm: t('users.show.confirm.delete', name: @user.name) } %></li>
+    <% end %>
+  </ul>
+</div>
