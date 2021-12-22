@@ -1,7 +1,7 @@
-<div class='users'>
+<div class="users">
   <h1><%= t('users.show.title') %></h1>
 
-  <div class='user-profile'>
+  <div class="user-profile">
     <p>
       <%= "#{User.human_attribute_name(:name)}:" %>
       <%= @user.name %>
@@ -19,16 +19,16 @@
   </div>
 
   <% if current_user.authorized?('users', 'edit') %>
-    <p class='button edit-user'><%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %></p>
+    <p class="button edit-user"><%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %></p>
   <% end %>
 
   <% if current_user.authorized?('authorizations', 'edit') %>
-    <p class='button edit-user-authorizations'><%= link_to t('users.show.links.authorizations.edit'),
+    <p class="button edit-user-authorizations"><%= link_to t('users.show.links.authorizations.edit'),
                     edit_user_authorizations_path(@user) %></p>
   <% end %>
 
   <% if current_user.authorized?('users', 'destroy') %>
-    <p class='button delete-user'><%= link_to t('users.show.links.users.delete'),
+    <p class="button delete-user"><%= link_to t('users.show.links.users.delete'),
                     user_path(@user),
                     method: :delete,
                     data: { confirm: t('users.show.confirm.delete', name: @user.name) } %></p>

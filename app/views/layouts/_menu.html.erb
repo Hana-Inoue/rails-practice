@@ -1,4 +1,4 @@
-<div class='menu'>
+<div class="menu">
   <ul>
     <% if current_user.authorized?('users', 'index') %>
       <li><%= link_to t('layouts.menu.links.users.index'), users_path %></li>
