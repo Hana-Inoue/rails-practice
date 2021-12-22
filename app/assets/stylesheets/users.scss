@@ -1,22 +1,37 @@
 .users {
-  .new-user {
-    margin: 0 0 10px auto;
-    width: 100px;
+  .button {
+    margin: 0;
     text-align: center;
 
     a {
+      margin: 0 0 10px auto;
       display: block;
-      padding: 5px 0;
+      padding: 5px 20px;
       border: none;
       border-radius: 2px;
-      width: 100%;
+      width: 250px;
       color: white;
       text-decoration: none;
       background-color: #6e99cf;
       cursor: pointer;
+      box-sizing: border-box;
 
       &:active {
         background-color: #8aa2c1;
+      }
+    }
+  }
+  .new-user {
+    a {
+      width: 150px;
+    }
+  }
+  .delete-user {
+    a {
+      background-color: #ff5850;
+
+      &:active {
+        background-color: #dd6963;
       }
     }
   }
