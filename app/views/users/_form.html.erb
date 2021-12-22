@@ -1,5 +1,5 @@
 <%= form_with model: user do |form| %>
-  <div>
+  <div class='form'>
     <%= form.label :name %>
     <%= form.text_field :name %>
     <div class='error_messages'>
@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div>
+  <div class='form'>
     <%= form.label :email %>
     <%= form.text_field :email %>
     <div class='error_messages'>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div>
+  <div class='form'>
     <%= form.label :gender %>
     <%= form.select :gender,
                     User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] },
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div>
+  <div class='form'>
     <%= form.label :birthday %>
     <%= form.date_select :birthday,
                          prompt: '--',
@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <div>
+  <div class='form'>
     <%= form.label :password %>
     <%= form.password_field :password %>
     <div class='error_messages'>
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div>
+  <div class='form'>
     <%= form.label :password_confirmation,
                    t('activerecord.attributes.user.password_confirmation') %>
     <%= form.password_field :password_confirmation %>

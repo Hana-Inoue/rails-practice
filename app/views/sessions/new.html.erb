@@ -1,12 +1,12 @@
 <h1><%= t('sessions.new.title') %></h1>
 
 <%= form_with(scope: :session, url: login_path) do |form| %>
-  <div>
+  <div class='form'>
     <%= form.label :email, User.human_attribute_name(:email) %>
     <%= form.text_field :email %>
   </div>
 
-  <div>
+  <div class='form'>
     <%= form.label :password, User.human_attribute_name(:password) %>
     <%= form.password_field :password %>
   </div>
