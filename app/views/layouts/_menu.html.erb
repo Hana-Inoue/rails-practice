@@ -1,0 +1,17 @@
+<div class="menu">
+  <ul>
+    <% if current_user.authorized?('users', 'index') %>
+      <li><%= link_to t('layouts.menu.links.users.index'), users_path %></li>
+    <% end %>
+
+    <% if current_user.authorized?('static_pages', 'about_server_logs') %>
+      <li><%= link_to t('layouts.menu.links.static_pages.about_server_logs'),
+                      static_pages_about_server_logs_path %></li>
+    <% end %>
+
+    <% if current_user.authorized?('static_pages', 'about_activerecord_logs') %>
+      <li><%= link_to t('layouts.menu.links.static_pages.about_activerecord_logs'),
+                      static_pages_about_activerecord_logs_path %></li>
+    <% end %>
+  </ul>
+</div>

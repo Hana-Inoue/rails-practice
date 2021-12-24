@@ -1,6 +1,7 @@
 ja:
   layouts:
     header:
+      title: BootCamp
       links:
         logout: ログアウト
     flash:
@@ -15,3 +16,12 @@ ja:
         change_user_authorizations:
           success: アクセス権限を変更しました。
           fail: アクセス権限の変更に失敗しました。
+    menu:
+      links:
+        users:
+          index: ユーザ一覧
+        controller_actions:
+          edit: アクセス権限編集
+        static_pages:
+          about_server_logs: サーバログ概要
+          about_activerecord_logs: アクティブレコードログ概要

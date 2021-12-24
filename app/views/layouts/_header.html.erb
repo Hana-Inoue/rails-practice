@@ -1,6 +1,11 @@
-<% if logged_in? %>
-  <ul>
-    <li><%= current_user.name %></li>
-    <li><%= link_to t('layouts.header.links.logout'), logout_path, method: :delete %></li>
-  </ul>
-<% end %>
+<header>
+  <h1 class="title"><%= link_to t('layouts.header.title'), users_path %></h1>
+  <% if logged_in? %>
+    <div class="user-info">
+      <ul>
+        <li><%= current_user.name %></li>
+        <li><%= link_to t('layouts.header.links.logout'), logout_path, method: :delete %></li>
+      </ul>
+    </div>
+  <% end %>
+</header>

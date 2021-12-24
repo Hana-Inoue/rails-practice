@@ -3,7 +3,7 @@ ja:
     index:
       title: ユーザ一覧
       links:
-        new: 新規ユーザ登録
+        new: 新規作成
     show:
       title: ユーザ詳細
       links:
