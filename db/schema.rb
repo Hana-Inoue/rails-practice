@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 0) do
     table.string 'postal_code', null: false
     table.string 'prefecture', null: false
     table.string 'city', null: false
-    table.string 'other', null: false
+    table.string 'address_line', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
     table.index(:user_id, name: 'index_addressess_on_user_id', unique: true)
