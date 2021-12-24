@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 0) do
     table.string 'password_digest', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
-    table.index ['email'], name: 'index_users_on_email', unique: true
+    table.index(:email, name: 'index_users_on_email', unique: true)
   end
 
   create_table 'authorizations', force: :cascade do |table|
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 0) do
     table.integer 'authorization_id', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
-    table.index ['user_id'], name: 'index_user_authorizations_on_user_id'
-    table.index ['authorization_id'], name: 'index_user_authorizations_on_authorization_id'
+    table.index(:user_id, name: 'index_user_authorizations_on_user_id')
+    table.index(:authorization_id, name: 'index_user_authorizations_on_authorization_id')
   end
 
   create_table 'addresses', force: :cascade do |table|
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 0) do
     table.string 'other', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
-    table.index ['user_id'], name: 'index_addressess_on_user_id'
+    table.index(:user_id, name: 'index_addressess_on_user_id', unique: true)
   end
 
   add_foreign_key 'user_authorizations', 'users'
