@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table 'addresses', force: :cascade do |table|
+  create_table 'user_addresses', force: :cascade do |table|
     table.references :user, foreign_key: true
     table.string 'postal_code', null: false
     table.string 'prefecture', null: false
