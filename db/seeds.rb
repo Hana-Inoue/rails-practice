@@ -49,6 +49,7 @@ end
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
+  user_addresses: ['show', 'new', 'create', 'destroy', 'update', 'edit'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -70,6 +71,11 @@ users.each do |user|
   controllers[:users].first(4).each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'users', action: action).id
+    )
+  end
+  controllers[:user_addresses].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'user_addresses', action: action).id
     )
   end
 end
