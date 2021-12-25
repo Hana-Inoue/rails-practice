@@ -29,9 +29,7 @@
     <p>
       <%= "#{t('users.show.labels.address')}:" %>
       <% if @user.user_address %>
-        <%= @user.user_address.prefecture +
-          @user.user_address.city +
-          @user.user_address.address_line %>
+        <%= @user.user_address.full_address %>
       <% else %>
         <%= t('users.show.values.none') %>
       <% end %>

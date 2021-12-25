@@ -7,4 +7,8 @@ class UserAddress < ApplicationRecord
   validates :prefecture, presence: true, length: { maximum: 20 }
   validates :city, presence: true, length: { maximum: 50 }
   validates :address_line, presence: true, length: { maximum: 200 }
+
+  def full_address
+    prefecture + city + address_line
+  end
 end
