@@ -49,7 +49,7 @@ end
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
-  user_addresses: ['show', 'new', 'create', 'destroy', 'update', 'edit'],
+  user_addresses: ['destroy', 'update', 'edit'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
