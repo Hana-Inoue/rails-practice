@@ -6,6 +6,10 @@ ja:
         new: 新規作成
     show:
       title: ユーザ詳細
+      labels:
+        address: 住所
+      values:
+        none: 未登録
       links:
         users:
           index: 一覧
