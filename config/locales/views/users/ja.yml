@@ -15,6 +15,8 @@ ja:
           index: 一覧
           edit: ユーザ情報編集
           delete: 削除
+        user_addresses:
+          edit: 住所編集
         authorizations:
           edit: アクセス権限編集
       confirm:
