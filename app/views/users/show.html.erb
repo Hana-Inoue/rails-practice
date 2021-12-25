@@ -16,6 +16,26 @@
       <%= "#{User.human_attribute_name(:birthday)}:" %>
       <%= @user.birthday %>
     </p>
+
+    <p>
+      <%= "#{UserAddress.human_attribute_name(:postal_code)}:" %>
+      <% if @user.user_address %>
+        <%= @user.user_address.postal_code %>
+      <% else %>
+        <%= t('users.show.values.none') %>
+      <% end %>
+    </p>
+
+    <p>
+      <%= "#{t('users.show.labels.address')}:" %>
+      <% if @user.user_address %>
+        <%= @user.user_address.prefecture +
+          @user.user_address.city +
+          @user.user_address.address_line %>
+      <% else %>
+        <%= t('users.show.values.none') %>
+      <% end %>
+    </p>
   </div>
 
   <% if current_user.authorized?('users', 'edit') %>
