@@ -8,6 +8,14 @@ admin = User.create!(
   password_confirmation: 'testtest'
 )
 
+# adminアカウントの住所を登録
+admin.create_user_address!(
+  postal_code: '111-1111',
+  prefecture: '埼玉県',
+  city: 'さいたま市',
+  address_line: 'さいたま1-1-1',
+)
+
 # 遠藤さん用アカウントの作成
 endo_san = User.create!(
   name: 'a_endo@ga-tech.co.jp',
@@ -16,6 +24,14 @@ endo_san = User.create!(
   birthday: '2020-01-01',
   password: 'a_endo@ga-tech.co.jp',
   password_confirmation: 'a_endo@ga-tech.co.jp'
+)
+
+# 遠藤さんアカウントの住所を登録
+endo_san.create_user_address!(
+  postal_code: '222-2222',
+  prefecture: '東京都',
+  city: '港区',
+  address_line: '六本木1-1-1',
 )
 
 # テスト用アカウントの作成
