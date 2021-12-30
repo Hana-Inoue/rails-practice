@@ -39,7 +39,7 @@
 
   <div class="buttons">
     <%= form.submit t('user_addresses.edit.links.update')  %>
-    <% if UserAddress.find_by(user_id: @user.id) %>
+    <% if @user_address.persisted? %>
       <%= link_to t('user_addresses.edit.links.delete'),
                   user_user_address_path(@user),
                   method: :delete,
