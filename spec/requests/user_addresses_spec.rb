@@ -48,4 +48,18 @@ RSpec.describe "UserAddresses", type: :request do
       end
     end
   end
+
+  describe 'DELETE 住所情報' do
+    before { create(:user_address, user: user) }
+
+    it 'user showページへリダイレクトする' do
+      delete user_user_address_path(user)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to user
+    end
+
+    it '住所情報が1つ減る' do
+      expect { delete user_user_address_path(user) }.to change(UserAddress, :count).by(-1)
+    end
+  end
 end
