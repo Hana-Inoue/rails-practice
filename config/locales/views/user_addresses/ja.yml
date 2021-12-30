@@ -2,6 +2,8 @@ ja:
   user_addresses:
     edit:
       title: 住所編集
+      examples:
+        postal_code: '例: 000-0000'
       links:
         update: 更新
         delete: 削除

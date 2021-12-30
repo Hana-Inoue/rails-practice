@@ -3,7 +3,7 @@
 <%= form_with model: @user_address, url: user_user_address_path(@user), method: :patch do |form| %>
   <div class="form">
     <%= form.label :postal_code %>
-    <%= form.text_field :postal_code %>
+    <%= form.text_field :postal_code, placeholder: t('user_addresses.edit.examples.postal_code') %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: @user_address, attribute: :postal_code } %>
