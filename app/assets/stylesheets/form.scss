@@ -30,19 +30,40 @@ form {
     padding: 0 10px;
     height: 1.8em;
   }
-  input[type='submit'] {
-    display: block;
-    margin-bottom: 40px;
-    margin-left: auto;
-    padding: 0 20px;
-    border: none;
-    height: 2.0em;
-    color: white;
-    background-color: #6e99cf;
-    cursor: pointer;
 
-    &:active {
-      background-color: #8aa2c1;
+  .buttons {
+    text-align: right;
+    margin-bottom: 40px;
+
+    input[type='submit'] {
+      padding: 0 20px;
+      border: none;
+      height: 2.0em;
+      color: white;
+      background-color: #6e99cf;
+      cursor: pointer;
+
+      &:active {
+        background-color: #8aa2c1;
+      }
+    }
+
+    a.danger {
+      display: inline-block;
+      padding: 0 20px;
+      border: none;
+      border-radius: 2px;
+      line-height: 2.0em;
+      font-size: 14px;
+      background-color: #ff5850;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+
+      &:active {
+        background-color: #dd6963;
+      }
     }
   }
 }
