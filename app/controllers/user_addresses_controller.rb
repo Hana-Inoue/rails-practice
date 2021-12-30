@@ -16,6 +16,10 @@ class UserAddressesController < ApplicationController
   end
 
   def destroy
+    user = User.find_by(id: params[:user_id])
+
+    user.user_address.destroy
+    redirect_to user, notice: t('layouts.flash.messages.deleted_address')
   end
 
   private
