@@ -2,5 +2,8 @@ ja:
   user_addresses:
     edit:
       title: 住所編集
-      button:
+      links:
         update: 更新
+        delete: 削除
+      confirm:
+        delete: 登録住所を削除しますか？
