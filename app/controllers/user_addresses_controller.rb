@@ -1,12 +1,12 @@
 class UserAddressesController < ApplicationController
   def edit
     @user = User.find_by(id: params[:user_id])
-    @user_address = UserAddress.find_by(user_id: params[:user_id]) || @user.build_user_address
+    @user_address = @user.user_address || @user.build_user_address
   end
 
   def update
     @user = User.find_by(id: params[:user_id])
-    @user_address = UserAddress.find_by(user_id: params[:user_id]) || @user.build_user_address
+    @user_address = @user.user_address || @user.build_user_address
 
     if @user_address.update(user_address_params)
       redirect_to @user, notice: t('layouts.flash.messages.update_address.success')
