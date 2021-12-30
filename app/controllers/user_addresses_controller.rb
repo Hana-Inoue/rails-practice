@@ -9,8 +9,9 @@ class UserAddressesController < ApplicationController
     @user_address = UserAddress.find_by(user_id: params[:user_id]) || @user.build_user_address
 
     if @user_address.update(user_address_params)
-      redirect_to @user
+      redirect_to @user, notice: t('layouts.flash.messages.update_address.success')
     else
+      flash.now[:alert] = t('layouts.flash.messages.update_address.fail')
       render :edit
     end
   end
