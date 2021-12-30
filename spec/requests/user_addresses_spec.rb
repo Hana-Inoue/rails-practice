@@ -27,7 +27,7 @@ RSpec.describe "UserAddresses", type: :request do
       it 'uesr showページへリダイレクトする' do
         patch user_user_address_path(user), params: { user_address: user_address_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to user_path(User.last)
+        expect(response).to redirect_to user
       end
 
       it '任意のUserAddressの値を変更する' do
