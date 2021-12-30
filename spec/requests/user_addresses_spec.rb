@@ -24,13 +24,13 @@ RSpec.describe "UserAddresses", type: :request do
     context '有効なリクエストパラメータが渡された場合' do
       let(:postal_code) { '111-1111' }
 
-      it 'showページへリダイレクトする' do
+      it 'uesr showページへリダイレクトする' do
         patch user_user_address_path(user), params: { user_address: user_address_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_path(User.last)
       end
 
-      it '任意のUserの値を変更する' do
+      it '任意のUserAddressの値を変更する' do
         expect {
           patch user_user_address_path(user), params: { user_address: user_address_params }
         }.to change { UserAddress.find_by(user_id: user.id)[:postal_code] }
