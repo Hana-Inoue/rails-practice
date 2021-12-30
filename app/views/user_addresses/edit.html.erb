@@ -39,10 +39,12 @@
 
   <div class="buttons">
     <%= form.submit t('user_addresses.edit.links.update')  %>
-    <%= link_to t('user_addresses.edit.links.delete'),
-                user_user_address_path(@user),
-                method: :delete,
-                data: { confirm: t('user_addresses.edit.confirm.delete') },
-                class: 'danger' %>
+    <% if UserAddress.find_by(user_id: @user.id) %>
+      <%= link_to t('user_addresses.edit.links.delete'),
+                  user_user_address_path(@user),
+                  method: :delete,
+                  data: { confirm: t('user_addresses.edit.confirm.delete') },
+                  class: 'danger' %>
+    <% end %>
   </div>
 <% end %>
