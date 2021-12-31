@@ -49,4 +49,19 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
   end
+
+  create_table 'user_posts', force: :cascade do |table|
+    table.references :user, foreign_key: true
+    table.text 'body', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'post_comments', force: :cascade do |table|
+    table.references :user_post, foreign_key: true
+    table.references :user, foreign_key: true
+    table.text 'body', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
 end
