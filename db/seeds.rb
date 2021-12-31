@@ -17,7 +17,7 @@ admin.create_user_address!(
 )
 
 # adminアカウントのuser_postsデータを作成
-1.upto(50).each { |number| admin.user_posts.create!(body: "admin ポスト#{number}") }
+admin_posts = 1.upto(50).map { |number| admin.user_posts.create!(body: "admin ポスト#{number}") }
 
 # 遠藤さん用アカウントの作成
 endo_san = User.create!(
@@ -38,7 +38,8 @@ endo_san.create_user_address!(
 )
 
 # 遠藤さんアカウントのuser_postsデータを作成
-1.upto(50).each { |number| endo_san.user_posts.create!(body: "遠藤さん ポスト#{number}") }
+endo_san_posts =
+  1.upto(50).map { |number| endo_san.user_posts.create!(body: "遠藤さん ポスト#{number}") }
 
 # テスト用アカウントの作成
 users = (1..5).map do |number|
@@ -50,6 +51,13 @@ users = (1..5).map do |number|
     password: 'testtest',
     password_confirmation: 'testtest'
   )
+end
+
+# user_posts にコメントを登録
+[admin_posts, endo_san_posts].each do |posts|
+  posts.first(10).each do |post|
+    users.each { |user| post.post_comments.create(body: "#{user.name} コメント", user: user) }
+  end
 end
 
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
