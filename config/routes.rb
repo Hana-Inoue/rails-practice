@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     resource :user_address, only: [:edit, :update, :destroy]
   end
 
+  resources :user_posts, except: :show do
+    resources :post_comments, only: [:index, :new, :create, :destroy]
+  end
+
   root 'users#index'
 end
