@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :user_authorizations
   has_many :authorizations, through: :user_authorizations, dependent: :destroy
   has_many :user_posts, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
   has_one :user_address, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
