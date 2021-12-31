@@ -16,6 +16,9 @@ admin.create_user_address!(
   address_line: 'さいたま1-1-1',
 )
 
+# adminアカウントのuser_postsデータを作成
+1.upto(50).each { |number| admin.user_posts.create!(body: "admin ポスト#{number}") }
+
 # 遠藤さん用アカウントの作成
 endo_san = User.create!(
   name: 'a_endo@ga-tech.co.jp',
@@ -33,6 +36,9 @@ endo_san.create_user_address!(
   city: '港区',
   address_line: '六本木1-1-1',
 )
+
+# 遠藤さんアカウントのuser_postsデータを作成
+1.upto(50).each { |number| endo_san.user_posts.create!(body: "遠藤さん ポスト#{number}") }
 
 # テスト用アカウントの作成
 users = (1..5).map do |number|
