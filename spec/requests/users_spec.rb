@@ -31,7 +31,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET editページ' do
     it '200番ステータスを返す' do
-      get edit_user_path(other_user) 
+      get edit_user_path(other_user)
       expect(response).to have_http_status(200)
     end
   end

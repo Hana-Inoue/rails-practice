@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :authorizations, only: [:edit, :update]
+    resource :user_address, only: [:edit, :update, :destroy]
   end
 
   root 'users#index'

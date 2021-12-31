@@ -1,0 +1,50 @@
+<h1><%= t('user_addresses.edit.title') %></h1>
+
+<%= form_with model: @user_address, url: user_user_address_path(@user), method: :patch do |form| %>
+  <div class="form">
+    <%= form.label :postal_code %>
+    <%= form.text_field :postal_code, placeholder: t('user_addresses.edit.examples.postal_code') %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: @user_address, attribute: :postal_code } %>
+    </div>
+  </div>
+
+  <div class="form">
+    <%= form.label :prefecture %>
+    <%= form.text_field :prefecture %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: @user_address, attribute: :prefecture } %>
+    </div>
+  </div>
+
+  <div class="form">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: @user_address, attribute: :city } %>
+    </div>
+  </div>
+
+  <div class="form">
+    <%= form.label :address_line %>
+    <%= form.text_field :address_line %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: @user_address, attribute: :address_line } %>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <%= form.submit t('user_addresses.edit.links.update')  %>
+    <% if @user_address.persisted? %>
+      <%= link_to t('user_addresses.edit.links.delete'),
+                  user_user_address_path(@user),
+                  method: :delete,
+                  data: { confirm: t('user_addresses.edit.confirm.delete') },
+                  class: 'danger' %>
+    <% end %>
+  </div>
+<% end %>

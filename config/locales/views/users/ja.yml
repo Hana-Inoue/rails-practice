@@ -6,11 +6,17 @@ ja:
         new: 新規作成
     show:
       title: ユーザ詳細
+      labels:
+        address: 住所
+      values:
+        none: 未登録
       links:
         users:
           index: 一覧
           edit: ユーザ情報編集
           delete: 削除
+        user_addresses:
+          edit: 住所編集
         authorizations:
           edit: アクセス権限編集
       confirm:

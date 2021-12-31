@@ -8,6 +8,14 @@ admin = User.create!(
   password_confirmation: 'testtest'
 )
 
+# adminアカウントの住所を登録
+admin.create_user_address!(
+  postal_code: '111-1111',
+  prefecture: '埼玉県',
+  city: 'さいたま市',
+  address_line: 'さいたま1-1-1',
+)
+
 # 遠藤さん用アカウントの作成
 endo_san = User.create!(
   name: 'a_endo@ga-tech.co.jp',
@@ -16,6 +24,14 @@ endo_san = User.create!(
   birthday: '2020-01-01',
   password: 'a_endo@ga-tech.co.jp',
   password_confirmation: 'a_endo@ga-tech.co.jp'
+)
+
+# 遠藤さんアカウントの住所を登録
+endo_san.create_user_address!(
+  postal_code: '222-2222',
+  prefecture: '東京都',
+  city: '港区',
+  address_line: '六本木1-1-1',
 )
 
 # テスト用アカウントの作成
@@ -33,6 +49,7 @@ end
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
+  user_addresses: ['destroy', 'update', 'edit'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -54,6 +71,11 @@ users.each do |user|
   controllers[:users].first(4).each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'users', action: action).id
+    )
+  end
+  controllers[:user_addresses].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'user_addresses', action: action).id
     )
   end
 end

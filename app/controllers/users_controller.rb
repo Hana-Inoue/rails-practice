@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
 
     user.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: t('layouts.flash.messages.deleted_user', name: user.name)
   end
 
   private

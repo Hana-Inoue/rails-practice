@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user_address:
+    attributes:
+      user_address:
+        postal_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        address_line: 丁目・番地・号・部屋番号
+    errors:
+      models:
+        user_address:
+          attributes:
+            postal_code:
+              invalid: は 000-0000 の形式で入力してください
