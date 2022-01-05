@@ -20,4 +20,30 @@ RSpec.describe "UserPosts", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST 新規UserPost情報' do
+    let(:user_post_params) { attributes_for(:user_post) }
+
+    context '有効なリクエストパラメータが渡された場合' do
+      it 'showページへリダイレクトする' do
+        post user_posts_path, params: { user_post: user_post_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_posts_path
+      end
+
+      it 'UserPostが1増える' do
+        expect {
+          post user_posts_path, params: { user_post: user_post_params }
+        }.to change(UserPost, :count).by(1)
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      it '200番ステータスを返す' do
+        user_post_params[:body] = ''
+        post user_posts_path, params: { user_post: user_post_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
