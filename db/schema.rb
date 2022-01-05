@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table 'user_post_comments', force: :cascade do |table|
     table.references :user_post, foreign_key: true
-    table.string 'commented_by', null: false
     table.text 'body', null: false
+    table.string 'commented_by', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
   end
