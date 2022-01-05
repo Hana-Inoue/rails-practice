@@ -25,6 +25,8 @@ ja:
       links:
         users:
           index: ユーザ一覧
+        user_posts:
+          index: ポスト一覧
         controller_actions:
           edit: アクセス権限編集
         static_pages:
