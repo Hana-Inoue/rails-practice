@@ -6,6 +6,8 @@ RSpec.describe "UserPosts", type: :request do
     log_in(user)
   end
   let(:user) { create(:user, :admin) }
+  let(:user_post) { create(:user_post, user: user) }
+
 
   describe "GET indexページ" do
     it '200番ステータスを返す' do
@@ -17,6 +19,13 @@ RSpec.describe "UserPosts", type: :request do
   describe 'GET newページ' do
     it '200番ステータスを返す' do
       get new_user_post_path
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET editページ' do
+    it '200番ステータスを返す' do
+      get edit_user_post_path(user_post)
       expect(response).to have_http_status(200)
     end
   end
