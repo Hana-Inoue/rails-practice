@@ -34,7 +34,7 @@ RSpec.describe "UserPosts", type: :request do
     let(:user_post_params) { attributes_for(:user_post) }
 
     context '有効なリクエストパラメータが渡された場合' do
-      it 'showページへリダイレクトする' do
+      it 'indexページへリダイレクトする' do
         post user_posts_path, params: { user_post: user_post_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_posts_path
@@ -51,6 +51,39 @@ RSpec.describe "UserPosts", type: :request do
       it '200番ステータスを返す' do
         user_post_params[:body] = ''
         post user_posts_path, params: { user_post: user_post_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe 'PATCH UserPost情報' do
+    before do
+      user_post
+      user_post_params[:body] = body
+    end
+    let(:user_post_params) { attributes_for(:user_post) }
+
+    context '有効なリクエストパラメータが渡された場合' do
+      let(:body) { 'aaa' }
+
+      it 'indexページへリダイレクトする' do
+        patch user_post_path(user_post), params: { user_post: user_post_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_posts_path
+      end
+
+      it '任意のUserPostの値を変更する' do
+        expect {
+          patch user_post_path(user_post), params: { user_post: user_post_params }
+        }.to change { UserPost.last.body }.from('こんにちは').to('aaa')
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      let(:body) { '' }
+
+      it '200番ステータスを返す' do
+        patch user_post_path(user_post), params: { user_post: user_post_params }
         expect(response).to have_http_status(200)
       end
     end
