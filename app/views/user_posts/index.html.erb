@@ -1,36 +1,39 @@
-<h1><%= t('user_posts.index.title') %></h1>
-
-<% if current_user.authorized?('user_posts', 'new') %>
-  <p class="button"><%= link_to t('user_posts.index.links.new'), new_user_post_path %></p>
-<% end %>
+<div class="user-posts">
+  <h1><%= t('user_posts.index.title') %></h1>
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th><%= t('activerecord.attributes.user_post.id') %></th>
-      <th><%= t('activerecord.attributes.user_post.body') %></th>
-      <th><%= t('user_posts.index.labels.posted_by') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @user_posts.each do |user_post| %>
+  <% if current_user.authorized?('user_posts', 'new') %>
+    <p class="button"><%= link_to t('user_posts.index.links.new'), new_user_post_path %></p>
+  <% end %>
+
+
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= user_post.id %></td>
-        <td><%= user_post.body %></td>
-        <td><%= user_post.user.name %></td>
-        <td><%= link_to t('user_posts.index.links.comment'), users_path %></td>
-        <td><%= link_to t('user_posts.index.links.edit'), edit_user_post_path(user_post) %></td>
-        <td>
-          <%= link_to t('user_posts.index.links.delete'),
-                      user_path(user_post),
-                      method: :delete,
-                      data: { confirm: t('user_posts.index.confirm.delete') } %>
-        </td>
+        <th><%= t('activerecord.attributes.user_post.id') %></th>
+        <th><%= t('activerecord.attributes.user_post.body') %></th>
+        <th><%= t('user_posts.index.labels.posted_by') %></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @user_posts.each do |user_post| %>
+        <tr>
+          <td><%= user_post.id %></td>
+          <td><%= user_post.body %></td>
+          <td><%= user_post.user.name %></td>
+          <td><%= link_to t('user_posts.index.links.comment'), users_path %></td>
+          <td><%= link_to t('user_posts.index.links.edit'), edit_user_post_path(user_post) %></td>
+          <td>
+            <%= link_to t('user_posts.index.links.delete'),
+                        user_path(user_post),
+                        method: :delete,
+                        data: { confirm: t('user_posts.index.confirm.delete') } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
