@@ -8,6 +8,7 @@ class UserPostsController < ApplicationController
   end
 
   def edit
+    @user_post = UserPost.find(params[:id])
   end
 
   def create
