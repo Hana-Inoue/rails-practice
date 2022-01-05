@@ -13,6 +13,8 @@ ja:
         delete: ポストを削除しますか?
     new:
       title: ポスト作成
+    edit:
+      title: ポスト編集
     form:
       links:
         submit: 投稿
