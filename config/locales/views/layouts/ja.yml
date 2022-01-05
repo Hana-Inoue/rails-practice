@@ -17,7 +17,8 @@ ja:
           success: 住所情報を更新しました。
           fail: 住所情報の更新に失敗しました。
         deleted_address: 住所を削除しました。
-        created_post: ポストを投稿しました。
+        created_user_post: ポストを投稿しました。
+        updated_user_post: ポストを編集しました。
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。

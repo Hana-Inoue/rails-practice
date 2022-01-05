@@ -22,6 +22,13 @@ class UserPostsController < ApplicationController
   end
 
   def update
+    @user_post = UserPost.find(params[:id])
+
+    if @user_post.update(user_post_params)
+      redirect_to user_posts_path, notice: t('layouts.flash.messages.updated_user_post')
+    else
+      render :edit
+    end
   end
 
   def destroy
