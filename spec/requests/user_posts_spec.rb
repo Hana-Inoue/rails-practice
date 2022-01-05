@@ -88,4 +88,18 @@ RSpec.describe "UserPosts", type: :request do
       end
     end
   end
+
+  describe 'DELETE UserPost' do
+    before { user_post }
+
+    it 'indexページへリダイレクトする' do
+      delete user_post_path(user_post)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to user_posts_path
+    end
+
+    it 'UserPostが1減る' do
+      expect { delete user_post_path(user_post) }.to change(UserPost, :count).by(-1)
+    end
+  end
 end
