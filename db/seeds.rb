@@ -56,7 +56,9 @@ end
 # user_posts にコメントを登録
 [admin_posts, endo_san_posts].each do |posts|
   posts.first(10).each do |post|
-    users.each { |user| post.post_comments.create(body: "#{user.name} コメント", user: user) }
+    users.each do |user|
+      post.user_post_comments.create(body: "#{user.name} コメント", commented_by: user.name)
+    end
   end
 end
 
