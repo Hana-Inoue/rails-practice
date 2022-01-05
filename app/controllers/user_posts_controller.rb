@@ -4,6 +4,7 @@ class UserPostsController < ApplicationController
   end
 
   def new
+    @user_post = UserPost.new
   end
 
   def edit
