@@ -28,7 +28,7 @@
           <td><%= link_to t('user_posts.index.links.edit'), edit_user_post_path(user_post) %></td>
           <td>
             <%= link_to t('user_posts.index.links.delete'),
-                        user_path(user_post),
+                        user_post_path(user_post),
                         method: :delete,
                         data: { confirm: t('user_posts.index.confirm.delete') } %>
           </td>

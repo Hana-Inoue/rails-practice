@@ -32,6 +32,8 @@ class UserPostsController < ApplicationController
   end
 
   def destroy
+    UserPost.find(params[:id]).destroy
+    redirect_to user_posts_path, notice: t('layouts.flash.messages.deleted_user_post')
   end
 
   private
