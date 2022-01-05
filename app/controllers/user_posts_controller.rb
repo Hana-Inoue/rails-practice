@@ -39,8 +39,6 @@ class UserPostsController < ApplicationController
   private
 
   def user_post_params
-    params
-      .require(:user_post)
-      .permit(:body)
+    params.require(:user_post).permit(:body)
   end
 end
