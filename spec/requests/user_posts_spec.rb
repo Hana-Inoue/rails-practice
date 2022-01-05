@@ -13,4 +13,11 @@ RSpec.describe "UserPosts", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'GET newページ' do
+    it '200番ステータスを返す' do
+      get new_user_post_path
+      expect(response).to have_http_status(200)
+    end
+  end
 end
