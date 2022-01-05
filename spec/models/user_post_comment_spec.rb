@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe UserPostComment, type: :model do
+  let(:user) { create(:user) }
+  let(:user_post) { create(:user_post, user: user) }
   let(:user_post_comment) do
     build(:user_post_comment, user_post: user_post, commented_by: user.name)
   end
-  let(:user_post) { create(:user_post, user: user) }
-  let(:user) { create(:user) }
 
   describe 'validation' do
     context '適切な値が全て入力された場合' do
