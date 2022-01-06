@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_posts, except: :show do
-    resources :user_post_comments, only: [:index, :new, :create, :destroy]
+    resources :user_post_comments, only: [:index, :create, :destroy]
   end
 
   root 'users#index'
