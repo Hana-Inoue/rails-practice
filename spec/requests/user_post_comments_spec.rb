@@ -45,4 +45,21 @@ RSpec.describe "UserPostComments", type: :request do
       end
     end
   end
+
+  describe 'DELETE UserPostComment' do
+    before { user_post_comment }
+    let(:user_post_comment) { create(:user_post_comment, user_post: user_post) }
+
+    it 'indexページへリダイレクトする' do
+      delete user_post_user_post_comment_path(user_post, user_post_comment)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to user_post_user_post_comments_path(user_post)
+    end
+
+    it 'UserPostが1減る' do
+      expect {
+        delete user_post_user_post_comment_path(user_post, user_post_comment)
+      }.to change(UserPostComment, :count).by(-1)
+    end
+  end
 end
