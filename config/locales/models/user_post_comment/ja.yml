@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      user_post_comment:
+    attributes:
+      user_post_comment:
+        id: ID
+        body: コメント
+        commented_by: 作成者
