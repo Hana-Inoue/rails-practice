@@ -16,4 +16,33 @@ RSpec.describe "UserPostComments", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST 新規UserPostComment情報' do
+    let(:user_post_comment_params) { attributes_for(:user_post_comment) }
+
+    context '有効なリクエストパラメータが渡された場合' do
+      it 'indexページへリダイレクトする' do
+        post user_post_user_post_comments_path(user_post),
+             params: { user_post_comment: user_post_comment_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_post_user_post_comments_path(user_post)
+      end
+
+      it 'UserPostが1増える' do
+        expect {
+          post user_post_user_post_comments_path(user_post),
+               params: { user_post_comment: user_post_comment_params }
+        }.to change(UserPostComment, :count).by(1)
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      it '200番ステータスを返す' do
+        user_post_comment_params[:body] = ''
+        post user_post_user_post_comments_path(user_post),
+             params: { user_post_comment: user_post_comment_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
