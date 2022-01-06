@@ -20,6 +20,8 @@ ja:
         created_user_post: ポストを投稿しました。
         updated_user_post: ポストを編集しました。
         deleted_user_post: ポストを削除しました。
+        created_user_post_comment: コメントを投稿しました。
+        deleted_user_post_comment: コメントを削除しました。
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。
