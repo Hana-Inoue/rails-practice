@@ -4,6 +4,7 @@ module CreateAuthorizationsSupport
       UsersController,
       UserAddressesController,
       UserPostsController,
+      UserPostCommentsController,
       AuthorizationsController,
       StaticPagesController
     ] .each do |controller|
