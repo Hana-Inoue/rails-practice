@@ -19,6 +19,9 @@ class UserPostCommentsController < ApplicationController
   end
 
   def destroy
+    UserPostComment.find(params[:id]).destroy
+    redirect_to user_post_user_post_comments_path(UserPost.find(params[:user_post_id])),
+                notice: t('layouts.flash.messages.deleted_user_post_comment')
   end
 
   private
