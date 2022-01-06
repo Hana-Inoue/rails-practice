@@ -1,11 +1,9 @@
 <div class="user-posts">
   <h1><%= t('user_posts.index.title') %></h1>
 
-
   <% if current_user.authorized?('user_posts', 'new') %>
     <p class="button"><%= link_to t('user_posts.index.links.new'), new_user_post_path %></p>
   <% end %>
-
 
   <table class="table">
     <thead>
