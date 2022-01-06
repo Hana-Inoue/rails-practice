@@ -67,6 +67,7 @@ controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
   user_addresses: ['destroy', 'update', 'edit'],
   user_posts: ['index', 'new', 'create', 'destroy', 'update', 'edit'],
+  user_post_comments: ['index', 'create', 'destroy'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -98,6 +99,11 @@ users.each do |user|
   controllers[:user_posts].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'user_posts', action: action).id
+    )
+  end
+  controllers[:user_post_comments].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'user_post_comments', action: action).id
     )
   end
 end
