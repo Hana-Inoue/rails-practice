@@ -22,7 +22,10 @@
           <td><%= user_post.id %></td>
           <td><%= user_post.body %></td>
           <td><%= user_post.user.name %></td>
-          <td><%= link_to t('user_posts.index.links.comment'), users_path %></td>
+          <td>
+            <%= link_to t('user_posts.index.links.comment'),
+                        user_post_user_post_comments_path(user_post) %>
+          </td>
           <td><%= link_to t('user_posts.index.links.edit'), edit_user_post_path(user_post) %></td>
           <td>
             <%= link_to t('user_posts.index.links.delete'),
