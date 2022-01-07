@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "UserPosts", type: :request do
+  let(:user) { create(:user, :admin) }
+  let(:user_post) { create(:user_post, user: user) }
+
   before do
     create_authorizations
     log_in(user)
   end
-  let(:user) { create(:user, :admin) }
-  let(:user_post) { create(:user_post, user: user) }
-
 
   describe "GET indexページ" do
     it '200番ステータスを返す' do
@@ -57,11 +57,12 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'PATCH UserPost情報' do
+    let(:user_post_params) { attributes_for(:user_post) }
+
     before do
       user_post
       user_post_params[:body] = body
     end
-    let(:user_post_params) { attributes_for(:user_post) }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:body) { 'aaa' }
