@@ -15,10 +15,23 @@ class UserPost < ApplicationRecord
     false
   end
 
+  def update_user_post_and_tags(user_post_params)
+    ActiveRecord::Base.transaction do
+      update_user_post(user_post_params[:body])
+      save_user_post_tags(user_post_params[:tag_ids])
+    end
+  rescue
+    false
+  end
+
   private
 
   def save_user_post
     self.save!
+  end
+
+  def update_user_post(body)
+    self.update!(body: body)
   end
 
   def save_user_post_tags(new_tag_ids)

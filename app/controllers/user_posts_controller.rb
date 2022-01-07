@@ -10,6 +10,7 @@ class UserPostsController < ApplicationController
 
   def edit
     @user_post = UserPost.find(params[:id])
+    @tags = Tag.all
   end
 
   def create
@@ -26,9 +27,10 @@ class UserPostsController < ApplicationController
   def update
     @user_post = UserPost.find(params[:id])
 
-    if @user_post.update(user_post_params)
+    if @user_post.update_user_post_and_tags(user_post_params)
       redirect_to user_posts_path, notice: t('layouts.flash.messages.updated_user_post')
     else
+      @tags = Tag.all
       render :edit
     end
   end
