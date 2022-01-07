@@ -7,7 +7,6 @@ RSpec.describe "UserPostComments", type: :request do
   before do
     create_authorizations
     log_in(user)
-    user_post
   end
 
   describe "GET indexページ" do
