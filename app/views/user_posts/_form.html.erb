@@ -5,6 +5,16 @@
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: user_post, attribute: :body } %>
+      <%= form.collection_check_boxes(:tag_ids,
+                                      @tags,
+                                      :id,
+                                      :name,
+                                      include_hidden: false) do |tag| %>
+        <% tag.label do %>
+          <%= tag.object.name %>
+          <%= tag.check_box %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
