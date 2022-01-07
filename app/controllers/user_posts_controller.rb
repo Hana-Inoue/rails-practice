@@ -5,6 +5,7 @@ class UserPostsController < ApplicationController
 
   def new
     @user_post = UserPost.new
+    @tags = Tag.all
   end
 
   def edit
@@ -12,11 +13,12 @@ class UserPostsController < ApplicationController
   end
 
   def create
-    @user_post = current_user.user_posts.build(user_post_params)
+    @user_post = current_user.user_posts.build(body: user_post_params[:body])
 
-    if @user_post.save
+    if @user_post.save_user_post_and_tags(user_post_params[:tag_ids])
       redirect_to user_posts_path, notice: t('layouts.flash.messages.created_user_post')
     else
+      @tags = Tag.all
       render :new
     end
   end
@@ -39,6 +41,6 @@ class UserPostsController < ApplicationController
   private
 
   def user_post_params
-    params.require(:user_post).permit(:body)
+    params.require(:user_post).permit(:body, tag_ids: [])
   end
 end
