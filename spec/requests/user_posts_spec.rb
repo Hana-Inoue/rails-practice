@@ -64,7 +64,8 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'PATCH UserPost情報' do
-    let(:user_post_params) { attributes_for(:user_post) }
+    let(:tag) { create(:tag) }
+    let(:user_post_params) { attributes_for(:user_post).merge!(tag_ids: [tag.id]) }
 
     before do
       user_post
