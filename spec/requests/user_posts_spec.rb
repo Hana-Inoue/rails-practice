@@ -31,7 +31,8 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'POST 新規UserPost情報' do
-    let(:user_post_params) { attributes_for(:user_post) }
+    let(:tag) { create(:tag) }
+    let(:user_post_params) { attributes_for(:user_post).merge!(tag_ids: [tag.id]) }
 
     context '有効なリクエストパラメータが渡された場合' do
       it 'indexページへリダイレクトする' do
@@ -44,6 +45,12 @@ RSpec.describe "UserPosts", type: :request do
         expect {
           post user_posts_path, params: { user_post: user_post_params }
         }.to change(UserPost, :count).by(1)
+      end
+
+      it 'UserPostTagが1増える' do
+        expect {
+          post user_posts_path, params: { user_post: user_post_params }
+        }.to change(UserPostTag, :count).by(1)
       end
     end
 
