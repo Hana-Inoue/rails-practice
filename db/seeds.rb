@@ -62,6 +62,18 @@ end
   end
 end
 
+# tags テーブルへ値を挿入
+['fashion', 'music', 'food', 'travel', 'interior', 'recipe'].each do |tag|
+  Tag.create!(name: tag)
+end
+
+# user_posts にタグを登録
+[admin_posts, endo_san_posts].each do |posts|
+  posts.first(10).each do |post|
+    Tag.first(3).each { |tag| post.user_post_tags.create(tag: tag) }
+  end
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
