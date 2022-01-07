@@ -3,6 +3,7 @@ ja:
     index:
       title: ポスト一覧
       labels:
+        tag_name: タグ
         posted_by: 作成者
       links:
         new: 新規作成

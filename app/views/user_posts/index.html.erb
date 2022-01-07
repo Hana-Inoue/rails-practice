@@ -10,6 +10,7 @@
       <tr>
         <th><%= t('activerecord.attributes.user_post.id') %></th>
         <th><%= t('activerecord.attributes.user_post.body') %></th>
+        <th><%= t('user_posts.index.labels.tag_name') %></th>
         <th><%= t('user_posts.index.labels.posted_by') %></th>
         <th></th>
         <th></th>
@@ -20,7 +21,14 @@
       <% @user_posts.each do |user_post| %>
         <tr>
           <td><%= user_post.id %></td>
-          <td><%= user_post.body %></td>
+          <td>
+            <%= user_post.body %>
+          </td>
+          <td>
+            <% user_post.tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </td>
           <td><%= user_post.user.name %></td>
           <td>
             <%= link_to t('user_posts.index.links.comment'),
