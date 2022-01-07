@@ -16,6 +16,9 @@ admin.create_user_address!(
   address_line: 'さいたま1-1-1',
 )
 
+# adminアカウントのuser_postsデータを作成
+admin_posts = 1.upto(50).map { |number| admin.user_posts.create!(body: "admin ポスト#{number}") }
+
 # 遠藤さん用アカウントの作成
 endo_san = User.create!(
   name: 'a_endo@ga-tech.co.jp',
@@ -34,6 +37,10 @@ endo_san.create_user_address!(
   address_line: '六本木1-1-1',
 )
 
+# 遠藤さんアカウントのuser_postsデータを作成
+endo_san_posts =
+  1.upto(50).map { |number| endo_san.user_posts.create!(body: "遠藤さん ポスト#{number}") }
+
 # テスト用アカウントの作成
 users = (1..5).map do |number|
   User.create!(
@@ -46,10 +53,21 @@ users = (1..5).map do |number|
   )
 end
 
+# user_posts にコメントを登録
+[admin_posts, endo_san_posts].each do |posts|
+  posts.first(10).each do |post|
+    users.each do |user|
+      post.user_post_comments.create(body: "#{user.name} コメント", commented_by: user.name)
+    end
+  end
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
   user_addresses: ['destroy', 'update', 'edit'],
+  user_posts: ['index', 'new', 'create', 'destroy', 'update', 'edit'],
+  user_post_comments: ['index', 'create', 'destroy'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -76,6 +94,16 @@ users.each do |user|
   controllers[:user_addresses].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'user_addresses', action: action).id
+    )
+  end
+  controllers[:user_posts].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'user_posts', action: action).id
+    )
+  end
+  controllers[:user_post_comments].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'user_post_comments', action: action).id
     )
   end
 end

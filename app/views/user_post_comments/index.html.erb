@@ -1,0 +1,48 @@
+<div class="user-post-comments">
+  <h1><%= t('user_post_comments.index.title') %></h1>
+
+  <% if current_user.authorized?('user_post_comments', 'create') %>
+    <%= form_with model: @user_post_comment,
+                  url: user_post_user_post_comments_path(@user_post) do |form| %>
+      <div class="form">
+        <%= form.label :body %>
+        <%= form.text_area :body %>
+        <div class="error_messages">
+          <%= render partial: 'shared/attribute_error_messages',
+                     locals: { model: @user_post_comment, attribute: :body } %>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <%= form.submit t('user_post_comments.index.links.submit') %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.user_post_comment.id') %></th>
+        <th><%= t('activerecord.attributes.user_post_comment.body') %></th>
+        <th><%= t('activerecord.attributes.user_post_comment.commented_by') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_post_comments.each do |user_post_comment| %>
+        <tr>
+          <td><%= user_post_comment.id %></td>
+          <td><%= user_post_comment.body %></td>
+          <td><%= user_post_comment.commented_by %></td>
+          <td>
+            <%= link_to t('user_post_comments.index.links.delete'),
+                        user_post_user_post_comment_path(user_post_comment.user_post_id,
+                                                         user_post_comment),
+                        method: :delete,
+                        data: { confirm: t('user_post_comments.index.confirm.delete') } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

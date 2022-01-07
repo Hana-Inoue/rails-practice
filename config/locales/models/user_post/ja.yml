@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      user_post:
+    attributes:
+      user_post:
+        id: ID
+        body: 内容

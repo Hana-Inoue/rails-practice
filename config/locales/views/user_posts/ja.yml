@@ -1,0 +1,20 @@
+ja:
+  user_posts:
+    index:
+      title: ポスト一覧
+      labels:
+        posted_by: 作成者
+      links:
+        new: 新規作成
+        comment: コメント
+        edit: 編集
+        delete: 削除
+      confirm:
+        delete: ポストを削除しますか?
+    new:
+      title: ポスト作成
+    edit:
+      title: ポスト編集
+    form:
+      links:
+        submit: 投稿

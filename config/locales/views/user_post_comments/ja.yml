@@ -1,0 +1,9 @@
+ja:
+  user_post_comments:
+    index:
+      title: コメント一覧
+      links:
+        submit: コメント
+        delete: 削除
+      confirm:
+        delete: コメントを削除しますか?

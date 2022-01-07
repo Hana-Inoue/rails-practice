@@ -17,6 +17,11 @@ ja:
           success: 住所情報を更新しました。
           fail: 住所情報の更新に失敗しました。
         deleted_address: 住所を削除しました。
+        created_user_post: ポストを投稿しました。
+        updated_user_post: ポストを編集しました。
+        deleted_user_post: ポストを削除しました。
+        created_user_post_comment: コメントを投稿しました。
+        deleted_user_post_comment: コメントを削除しました。
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。
@@ -25,6 +30,8 @@ ja:
       links:
         users:
           index: ユーザ一覧
+        user_posts:
+          index: ポスト一覧
         controller_actions:
           edit: アクセス権限編集
         static_pages:
