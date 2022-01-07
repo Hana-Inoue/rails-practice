@@ -64,4 +64,17 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
   end
+
+  create_table 'tags', force: :cascade do |table|
+    table.string 'name', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'user_post_tags', force: :cascade do |table|
+    table.references :user_post, foreign_key: true
+    table.references :tag, foreign_key: true
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
 end
