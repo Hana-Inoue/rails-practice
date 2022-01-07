@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "UserPostComments", type: :request do
+  let(:user) { create(:user, :admin) }
+  let(:user_post) { create(:user_post, user: user) }
+
   before do
     create_authorizations
     log_in(user)
     user_post
   end
-  let(:user) { create(:user, :admin) }
-  let(:user_post) { create(:user_post, user: user) }
-
 
   describe "GET indexページ" do
     it '200番ステータスを返す' do
@@ -47,8 +47,9 @@ RSpec.describe "UserPostComments", type: :request do
   end
 
   describe 'DELETE UserPostComment' do
-    before { user_post_comment }
     let(:user_post_comment) { create(:user_post_comment, user_post: user_post) }
+
+    before { user_post_comment }
 
     it 'indexページへリダイレクトする' do
       delete user_post_user_post_comment_path(user_post, user_post_comment)
