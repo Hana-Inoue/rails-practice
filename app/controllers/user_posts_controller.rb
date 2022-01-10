@@ -1,6 +1,11 @@
 class UserPostsController < ApplicationController
+  MAX_ITEM_COUNT = 20
+
   def index
-    @user_posts = UserPost.all
+    @page = params[:page]&.to_i || 1
+    @last_page = (UserPost.count / MAX_ITEM_COUNT).ceil
+    @user_posts =
+      UserPost.order(created_at: :desc).limit(MAX_ITEM_COUNT).offset((@page - 1) * MAX_ITEM_COUNT)
   end
 
   def new
