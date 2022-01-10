@@ -3,7 +3,7 @@ class UserPostsController < ApplicationController
 
   def index
     @current_page = params[:page]&.to_i || 1
-    @last_page = (UserPost.count / MAX_ITEM_COUNT).ceil
+    @last_page = (UserPost.count.to_f / MAX_ITEM_COUNT).ceil
     @user_posts = UserPost
                     .order(created_at: :desc)
                     .limit(MAX_ITEM_COUNT)
