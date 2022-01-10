@@ -1,9 +1,9 @@
 <div class="pagination">
   <%= link_to_unless pages[:current_page] == 1,
                      t('shared.pagination.links.previous_page'),
-                     user_posts_path(page: pages[:current_page] - 1) %>
+                     request.path + "?page=#{pages[:current_page] - 1}" %>
   <%= pages[:current_page] %>
   <%= link_to_unless pages[:current_page] == pages[:last_page],
                      t('shared.pagination.links.next_page'),
-                     user_posts_path(page: pages[:current_page] + 1) %>
+                     request.path + "?page=#{pages[:current_page] + 1}" %>
 </div>
