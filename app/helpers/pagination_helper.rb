@@ -1,5 +1,6 @@
 module PaginationHelper
   MAX_ITEM_COUNT = 20
+  FIRST_PAGE = 1
 
   def paginate(collection, max_item_count = MAX_ITEM_COUNT)
     [
@@ -16,11 +17,11 @@ module PaginationHelper
   end
 
   def current_page
-    params[:page]&.to_i || 1
+    params[:page]&.to_i || FIRST_PAGE
   end
 
   def last_page(collection, max_item_count)
-    collection.count.zero? ? 1 : (collection.count.to_f / max_item_count).ceil
+    collection.count.zero? ? FIRST_PAGE : (collection.count.to_f / max_item_count).ceil
   end
 
   def collection_per_page(collection, max_item_count)
