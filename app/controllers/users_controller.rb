@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @pages, @users = paginate(User.order(:id), 10)
   end
 
   def show
