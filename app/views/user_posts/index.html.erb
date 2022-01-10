@@ -45,4 +45,10 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="pagination">
+    <%= link_to_unless @page == 1, '前へ', user_posts_path(page: @page - 1) %>
+    <%= @page %>
+    <%= link_to_unless @page == @last_page, '次へ', user_posts_path(page: @page + 1) %>
+  </div>
 </div>
