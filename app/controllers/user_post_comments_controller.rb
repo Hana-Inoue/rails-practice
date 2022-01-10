@@ -14,7 +14,9 @@ class UserPostCommentsController < ApplicationController
       redirect_to user_post_user_post_comments_path(@user_post),
                   notice: t('layouts.flash.messages.created_user_post_comment')
     else
-      @user_post_comments = UserPostComment.where(user_post_id: params[:user_post_id])
+      @pages, @user_post_comments = paginate(
+          UserPostComment.where(user_post_id: params[:user_post_id]).order(created_at: :desc)
+      )
       render :index
     end
   end
