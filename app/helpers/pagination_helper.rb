@@ -20,7 +20,7 @@ module PaginationHelper
   end
 
   def last_page(collection, max_item_count)
-    (collection.count.to_f / max_item_count).ceil
+    collection.count.zero? ? 1 : (collection.count.to_f / max_item_count).ceil
   end
 
   def collection_per_page(collection, max_item_count)
