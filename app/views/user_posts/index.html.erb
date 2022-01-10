@@ -46,13 +46,5 @@
     </tbody>
   </table>
 
-  <div class="pagination">
-    <%= link_to_unless @pages[:current_page] == 1,
-                       t('user_posts.index.links.previous_page'),
-                       user_posts_path(page: @pages[:current_page] - 1) %>
-    <%= @pages[:current_page] %>
-    <%= link_to_unless @pages[:current_page] == @pages[:last_page],
-                       t('user_posts.index.links.next_page'),
-                       user_posts_path(page: @pages[:current_page] + 1) %>
-  </div>
+  <%= render 'shared/pagination', pages: @pages %>
 </div>
