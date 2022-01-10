@@ -2,7 +2,8 @@ class UserPostCommentsController < ApplicationController
   def index
     @user_post = UserPost.find(params[:user_post_id])
     @user_post_comment = @user_post.user_post_comments.build
-    @user_post_comments = UserPostComment.where(user_post_id: params[:user_post_id])
+    @pages, @user_post_comments =
+      paginate(UserPostComment.where(user_post_id: params[:user_post_id]).order(created_at: :desc))
   end
 
   def create
