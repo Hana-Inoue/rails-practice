@@ -1,7 +1,7 @@
 module PaginationHelper
   MAX_ITEM_COUNT = 20
 
-  def paginate(collection, max_item_count: MAX_ITEM_COUNT)
+  def paginate(collection, max_item_count = MAX_ITEM_COUNT)
     [
       pages(collection, max_item_count),
       collection_per_page(collection, max_item_count)
