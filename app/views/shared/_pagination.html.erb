@@ -7,8 +7,8 @@
                      t('shared.pagination.links.previous_page'),
                      request.path + "?page=#{pages[:current_page] - 1}" %>
 
-  <% previous_and_next_page_count.times do |number| %>
-    <% previous_page = pages[:current_page] - previous_and_next_page_count + number %>
+  <% pages[:previous_and_next_page_count].times do |number| %>
+    <% previous_page = pages[:current_page] - pages[:previous_and_next_page_count] + number %>
     <% if previous_page >= 1 %>
       <%= link_to previous_page, request.path + "?page=#{previous_page}" %>
     <% end %>
@@ -16,7 +16,7 @@
 
   <%= pages[:current_page] %>
 
-  <% previous_and_next_page_count.times do |number| %>
+  <% pages[:previous_and_next_page_count].times do |number| %>
     <% next_page = pages[:current_page] + number + 1 %>
     <% if next_page <= pages[:last_page] %>
       <%= link_to next_page, request.path + "?page=#{next_page}" %>
