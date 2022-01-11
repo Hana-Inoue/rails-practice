@@ -48,11 +48,23 @@
 
   <div class="pagination">
     <%= link_to_unless @current_page == 1,
+                       t('user_posts.index.links.first_page'),
+                       user_posts_path(page: 1) %>
+    <%= link_to_unless @current_page == 1,
                        t('user_posts.index.links.previous_page'),
                        user_posts_path(page: @current_page - 1) %>
+    <% unless  @current_page == 1 %>
+      <%= link_to @current_page - 1, user_posts_path(page: @current_page - 1) %>
+    <% end %>
     <%= @current_page %>
+    <% unless  @current_page == @last_page %>
+      <%= link_to @current_page + 1, user_posts_path(page: @current_page + 1) %>
+    <% end %>
     <%= link_to_unless @current_page == @last_page,
                        t('user_posts.index.links.next_page'),
                        user_posts_path(page: @current_page + 1) %>
+    <%= link_to_unless @current_page == @last_page,
+                       t('user_posts.index.links.last_page'),
+                       user_posts_path(page: @last_page) %>
   </div>
 </div>
