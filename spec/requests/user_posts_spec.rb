@@ -31,7 +31,8 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'POST 新規UserPost情報' do
-    let(:user_post_params) { attributes_for(:user_post) }
+    let(:tag) { create(:tag) }
+    let(:user_post_params) { attributes_for(:user_post).merge!(tag_ids: [tag.id]) }
 
     context '有効なリクエストパラメータが渡された場合' do
       it 'indexページへリダイレクトする' do
@@ -45,6 +46,12 @@ RSpec.describe "UserPosts", type: :request do
           post user_posts_path, params: { user_post: user_post_params }
         }.to change(UserPost, :count).by(1)
       end
+
+      it 'UserPostTagが1増える' do
+        expect {
+          post user_posts_path, params: { user_post: user_post_params }
+        }.to change(UserPostTag, :count).by(1)
+      end
     end
 
     context '無効なリクエストパラメータが渡された場合' do
@@ -57,10 +64,12 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'PATCH UserPost情報' do
-    let(:user_post_params) { attributes_for(:user_post) }
+    let(:old_tag) { create(:tag, name: 'fashion') }
+    let(:new_tag) { create(:tag) }
+    let(:user_post_params) { attributes_for(:user_post).merge!(tag_ids: [new_tag.id]) }
 
     before do
-      user_post
+      user_post.tag_ids = old_tag.id
       user_post_params[:body] = body
     end
 
@@ -78,6 +87,12 @@ RSpec.describe "UserPosts", type: :request do
           patch user_post_path(user_post), params: { user_post: user_post_params }
         }.to change { UserPost.last.body }.from('こんにちは').to('aaa')
       end
+
+      it '任意のUserPostTagの値を変更する' do
+        expect {
+          patch user_post_path(user_post), params: { user_post: user_post_params }
+        }.to change { UserPost.last.tags.first.name }.from('fashion').to('music')
+      end
     end
 
     context '無効なリクエストパラメータが渡された場合' do
@@ -91,7 +106,11 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'DELETE UserPost' do
-    before { user_post }
+    let(:tag) { create(:tag) }
+
+    before do
+      user_post.tag_ids = tag.id
+    end
 
     it 'indexページへリダイレクトする' do
       delete user_post_path(user_post)
@@ -101,6 +120,10 @@ RSpec.describe "UserPosts", type: :request do
 
     it 'UserPostが1減る' do
       expect { delete user_post_path(user_post) }.to change(UserPost, :count).by(-1)
+    end
+
+    it 'UserPostTagが1減る' do
+      expect { delete user_post_path(user_post) }.to change(UserPostTag, :count).by(-1)
     end
   end
 end
