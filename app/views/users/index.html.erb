@@ -32,5 +32,6 @@
     </tbody>
   </table>
 
-  <%= render 'shared/pagination', pages: @pages %>
+  <%= render 'shared/pagination',
+             pages: @pages, previous_and_next_page_count: @previous_and_next_page_count %>
 </div>

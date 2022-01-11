@@ -4,6 +4,7 @@ class UserPostCommentsController < ApplicationController
     @user_post_comment = @user_post.user_post_comments.build
     @pages, @user_post_comments =
       paginate(UserPostComment.where(user_post_id: params[:user_post_id]).order(created_at: :desc))
+    @previous_and_next_page_count = 2
   end
 
   def create
@@ -17,6 +18,7 @@ class UserPostCommentsController < ApplicationController
       @pages, @user_post_comments = paginate(
           UserPostComment.where(user_post_id: params[:user_post_id]).order(created_at: :desc)
       )
+      @previous_and_next_page_count = 2
       render :index
     end
   end

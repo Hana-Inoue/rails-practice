@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @pages, @users = paginate(User.order(:id), 10)
+    @previous_and_next_page_count = 2
   end
 
   def show
