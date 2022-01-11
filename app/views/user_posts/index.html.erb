@@ -45,4 +45,38 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="pagination">
+    <%= link_to_unless @current_page == 1,
+                       t('user_posts.index.links.first_page'),
+                       user_posts_path(page: 1) %>
+
+    <%= link_to_unless @current_page == 1,
+                       t('user_posts.index.links.previous_page'),
+                       user_posts_path(page: @current_page - 1) %>
+
+    <% @previous_and_next_page_count.times do |number| %>
+      <% previous_page = @current_page - @previous_and_next_page_count + number %>
+      <% if previous_page >= 1 %>
+        <%= link_to previous_page, user_posts_path(page: previous_page) %>
+      <% end %>
+    <% end %>
+
+    <%= @current_page %>
+
+    <% @previous_and_next_page_count.times do |number| %>
+      <% next_page = @current_page + number + 1 %>
+      <% if next_page <= @last_page %>
+        <%= link_to next_page, user_posts_path(page: next_page) %>
+      <% end %>
+    <% end %>
+
+    <%= link_to_unless @current_page == @last_page,
+                       t('user_posts.index.links.next_page'),
+                       user_posts_path(page: @current_page + 1) %>
+
+    <%= link_to_unless @current_page == @last_page,
+                       t('user_posts.index.links.last_page'),
+                       user_posts_path(page: @last_page) %>
+  </div>
 </div>

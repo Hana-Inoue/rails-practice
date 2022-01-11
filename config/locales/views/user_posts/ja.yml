@@ -10,6 +10,10 @@ ja:
         comment: コメント
         edit: 編集
         delete: 削除
+        previous_page: 前へ
+        next_page: 次へ
+        first_page: 先頭へ
+        last_page: 後尾へ
       confirm:
         delete: ポストを削除しますか?
     new:
