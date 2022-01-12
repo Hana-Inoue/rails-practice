@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      event:
+    attributes:
+      event:
+        id: ID
+        title: イベント名
+        body: イベント内容
+        max_participants: 募集人数
+        start_at: 開始日時
+        finish_at: 終了日時
+        host: 主催者

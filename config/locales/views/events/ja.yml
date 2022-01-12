@@ -1,0 +1,8 @@
+ja:
+  events:
+    index:
+      title: イベント一覧
+      links:
+        new: 新規作成
+      labels:
+        start_and_finish_datetime: 開催日時

@@ -1,0 +1,34 @@
+<div class="events">
+  <h1><%= t('events.index.title') %></h1>
+
+  <% if current_user.authorized?('events', 'new') %>
+    <p class="button new-event"><%= link_to t('events.index.links.new'), new_event_path %></p>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.event.id') %></th>
+        <th><%= t('activerecord.attributes.event.title') %></th>
+        <th><%= t('events.index.labels.start_and_finish_datetime') %></th>
+        <th><%= t('activerecord.attributes.event.max_participants') %></th>
+        <th><%= t('activerecord.attributes.event.body') %></th>
+        <th><%= t('activerecord.attributes.event.host') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.id %></td>
+          <td><%= link_to event.title, event %></td>
+          <td><%= event.start_and_finish_datetime %></td>
+          <td><%= event.max_participants %></td>
+          <td><%= event.body %></td>
+          <td><%= event.host %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= render 'shared/pagination', pages: @pages %>
+</div>
