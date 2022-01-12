@@ -8,12 +8,12 @@
   <table class="table">
     <thead>
       <tr>
-        <th><%= t('activerecord.attributes.event.id') %></th>
-        <th><%= t('activerecord.attributes.event.title') %></th>
+        <th><%= Event.human_attribute_name(:id) %></th>
+        <th><%= Event.human_attribute_name(:title) %></th>
         <th><%= t('events.index.labels.start_and_finish_datetime') %></th>
-        <th><%= t('activerecord.attributes.event.max_participants') %></th>
-        <th><%= t('activerecord.attributes.event.body') %></th>
-        <th><%= t('activerecord.attributes.event.host') %></th>
+        <th><%= Event.human_attribute_name(:max_participants) %></th>
+        <th><%= Event.human_attribute_name(:body) %></th>
+        <th><%= Event.human_attribute_name(:host) %></th>
       </tr>
     </thead>
     <tbody>
