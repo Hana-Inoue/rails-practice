@@ -1,7 +1,8 @@
 class UserPostsController < ApplicationController
 
   def index
-    @pages, @user_posts = paginate(collection: UserPost.order(:id), previous_and_next_page_count: 2)
+    @pages, @user_posts = paginate(active_record: UserPost.order(:id),
+                                   previous_and_next_page_count: 2)
   end
 
   def new
