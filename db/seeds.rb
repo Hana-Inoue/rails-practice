@@ -42,7 +42,7 @@ endo_san_posts =
   1.upto(50).map { |number| endo_san.user_posts.create!(body: "遠藤さん ポスト#{number}") }
 
 # テスト用アカウントの作成
-users = (1..5).map do |number|
+users = (1..25).map do |number|
   User.create!(
     name: "user#{number}",
     email: "h_inoue2+test-#{number}@ga-tech.co.jp",

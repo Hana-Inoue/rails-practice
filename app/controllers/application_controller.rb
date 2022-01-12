@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include PaginationHelper
   include SessionsHelper
 
   before_action :require_login, :check_authorization

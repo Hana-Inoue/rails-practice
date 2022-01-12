@@ -1,0 +1,8 @@
+ja:
+  shared:
+    pagination:
+      links:
+        previous_page: 前へ
+        next_page: 次へ
+        first_page: 先頭へ
+        last_page: 後尾へ

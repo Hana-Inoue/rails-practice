@@ -1,14 +1,8 @@
 class UserPostsController < ApplicationController
-  MAX_ITEM_COUNT = 20
 
   def index
-    @previous_and_next_page_count = 2
-    @current_page = params[:page]&.to_i || 1
-    @last_page = (UserPost.count.to_f / MAX_ITEM_COUNT).ceil
-    @user_posts = UserPost
-                    .order(:id)
-                    .limit(MAX_ITEM_COUNT)
-                    .offset((@current_page - 1) * MAX_ITEM_COUNT)
+    @pages, @user_posts = paginate(active_record: UserPost.order(:id),
+                                   previous_and_next_page_count: 2)
   end
 
   def new
