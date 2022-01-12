@@ -74,6 +74,16 @@ end
   end
 end
 
+# eventsデータを作成
+1.upto(10).map do |number|
+  Event.create!(title: "イベント#{number}",
+                 body: "これはイベント#{number}です。",
+                 max_participants: number * 5,
+                 start_at: DateTime.now + number,
+                 finish_at: DateTime.now + number + Rational('2/24'),
+                 host: 'user')
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
