@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table 'user_events', force: :cascade do |table|
+  create_table 'events', force: :cascade do |table|
     table.string 'title', null: false
     table.text 'body', null: false
     table.integer 'max_participants', null: false
