@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     resources :user_post_comments, only: [:index, :create, :destroy]
   end
 
+  resources :events
+
   root 'users#index'
 end
