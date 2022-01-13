@@ -18,7 +18,7 @@ ja:
     new:
       title: 新規イベント作成
     edit:
-      title: ユーザ情報編集
+      title: イベント情報編集
     form:
       links:
         submit: 投稿
