@@ -28,4 +28,13 @@ class EventsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def event_params
+    params
+      .require(:event)
+      .permit(:title, :body, :max_participants, :start_at, :finish_at)
+      .merge(host: current_user.name)
+  end
 end
