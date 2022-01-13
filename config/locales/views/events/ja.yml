@@ -7,4 +7,7 @@ ja:
       labels:
         start_and_finish_datetime: 開催日時
     new:
-      title: 新規イベント登録
+      title: 新規イベント作成
+    form:
+      links:
+        submit: 投稿
