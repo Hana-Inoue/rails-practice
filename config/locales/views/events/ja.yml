@@ -6,3 +6,5 @@ ja:
         new: 新規作成
       labels:
         start_and_finish_datetime: 開催日時
+    new:
+      title: 新規イベント登録

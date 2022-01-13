@@ -1,0 +1,60 @@
+<%= form_with model: event do |form| %>
+  <div class="form">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: event, attribute: :title } %>
+    </div>
+  </div>
+
+  <div class="form">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at,
+                         prompt: '--',
+                         use_month_numbers: true,
+                         start_year: Time.now.year,
+                         end_year: Time.now.year + 2,
+                         date_separator: '/ ' %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: event, attribute: :start_at } %>
+    </div>
+  </div>
+
+  <div class="form">
+    <%= form.label :finish_at %>
+    <%= form.datetime_select :finish_at,
+                         prompt: '--',
+                         use_month_numbers: true,
+                         start_year: Time.now.year,
+                         end_year: Time.now.year + 2,
+                         date_separator: '/ ' %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: event, attribute: :finish_at } %>
+    </div>
+  </div>
+
+  <div class="form">
+    <%= form.label :max_participants %>
+    <%= form.number_field :max_participants %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: event, attribute: :max_participants } %>
+    </div>
+  </div>
+
+  <div class="form">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+    <div class="error_messages">
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: event, attribute: :body } %>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <%= form.submit %>
+  </div>
+<% end %>
