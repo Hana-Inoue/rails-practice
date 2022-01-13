@@ -36,6 +36,10 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    event = Event.find(params[:id])
+
+    event.destroy
+    redirect_to events_path, notice: t('layouts.flash.messages.deleted_event', title: event.title)
   end
 
   private
