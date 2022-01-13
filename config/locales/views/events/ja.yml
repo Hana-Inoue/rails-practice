@@ -6,6 +6,15 @@ ja:
         new: 新規作成
       labels:
         start_and_finish_datetime: 開催日時
+    show:
+      title: イベント詳細
+      labels:
+        start_and_finish_datetime: 開催日時
+      links:
+        edit: 編集
+        delete: 削除
+      confirm:
+        delete: "%{title}を削除しますか?"
     new:
       title: 新規イベント作成
     form:
