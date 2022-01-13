@@ -100,4 +100,19 @@ RSpec.describe "Events", type: :request do
       end
     end
   end
+
+  describe 'DELETE Event情報' do
+    let(:event) { create(:event) }
+    before { event }
+
+    it 'indexページへリダイレクトする' do
+      delete event_path(event)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to events_path
+    end
+
+    it 'Eventが1減る' do
+      expect { delete event_path(event) }.to change(Event, :count).by(-1)
+    end
+  end
 end
