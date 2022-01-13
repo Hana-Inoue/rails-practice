@@ -14,6 +14,13 @@ class EventsController < ApplicationController
   end
 
   def create
+    @event = Event.new(event_params)
+
+    if @event.save
+      redirect_to @event, notice: t('layouts.flash.messages.created_event')
+    else
+      render :new
+    end
   end
 
   def update
