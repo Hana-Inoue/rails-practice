@@ -20,4 +20,30 @@ RSpec.describe "Events", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST 新規Event情報' do
+    let(:event_params) { attributes_for(:event) }
+
+    context '有効なリクエストパラメータが渡された場合' do
+      it 'showページへリダイレクトする' do
+        post events_path, params: { event: event_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to event_path(Event.last)
+      end
+
+      it 'Eventが1増える' do
+        expect {
+          post events_path, params: { event: event_params }
+        }.to change(Event, :count).by(1)
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      it '200番ステータスを返す' do
+        event_params[:title] = ''
+        post events_path, params: { event: event_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
