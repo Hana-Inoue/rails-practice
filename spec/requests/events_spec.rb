@@ -31,6 +31,16 @@ RSpec.describe "Events", type: :request do
     end
   end
 
+  describe 'GET editページ' do
+    let(:event) { create(:event) }
+    before { event }
+
+    it '200番ステータスを返す' do
+      get edit_event_path(event)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST 新規Event情報' do
     let(:event_params) { attributes_for(:event) }
 
