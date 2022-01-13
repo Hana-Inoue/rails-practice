@@ -26,6 +26,13 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to @event, notice: t('layouts.flash.messages.updated_event')
+    else
+      render :edit
+    end
   end
 
   def destroy

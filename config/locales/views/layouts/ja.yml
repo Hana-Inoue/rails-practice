@@ -23,6 +23,7 @@ ja:
         created_user_post_comment: コメントを投稿しました。
         deleted_user_post_comment: コメントを削除しました。
         created_event: イベントを投稿しました。
+        updated_event: イベントを編集しました。
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。
