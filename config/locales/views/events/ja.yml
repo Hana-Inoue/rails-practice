@@ -17,6 +17,8 @@ ja:
         delete: "%{title}を削除しますか?"
     new:
       title: 新規イベント作成
+    edit:
+      title: ユーザ情報編集
     form:
       links:
         submit: 投稿
