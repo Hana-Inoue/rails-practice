@@ -14,6 +14,16 @@ RSpec.describe "Events", type: :request do
     end
   end
 
+  describe 'GET showページ' do
+    let(:event) { create(:event) }
+    before { event }
+
+    it '200番ステータスを返す' do
+      get event_path(event)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'GET newページ' do
     it '200番ステータスを返す' do
       get new_event_path
