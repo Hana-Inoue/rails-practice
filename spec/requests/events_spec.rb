@@ -66,4 +66,38 @@ RSpec.describe "Events", type: :request do
       end
     end
   end
+
+  describe 'PATCH Event情報' do
+    let(:event) { create(:event) }
+    let(:event_params) { attributes_for(:event) }
+    before do
+      event
+      event_params[:title] = title
+    end
+
+    context '有効なリクエストパラメータが渡された場合' do
+      let(:title) { 'event2' }
+
+      it 'showページへリダイレクトする' do
+        patch event_path(event), params: { event: event_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to event_path(Event.last)
+      end
+
+      it '任意のEventの値を変更する' do
+        expect {
+          patch event_path(event), params: { event: event_params }
+        }.to change { Event.last[:title] }.from('event').to('event2')
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      let(:title) { '' }
+
+      it '200番ステータスを返す' do
+        patch event_path(event), params: { event: event_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
