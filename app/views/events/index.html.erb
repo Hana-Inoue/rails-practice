@@ -8,48 +8,41 @@
                 local: true) do |form| %>
     <div class="form">
       <%= form.label :title, t('events.index.labels.title') %>
-      <%= form.text_field :title %>
+      <%= form.text_field :title, value: @search_params[:title] %>
     </div>
 
     <div class="form">
       <%= form.label :start_at, t('events.index.labels.start_at') %>
-      <%= form.datetime_select :start_at,
-                           prompt: '--',
-                           use_month_numbers: true,
-                           start_year: Time.now.year,
-                           end_year: Time.now.year + 2,
-                           date_separator: '/ ' %>
+      <%= form.datetime_field :start_at,
+                           value: @search_params[:start_at] %>
     </div>
 
     <div class="form">
       <%= form.label :finish_at, t('events.index.labels.finish_at') %>
-      <%= form.datetime_select :finish_at,
-                           prompt: '--',
-                           use_month_numbers: true,
-                           start_year: Time.now.year,
-                           end_year: Time.now.year + 2,
-                           date_separator: '/ ' %>
+      <%= form.datetime_field :finish_at,
+                           value: @search_params[:finish_at] %>
     </div>
 
     <div class="form">
-      <%= form.label :max_participants, t('events.index.labels.max_participants') %>
-      <%= form.select :max_participants,
-                      [['1~5', 1..5],
-                       ['6~10', 6..10],
-                       ['11~20', 11..20],
-                       ['21~30', 21..30],
-                       ['31~', 31..]],
-                      include_blank: true %>
+      <%= form.label :min_max_participants, t('events.index.labels.min_max_participants') %>
+      <%= form.select :min_max_participants,
+                      [['1~5', '1'],
+                       ['6~10', '2'],
+                       ['11~20', '3'],
+                       ['21~30', '4'],
+                       ['31~', '5']],
+                      include_blank: true,
+                      selected: @search_params[:min_max_participants] %>
     </div>
 
     <div class="form">
       <%= form.label :body, t('events.index.labels.body') %>
-      <%= form.text_field :body %>
+      <%= form.text_field :body, value: @search_params[:body] %>
     </div>
 
     <div class="form">
       <%= form.label :host, t('events.index.labels.host') %>
-      <%= form.text_field :host %>
+      <%= form.text_field :host, value: @search_params[:host] %>
     </div>
 
     <div class="buttons">
