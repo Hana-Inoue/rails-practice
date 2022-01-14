@@ -58,4 +58,10 @@ class EventsController < ApplicationController
       .permit(:title, :body, :max_participants, :start_at, :finish_at)
       .merge(host: current_user.name)
   end
+
+  def events_search_params
+    params
+      .fetch(:search, {})
+      .permit(:title, :start_at, :finish_at, :min_max_participants, :body, :host)
+  end
 end
