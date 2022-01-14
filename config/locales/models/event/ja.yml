@@ -11,3 +11,9 @@ ja:
         start_at: 開始日時
         finish_at: 終了日時
         host: 主催者
+    errors:
+      models:
+        event:
+          attributes:
+            finish_at:
+              invalid: "は開始日より後の日時を指定してください"
