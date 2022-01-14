@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   def index
+    @search_params = events_search_params
     @pages, @events = paginate(active_record: Event.order(:id))
   end
 
@@ -13,6 +14,13 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+  end
+
+  def search
+    @search_params = events_search_params
+    @pages, @events = paginate(active_record: Event.search(@search_params).order(:id))
+
+    render :index
   end
 
   def create
