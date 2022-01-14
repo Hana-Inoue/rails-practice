@@ -80,5 +80,9 @@
     </tbody>
   </table>
 
+ <% if @events.empty? %>
+   <%= t('events.index.messages.empty_event') %>
+ <% end %>
+
   <%= render 'shared/pagination', pages: @pages %>
 </div>

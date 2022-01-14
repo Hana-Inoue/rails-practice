@@ -13,6 +13,8 @@ ja:
         start_and_finish_datetime: 開催日時
         body: イベント内容キーワード
         host: 主催者
+      messages:
+        empty_event: イベント情報がありません。
     show:
       title: イベント詳細
       labels:
