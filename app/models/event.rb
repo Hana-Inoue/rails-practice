@@ -7,7 +7,7 @@ class Event < ApplicationRecord
   validates :finish_at, presence: true
   validates :host, presence: true, length: { maximum: 30 }
 
-  validate :finish_at_after_start_at
+  validate :finish_at_after_start_at, if: :start_at_and_finish_at_present?
 
   scope :search, -> (events_search_params) do
     return if events_search_params.blank?
@@ -52,6 +52,10 @@ class Event < ApplicationRecord
   end
 
   private
+
+  def start_at_and_finish_at_present?
+    start_at.present? && finish_at.present?
+  end
 
   def finish_at_after_start_at
     errors.add(:finish_at, :invalid) unless start_at < finish_at
