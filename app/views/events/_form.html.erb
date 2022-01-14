@@ -10,12 +10,7 @@
 
   <div class="form">
     <%= form.label :start_at %>
-    <%= form.datetime_select :start_at,
-                         prompt: '--',
-                         use_month_numbers: true,
-                         start_year: Time.now.year,
-                         end_year: Time.now.year + 2,
-                         date_separator: '/ ' %>
+    <%= form.datetime_field :start_at %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: event, attribute: :start_at } %>
@@ -24,12 +19,7 @@
 
   <div class="form">
     <%= form.label :finish_at %>
-    <%= form.datetime_select :finish_at,
-                         prompt: '--',
-                         use_month_numbers: true,
-                         start_year: Time.now.year,
-                         end_year: Time.now.year + 2,
-                         date_separator: '/ ' %>
+    <%= form.datetime_field :finish_at %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: event, attribute: :finish_at } %>
