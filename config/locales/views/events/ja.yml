@@ -4,8 +4,15 @@ ja:
       title: イベント一覧
       links:
         new: 新規作成
+        search: 検索
       labels:
+        title: イベント名
+        start_at: 開始日
+        finish_at: 終了日
+        max_participants: 募集人数
         start_and_finish_datetime: 開催日時
+        body: イベント内容キーワード
+        host: 主催者
     show:
       title: イベント詳細
       labels:
