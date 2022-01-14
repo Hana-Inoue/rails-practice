@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-
   validates :title, presence: true, length: { maximum: 30 }
   validates :body, presence: true, length: { maximum: 140 }
   validates :max_participants, presence: true
