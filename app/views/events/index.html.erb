@@ -8,19 +8,19 @@
                 local: true) do |form| %>
     <div class="form">
       <%= form.label :title, t('events.index.labels.title') %>
-      <%= form.text_field :title, value: @search_params[:title] %>
+      <%= form.text_field :title, value: @events_search_params[:title] %>
     </div>
 
     <div class="form">
       <%= form.label :start_at, t('events.index.labels.start_at') %>
       <%= form.datetime_field :start_at,
-                           value: @search_params[:start_at] %>
+                           value: @events_search_params[:start_at] %>
     </div>
 
     <div class="form">
       <%= form.label :finish_at, t('events.index.labels.finish_at') %>
       <%= form.datetime_field :finish_at,
-                           value: @search_params[:finish_at] %>
+                           value: @events_search_params[:finish_at] %>
     </div>
 
     <div class="form">
@@ -32,17 +32,17 @@
                        ['21~30', '4'],
                        ['31~', '5']],
                       include_blank: true,
-                      selected: @search_params[:min_max_participants] %>
+                      selected: @events_search_params[:min_max_participants] %>
     </div>
 
     <div class="form">
       <%= form.label :body, t('events.index.labels.body') %>
-      <%= form.text_field :body, value: @search_params[:body] %>
+      <%= form.text_field :body, value: @events_search_params[:body] %>
     </div>
 
     <div class="form">
       <%= form.label :host, t('events.index.labels.host') %>
-      <%= form.text_field :host, value: @search_params[:host] %>
+      <%= form.text_field :host, value: @events_search_params[:host] %>
     </div>
 
     <div class="buttons">

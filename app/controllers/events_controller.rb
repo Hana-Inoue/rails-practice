@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @search_params = events_search_params
+    @events_search_params = events_search_params
     @pages, @events = paginate(active_record: Event.order(:id))
   end
 
@@ -17,8 +17,8 @@ class EventsController < ApplicationController
   end
 
   def search
-    @search_params = events_search_params
-    @pages, @events = paginate(active_record: Event.search(@search_params).order(:id))
+    @events_search_params = events_search_params
+    @pages, @events = paginate(active_record: Event.search(@events_search_params).order(:id))
 
     render :index
   end

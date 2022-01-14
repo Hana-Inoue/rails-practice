@@ -9,15 +9,15 @@ class Event < ApplicationRecord
 
   validate :finish_at_after_start_at
 
-  scope :search, -> (search_params) do
-    return if search_params.blank?
+  scope :search, -> (events_search_params) do
+    return if events_search_params.blank?
 
-    title_like(search_params[:title])
-      .start_after(search_params[:start_at])
-      .finish_before(search_params[:finish_at])
-      .max_participants_between(min_max_participants(search_params[:min_max_participants]))
-      .body_like(search_params[:body])
-      .host_like(search_params[:host])
+    title_like(events_search_params[:title])
+      .start_after(events_search_params[:start_at])
+      .finish_before(events_search_params[:finish_at])
+      .max_participants_between(min_max_participants(events_search_params[:min_max_participants]))
+      .body_like(events_search_params[:body])
+      .host_like(events_search_params[:host])
   end
   scope :title_like, -> (title) { where('title LIKE ?', "%#{title}%") if title.present? }
   scope :start_after, -> (start_at) { where('? <= start_at', start_at) if start_at.present? }
