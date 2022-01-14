@@ -59,6 +59,13 @@ RSpec.describe Event, type: :model do
       end
     end
 
+    context 'start_atがfinish_atよりも未来の場合' do
+      before { event.start_at = event.finish_at + 1 }
+      it '無効になる' do
+        expect(event).not_to be_valid
+      end
+    end
+
     context 'hostが空文字の場合' do
       before { event.host = '' }
       it '無効になる' do
