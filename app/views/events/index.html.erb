@@ -26,11 +26,7 @@
     <div class="form">
       <%= form.label :min_max_participants, t('events.index.labels.min_max_participants') %>
       <%= form.select :min_max_participants,
-                      [['1~5', '1'],
-                       ['6~10', '2'],
-                       ['11~20', '3'],
-                       ['21~30', '4'],
-                       ['31~', '5']],
+                      Event.min_max_participants_options,
                       include_blank: true,
                       selected: @events_search_params[:min_max_participants] %>
     </div>

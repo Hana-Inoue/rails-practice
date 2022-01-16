@@ -33,18 +33,9 @@ class Event < ApplicationRecord
   scope :body_like, -> (body) { where('body LIKE ?', "%#{body}%") if body.present? }
   scope :host_like, -> (host) { where('host LIKE ?', "%#{host}%") if host.present? }
 
-  def self.min_max_participants(selected_value)
-    case selected_value
-    when '1'
-      1..5
-    when '2'
-      6..10
-    when '3'
-      11..20
-    when '4'
-      21..30
-    when '5'
-      31..
+  def self.min_max_participants_options
+    MIN_MAX_PARTICIPANTS_SETTINGS.map do |min_max_participants_setting|
+      [min_max_participants_setting[:label], min_max_participants_setting[:value]]
     end
   end
 
