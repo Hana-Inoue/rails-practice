@@ -1,4 +1,10 @@
 class Event < ApplicationRecord
+  MIN_MAX_PARTICIPANTS_SETTINGS = [{ label: '1~5', value: '1', range: 1..5 },
+                                   { label: '6~10', value: '2', range: 6..10 },
+                                   { label: '11~20', value: '3', range: 11..20 },
+                                   { label: '21~30', value: '4', range: 21..30 },
+                                   { label: '31~', value: '5', range: 31.. }]
+
   validates :title, presence: true, length: { maximum: 30 }
   validates :body, presence: true, length: { maximum: 140 }
   validates :max_participants, presence: true
