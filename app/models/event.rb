@@ -20,7 +20,8 @@ class Event < ApplicationRecord
     title_like(events_search_params[:title])
       .start_after(events_search_params[:start_at])
       .finish_before(events_search_params[:finish_at])
-      .max_participants_between(min_max_participants(events_search_params[:min_max_participants]))
+      .max_participants_between(
+        min_max_participants_range(events_search_params[:min_max_participants]))
       .body_like(events_search_params[:body])
       .host_like(events_search_params[:host])
   end
@@ -37,6 +38,12 @@ class Event < ApplicationRecord
     MIN_MAX_PARTICIPANTS_SETTINGS.map do |min_max_participants_setting|
       [min_max_participants_setting[:label], min_max_participants_setting[:value]]
     end
+  end
+
+  def self.min_max_participants_range(selected_value)
+    MIN_MAX_PARTICIPANTS_SETTINGS.find do |min_max_participants_setting|
+      min_max_participants_setting[:value] == selected_value
+    end[:range]
   end
 
   def start_and_finish_datetime
