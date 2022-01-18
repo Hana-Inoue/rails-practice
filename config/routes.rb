@@ -20,7 +20,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :todos, only: :index
+  resources :todos, only: :index do
+    collection do
+      get :search
+    end
+  end
 
   root 'users#index'
 end
