@@ -24,6 +24,10 @@
     </div>
   <% end %>
 
+  <% if @search_time %>
+    <%= t('todos.index.search_time', search_time: @search_time) %>
+  <% end %>
+
   <table class="table">
     <thead>
       <tr>

@@ -6,3 +6,4 @@ ja:
       links:
         search: 検索
         reset: リセット
+      search_time: "検索速度: %{search_time}秒"
