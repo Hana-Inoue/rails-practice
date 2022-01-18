@@ -1,0 +1,26 @@
+<div class="todos">
+  <h1><%= t('todos.index.title') %></h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Todo.human_attribute_name(:id) %></th>
+        <th><%= Todo.human_attribute_name(:name) %></th>
+        <th><%= Todo.human_attribute_name(:due_date) %></th>
+        <th><%= Todo.human_attribute_name(:completed_date) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @todos.each do |todo| %>
+        <tr>
+          <td><%= todo.id %></td>
+          <td><%= todo.name %></td>
+          <td><%= todo.due_date.strftime("%F") %></td>
+          <td><%= todo.completed_date.strftime("%F") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= render 'shared/pagination', pages: @pages %>
+</div>
