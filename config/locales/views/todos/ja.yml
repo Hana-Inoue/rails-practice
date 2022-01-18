@@ -2,3 +2,7 @@ ja:
   todos:
     index:
       title: ToDo リスト
+      form_title: リスト検索
+      links:
+        search: 検索
+        reset: リセット
