@@ -74,12 +74,23 @@ end
   end
 end
 
+# eventsデータを作成
+1.upto(10).map do |number|
+  Event.create!(title: "イベント#{number}",
+                 body: "これはイベント#{number}です。",
+                 max_participants: number * 5,
+                 start_at: DateTime.now + number,
+                 finish_at: DateTime.now + number + Rational('2/24'),
+                 host: 'user')
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
   user_addresses: ['destroy', 'update', 'edit'],
   user_posts: ['index', 'new', 'create', 'destroy', 'update', 'edit'],
   user_post_comments: ['index', 'create', 'destroy'],
+  events: ['index', 'show', 'new', 'edit', 'search', 'create', 'update', 'destroy'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -116,6 +127,11 @@ users.each do |user|
   controllers[:user_post_comments].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'user_post_comments', action: action).id
+    )
+  end
+  controllers[:events].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'events', action: action).id
     )
   end
 end

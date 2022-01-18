@@ -1,0 +1,34 @@
+ja:
+  events:
+    index:
+      title: イベント一覧
+      links:
+        new: 新規作成
+        search: 検索
+        reset: リセット
+      labels:
+        title: イベント名
+        start_at: 開始日
+        finish_at: 終了日
+        min_max_participants: 募集人数
+        start_and_finish_datetime: 開催日時
+        body: イベント内容キーワード
+        host: 主催者
+      messages:
+        empty_event: イベント情報がありません。
+    show:
+      title: イベント詳細
+      labels:
+        start_and_finish_datetime: 開催日時
+      links:
+        edit: 編集
+        delete: 削除
+      confirm:
+        delete: "%{title}を削除しますか?"
+    new:
+      title: 新規イベント作成
+    edit:
+      title: イベント情報編集
+    form:
+      links:
+        submit: 投稿

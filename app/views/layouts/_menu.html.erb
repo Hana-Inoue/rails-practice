@@ -8,6 +8,10 @@
       <li><%= link_to t('layouts.menu.links.user_posts.index'), user_posts_path %></li>
     <% end %>
 
+    <% if current_user.authorized?('events', 'index') %>
+      <li><%= link_to t('layouts.menu.links.events.index'), events_path %></li>
+    <% end %>
+
     <% if current_user.authorized?('static_pages', 'about_server_logs') %>
       <li><%= link_to t('layouts.menu.links.static_pages.about_server_logs'),
                       static_pages_about_server_logs_path %></li>

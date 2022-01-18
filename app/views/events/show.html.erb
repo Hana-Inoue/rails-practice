@@ -1,0 +1,44 @@
+<div class="events">
+  <h1><%= t('events.show.title') %></h1>
+
+  <div class="event-profile">
+    <p>
+      <%= "#{Event.human_attribute_name(:title)}:" %>
+      <%= @event.title %>
+    </p>
+
+    <p>
+      <%= "#{t('events.show.labels.start_and_finish_datetime')}:" %>
+      <%= @event.start_and_finish_datetime %>
+    </p>
+
+    <p>
+      <%= "#{Event.human_attribute_name(:max_participants)}:" %>
+      <%= @event.max_participants %>
+    </p>
+
+    <p>
+      <%= "#{Event.human_attribute_name(:body)}:" %>
+      <%= @event.body %>
+    </p>
+
+    <p>
+      <%= "#{Event.human_attribute_name(:host)}:" %>
+      <%= @event.host %>
+    </p>
+
+  <% if current_user.authorized?('events', 'edit') %>
+    <p class="button edit-event">
+      <%= link_to t('events.show.links.edit'), edit_event_path(@event) %>
+    </p>
+  <% end %>
+
+  <% if current_user.authorized?('events', 'destroy') %>
+    <p class="button delete-event">
+      <%= link_to t('events.show.links.delete'),
+                  event_path(@event),
+                  method: :delete,
+                  data: { confirm: t('events.show.confirm.delete', title: @event.title) } %>
+    </p>
+  <% end %>
+</div>

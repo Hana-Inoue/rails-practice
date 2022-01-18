@@ -1,0 +1,87 @@
+<div class="events">
+  <h1><%= t('events.index.title') %></h1>
+
+  <h3 class="form-title">イベント検索</h2>
+  <%= form_with(scope: :search,
+                url: search_events_path,
+                method: :get,
+                local: true) do |form| %>
+    <div class="form">
+      <%= form.label :title, t('events.index.labels.title') %>
+      <%= form.text_field :title, value: @events_search_params[:title] %>
+    </div>
+
+    <div class="form">
+      <%= form.label :start_at, t('events.index.labels.start_at') %>
+      <%= form.datetime_field :start_at,
+                           value: @events_search_params[:start_at] %>
+    </div>
+
+    <div class="form">
+      <%= form.label :finish_at, t('events.index.labels.finish_at') %>
+      <%= form.datetime_field :finish_at,
+                           value: @events_search_params[:finish_at] %>
+    </div>
+
+    <div class="form">
+      <%= form.label :min_max_participants, t('events.index.labels.min_max_participants') %>
+      <%= form.select :min_max_participants,
+                      Event.min_max_participants_options,
+                      include_blank: true,
+                      selected: @events_search_params[:min_max_participants] %>
+    </div>
+
+    <div class="form">
+      <%= form.label :body, t('events.index.labels.body') %>
+      <%= form.text_field :body, value: @events_search_params[:body] %>
+    </div>
+
+    <div class="form">
+      <%= form.label :host, t('events.index.labels.host') %>
+      <%= form.text_field :host, value: @events_search_params[:host] %>
+    </div>
+
+    <div class="buttons">
+      <%= form.submit t('events.index.links.search') %>
+      <p class="button reset">
+        <%= link_to t('events.index.links.reset'), events_path %>
+      </p>
+    </div>
+  <% end %>
+
+
+  <% if current_user.authorized?('events', 'new') %>
+    <p class="button new-event"><%= link_to t('events.index.links.new'), new_event_path %></p>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Event.human_attribute_name(:id) %></th>
+        <th><%= Event.human_attribute_name(:title) %></th>
+        <th><%= t('events.index.labels.start_and_finish_datetime') %></th>
+        <th><%= Event.human_attribute_name(:max_participants) %></th>
+        <th><%= Event.human_attribute_name(:body) %></th>
+        <th><%= Event.human_attribute_name(:host) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.id %></td>
+          <td><%= link_to event.title, event %></td>
+          <td><%= event.start_and_finish_datetime %></td>
+          <td><%= event.max_participants %></td>
+          <td><%= event.body %></td>
+          <td><%= event.host %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+ <% if @events.empty? %>
+   <%= t('events.index.messages.empty_event') %>
+ <% end %>
+
+  <%= render 'shared/pagination', pages: @pages %>
+</div>

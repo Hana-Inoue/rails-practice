@@ -22,6 +22,9 @@ ja:
         deleted_user_post: ポストを削除しました。
         created_user_post_comment: コメントを投稿しました。
         deleted_user_post_comment: コメントを削除しました。
+        created_event: イベントを投稿しました。
+        updated_event: イベントを編集しました。
+        deleted_event: "%{title}を削除しました。"
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。
@@ -32,8 +35,8 @@ ja:
           index: ユーザ一覧
         user_posts:
           index: ポスト一覧
-        controller_actions:
-          edit: アクセス権限編集
+        events:
+          index: イベント一覧
         static_pages:
           about_server_logs: サーバログ概要
           about_activerecord_logs: アクティブレコードログ概要

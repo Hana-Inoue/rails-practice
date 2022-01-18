@@ -77,4 +77,15 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
   end
+
+  create_table 'events', force: :cascade do |table|
+    table.string 'title', null: false
+    table.text 'body', null: false
+    table.integer 'max_participants', null: false
+    table.datetime 'start_at', null: false
+    table.datetime 'finish_at', null: false
+    table.string 'host', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
 end
