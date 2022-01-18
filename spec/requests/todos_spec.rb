@@ -13,4 +13,11 @@ RSpec.describe "Todos", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'GET search' do
+    it '200番ステータスを返す' do
+      get search_todos_path
+      expect(response).to have_http_status(200)
+    end
+  end
 end
