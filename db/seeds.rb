@@ -91,7 +91,7 @@ controllers = {
   user_posts: ['index', 'new', 'create', 'destroy', 'update', 'edit'],
   user_post_comments: ['index', 'create', 'destroy'],
   events: ['index', 'show', 'new', 'edit', 'search', 'create', 'update', 'destroy'],
-  todos: ['index'],
+  todos: ['index', 'search'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
