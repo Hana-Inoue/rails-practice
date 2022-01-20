@@ -40,4 +40,10 @@ class UserDiariesController < ApplicationController
   def check_access_user
     raise NotAuthorizedError unless current_user.id == params[:user_id].to_i
   end
+
+  def user_diary_params
+    params
+      .require(:user_diary)
+      .permit(:title, :body)
+  end
 end
