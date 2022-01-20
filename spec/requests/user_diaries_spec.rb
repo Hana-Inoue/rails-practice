@@ -16,6 +16,13 @@ RSpec.describe "UserDiaries", type: :request do
     end
   end
 
+  describe 'GET showページ' do
+    it '200番ステータスを返す' do
+      get user_user_diary_path(user, user_diary)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'GET newページ' do
     it '200番ステータスを返す' do
       get new_user_user_diary_path(user)
