@@ -6,3 +6,6 @@ ja:
         new: 新規作成
     new:
       title: 日記作成
+    form:
+      links:
+        submit: 作成
