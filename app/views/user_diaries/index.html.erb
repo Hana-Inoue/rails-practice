@@ -1,0 +1,26 @@
+<div class="user-diaries">
+  <h1><%= t('user_diaries.index.title') %></h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= UserDiary.human_attribute_name(:id) %></th>
+        <th><%= UserDiary.human_attribute_name(:title) %></th>
+        <th><%= UserDiary.human_attribute_name(:body) %></th>
+        <th><%= UserDiary.human_attribute_name(:created_at) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_diaries.each do |user_diary| %>
+        <tr>
+          <td><%= user_diary.id %></td>
+          <td><%= link_to user_diary.title, user_user_diary_path(@user, user_diary) %></td>
+          <td><%= user_diary.body %></td>
+          <td><%= user_diary.created_at.strftime("%F") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= render 'shared/pagination', pages: @pages %>
+</div>

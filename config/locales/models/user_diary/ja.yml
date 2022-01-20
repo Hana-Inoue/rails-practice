@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      user_diary:
+    attributes:
+      user_diary:
+        id: ID
+        title: タイトル
+        body: 本文
+        created_at: 作成日
