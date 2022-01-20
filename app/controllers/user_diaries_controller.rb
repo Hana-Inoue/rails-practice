@@ -1,4 +1,6 @@
 class UserDiariesController < ApplicationController
+  before_action :check_access_user
+
   def index
     @user = User.find(params[:user_id])
     @pages, @user_diaries = paginate(active_record: @user.user_diaries.order(:id))
@@ -20,5 +22,11 @@ class UserDiariesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def check_access_user
+    raise NotAuthorizedError unless current_user.id == params[:user_id].to_i
   end
 end
