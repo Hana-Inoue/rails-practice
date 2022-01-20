@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UserDiaries", type: :request do
+RSpec.describe 'UserDiaries', type: :request do
   let(:user) { create(:user, :admin) }
   let(:user_diary) { create(:user_diary, user: user) }
 
@@ -9,7 +9,7 @@ RSpec.describe "UserDiaries", type: :request do
     log_in(user)
   end
 
-  describe "GET indexページ" do
+  describe 'GET indexページ' do
     it '200番ステータスを返す' do
       get user_user_diaries_path(user)
       expect(response).to have_http_status(200)
