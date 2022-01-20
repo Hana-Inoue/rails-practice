@@ -10,6 +10,8 @@ class UserDiariesController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
+    @user_diary = @user.user_diaries.build
   end
 
   def edit
