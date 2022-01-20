@@ -7,6 +7,8 @@ class UserDiariesController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:user_id])
+    @user_diary = @user.user_diaries.find(params[:id])
   end
 
   def new
