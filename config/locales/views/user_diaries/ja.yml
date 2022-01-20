@@ -4,3 +4,5 @@ ja:
       title: 日記一覧
       links:
         new: 新規作成
+    new:
+      title: 日記作成
