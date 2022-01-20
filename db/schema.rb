@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'updated_at', precision: 6, null: false
   end
 
+  create_table 'user_diaries', force: :cascade do |table|
+    table.references :user, foreign_key: true
+    table.text 'title', null: false
+    table.text 'body', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'user_posts', force: :cascade do |table|
     table.references :user, foreign_key: true
     table.text 'body', null: false
