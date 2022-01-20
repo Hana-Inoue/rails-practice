@@ -22,4 +22,30 @@ RSpec.describe "UserDiaries", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST 新規UserDiary' do
+    let(:user_diary_params) { attributes_for(:user_diary, user: user) }
+
+    context '有効なリクエストパラメータが渡された場合' do
+      it 'showページへリダイレクトする' do
+        post user_user_diaries_path(user), params: { user_diary: user_diary_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_user_diary_path(user, UserDiary.last)
+      end
+
+      it 'UserDiaryが1増える' do
+        expect {
+          post user_user_diaries_path(user), params: { user_diary: user_diary_params }
+        }.to change(UserDiary, :count).by(1)
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      it '200番ステータスを返す' do
+        user_diary_params[:title] = ''
+        post user_user_diaries_path(user), params: { user_diary: user_diary_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
