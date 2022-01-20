@@ -18,6 +18,15 @@ class UserDiariesController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
+    @user_diary = @user.user_diaries.build(user_diary_params)
+
+    if @user_diary.save
+      redirect_to user_user_diary_path(@user, @user_diary),
+                  notice: t('layouts.flash.messages.created_user_diary')
+    else
+      render :new
+    end
   end
 
   def update
