@@ -74,6 +74,15 @@ end
   end
 end
 
+# user_diaries の seed データを作成
+[admin, endo_san].each do |user|
+  1.upto(3) do |number|
+    user
+      .user_diaries
+      .create(title: "#{user.name}'s diary#{number}", body: "これは、#{user.name}の日記です。")
+  end
+end
+
 # eventsデータを作成
 1.upto(10).map do |number|
   Event.create!(title: "イベント#{number}",
@@ -88,6 +97,7 @@ end
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
   user_addresses: ['destroy', 'update', 'edit'],
+  user_diaries: ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'],
   user_posts: ['index', 'new', 'create', 'destroy', 'update', 'edit'],
   user_post_comments: ['index', 'create', 'destroy'],
   events: ['index', 'show', 'new', 'edit', 'search', 'create', 'update', 'destroy'],
@@ -118,6 +128,11 @@ users.each do |user|
   controllers[:user_addresses].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'user_addresses', action: action).id
+    )
+  end
+  controllers[:user_diaries].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'user_diaries', action: action).id
     )
   end
   controllers[:user_posts].each do |action|
