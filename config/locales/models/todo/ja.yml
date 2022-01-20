@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      todo:
+    attributes:
+      todo:
+        id: ID
+        name: 内容
+        due_date: 締切日
+        completed_date: 完了日
