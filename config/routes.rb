@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users do
     resource :authorizations, only: [:edit, :update]
     resource :user_address, only: [:edit, :update, :destroy]
+    resources :user_diaries
   end
 
   resources :user_posts, except: :show do
