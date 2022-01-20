@@ -3,7 +3,7 @@
 
   <% if current_user.authorized?('user_diaries', 'new') %>
     <p class="button new-user-diary">
-      <%= link_to t('user_diaries.index.links.new'), new_user_user_diary_path %>
+      <%= link_to t('user_diaries.index.links.new'), new_user_user_diary_path(@user) %>
     </p>
   <% end %>
 
