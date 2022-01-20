@@ -3,6 +3,7 @@ require 'digest/sha2'
 class User < ApplicationRecord
   has_many :user_authorizations
   has_many :authorizations, through: :user_authorizations, dependent: :destroy
+  has_many :user_diaries, dependent: :destroy
   has_many :user_posts, dependent: :destroy
   has_one :user_address, dependent: :destroy
 
