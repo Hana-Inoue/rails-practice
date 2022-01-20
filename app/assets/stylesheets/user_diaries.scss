@@ -23,9 +23,19 @@
     }
   }
 
-  .new-event {
+  .new-user-diary {
     a {
       width: 150px;
+    }
+  }
+
+  .delete-user-diary {
+    a {
+      background-color: #ff5850;
+
+      &:active {
+        background-color: #dd6963;
+      }
     }
   }
 }
