@@ -13,6 +13,8 @@ ja:
         delete: "%{title}を削除しますか?"
     new:
       title: 日記作成
+    edit:
+      title: 日記編集
     form:
       links:
         submit: 作成
