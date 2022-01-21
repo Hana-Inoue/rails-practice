@@ -1,6 +1,6 @@
 class UserDiariesController < ApplicationController
-  before_action :check_authorization_with_user_id
-  before_action :check_authorization_with_user_diary_id, only: [:show, :edit, :update, :destroy]
+  before_action :check_access_right_with_user_id
+  before_action :check_access_right_with_user_diary_id, only: [:show, :edit, :update, :destroy]
 
   def index
     @user = User.find(params[:user_id])
@@ -40,11 +40,11 @@ class UserDiariesController < ApplicationController
 
   private
 
-  def check_authorization_with_user_id
+  def check_access_right_with_user_id
     raise NotAuthorizedError unless current_user.id == params[:user_id].to_i
   end
 
-  def check_authorization_with_user_diary_id
+  def check_access_right_with_user_diary_id
     raise NotAuthorizedError unless current_user.id == UserDiary.find(params[:id]).user_id
   end
 
