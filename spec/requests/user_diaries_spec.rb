@@ -113,4 +113,18 @@ RSpec.describe 'UserDiaries', type: :request do
       expect(response).to redirect_to login_path
     end
   end
+
+  describe 'DELETE UserDiary' do
+    before { user_diary }
+
+    it 'indexページへリダイレクトする' do
+      delete user_user_diary_path(user, user_diary)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to user_user_diaries_path(user)
+    end
+
+    it 'UserDiaryが1減る' do
+      expect { delete user_user_diary_path(user, user_diary) }.to change(UserDiary, :count).by(-1)
+    end
+  end
 end
