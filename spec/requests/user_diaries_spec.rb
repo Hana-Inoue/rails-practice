@@ -30,6 +30,13 @@ RSpec.describe 'UserDiaries', type: :request do
     end
   end
 
+  describe 'GET editページ' do
+    it '200番ステータスを返す' do
+      get edit_user_user_diary_path(user, user_diary)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST 新規UserDiary' do
     let(:user_diary_params) { attributes_for(:user_diary, user: user) }
 
