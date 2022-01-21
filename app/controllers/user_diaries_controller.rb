@@ -18,6 +18,8 @@ class UserDiariesController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:user_id])
+    @user_diary = UserDiary.find(params[:id])
   end
 
   def create
@@ -33,6 +35,15 @@ class UserDiariesController < ApplicationController
   end
 
   def update
+    @user = User.find_by(id: params[:user_id])
+    @user_address = @user.user_address || @user.build_user_address
+
+    if @user_address.update(user_address_params)
+      redirect_to @user, notice: t('layouts.flash.messages.update_address.success')
+    else
+      flash.now[:alert] = t('layouts.flash.messages.update_address.fail')
+      render :edit
+    end
   end
 
   def destroy
