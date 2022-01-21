@@ -63,6 +63,41 @@ RSpec.describe 'UserDiaries', type: :request do
     end
   end
 
+  describe 'PATCH UserDiary' do
+    let(:user_diary_params) { attributes_for(:user_diary, user: user) }
+    before do
+      user_diary
+      user_diary_params[:title] = title
+    end
+
+    context '有効なリクエストパラメータが渡された場合' do
+      let(:title) { 'new title' }
+
+      it 'showページへリダイレクトする' do
+        patch user_user_diary_path(user, user_diary), params: { user_diary: user_diary_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_user_diary_path(user, UserDiary.last)
+      end
+
+      it '任意のUserDiaryの値を変更する' do
+        expect {
+          patch user_user_diary_path(user, user_diary), params: { user_diary: user_diary_params }
+        }.to change { UserDiary.last[:title] }.from('diary').to('new title')
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      let(:title) { '' }
+
+      it '200番ステータスを返す' do
+        user_diary_params[:title] = ''
+
+        patch user_user_diary_path(user, user_diary), params: { user_diary: user_diary_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
   describe '他ユーザに紐づいた日記へアクセスした場合' do
     let(:other_user) { create(:user) }
     let(:other_user_diary) { create(:user_diary, user: other_user) }
