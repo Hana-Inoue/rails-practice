@@ -47,6 +47,11 @@ class UserDiariesController < ApplicationController
   end
 
   def destroy
+    user_diary = UserDiary.find(params[:id])
+
+    user_diary.destroy
+    redirect_to user_user_diaries_path(User.find(params[:user_id])),
+                notice: t('layouts.flash.messages.deleted_user_diary', title: user_diary.title)
   end
 
   private
