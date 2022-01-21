@@ -3,6 +3,7 @@ module CreateAuthorizationsSupport
     [
       UsersController,
       UserAddressesController,
+      UserDiariesController,
       UserPostsController,
       UserPostCommentsController,
       EventsController,

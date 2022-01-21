@@ -1,0 +1,20 @@
+ja:
+  user_diaries:
+    index:
+      title: 日記一覧
+      links:
+        new: 新規作成
+    show:
+      title: 日記詳細
+      links:
+        edit: 編集
+        delete: 削除
+      confirm:
+        delete: "%{title}を削除しますか?"
+    new:
+      title: 日記作成
+    edit:
+      title: 日記編集
+    form:
+      links:
+        submit: 作成

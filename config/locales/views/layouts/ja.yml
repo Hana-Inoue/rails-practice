@@ -17,6 +17,9 @@ ja:
           success: 住所情報を更新しました。
           fail: 住所情報の更新に失敗しました。
         deleted_address: 住所を削除しました。
+        created_user_diary: 日記を作成しました。
+        updated_user_diary: 日記を編集しました。
+        deleted_user_diary: "%{title}を削除しました。"
         created_user_post: ポストを投稿しました。
         updated_user_post: ポストを編集しました。
         deleted_user_post: ポストを削除しました。
@@ -39,6 +42,8 @@ ja:
           index: イベント一覧
         todos:
           index: ToDoリスト
+        user_diaries:
+          index: 日記一覧
         static_pages:
           about_server_logs: サーバログ概要
           about_activerecord_logs: アクティブレコードログ概要
