@@ -55,4 +55,20 @@ RSpec.describe 'UserDiaries', type: :request do
       end
     end
   end
+
+  describe '他ユーザに紐づいた日記へアクセスした場合' do
+    let(:other_user) { create(:user) }
+    let(:other_user_diary) { create(:user_diary, user: other_user) }
+
+    it 'セッションが切れる' do
+      get user_user_diary_path(other_user, other_user_diary)
+      expect(session[:user_id]).to eq nil
+    end
+
+    it 'ログインページへリダイレクトする' do
+      get user_user_diary_path(other_user, other_user_diary)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to login_path
+    end
+  end
 end
