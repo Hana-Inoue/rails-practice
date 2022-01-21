@@ -35,13 +35,13 @@ class UserDiariesController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:user_id])
-    @user_address = @user.user_address || @user.build_user_address
+    @user = User.find(params[:user_id])
+    @user_diary = UserDiary.find(params[:id])
 
-    if @user_address.update(user_address_params)
-      redirect_to @user, notice: t('layouts.flash.messages.update_address.success')
+    if @user_diary.update(user_diary_params)
+      redirect_to user_user_diary_path(@user, @user_diary),
+                  notice: t('layouts.flash.messages.updated_user_diary')
     else
-      flash.now[:alert] = t('layouts.flash.messages.update_address.fail')
       render :edit
     end
   end
