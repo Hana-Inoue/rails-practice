@@ -98,6 +98,20 @@ RSpec.describe 'UserDiaries', type: :request do
     end
   end
 
+  describe 'DELETE UserDiary' do
+    before { user_diary }
+
+    it 'indexページへリダイレクトする' do
+      delete user_user_diary_path(user, user_diary)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to user_user_diaries_path(user)
+    end
+
+    it 'UserDiaryが1減る' do
+      expect { delete user_user_diary_path(user, user_diary) }.to change(UserDiary, :count).by(-1)
+    end
+  end
+
   describe '他ユーザに紐づいた日記へアクセスした場合' do
     let(:other_user) { create(:user) }
     let(:other_user_diary) { create(:user_diary, user: other_user) }
@@ -111,20 +125,6 @@ RSpec.describe 'UserDiaries', type: :request do
       get user_user_diary_path(other_user, other_user_diary)
       expect(response).to have_http_status(302)
       expect(response).to redirect_to login_path
-    end
-  end
-
-  describe 'DELETE UserDiary' do
-    before { user_diary }
-
-    it 'indexページへリダイレクトする' do
-      delete user_user_diary_path(user, user_diary)
-      expect(response).to have_http_status(302)
-      expect(response).to redirect_to user_user_diaries_path(user)
-    end
-
-    it 'UserDiaryが1減る' do
-      expect { delete user_user_diary_path(user, user_diary) }.to change(UserDiary, :count).by(-1)
     end
   end
 end
