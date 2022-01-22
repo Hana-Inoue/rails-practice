@@ -44,6 +44,8 @@ ja:
           index: ToDoリスト
         user_diaries:
           index: 日記一覧
+        schedules:
+          index: スケジュール一覧
         static_pages:
           about_server_logs: サーバログ概要
           about_activerecord_logs: アクティブレコードログ概要
