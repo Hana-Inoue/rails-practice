@@ -27,5 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :schedules
+
   root 'users#index'
 end
