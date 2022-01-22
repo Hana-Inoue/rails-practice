@@ -105,4 +105,11 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'updated_at', precision: 6, null: false
     table.index ['due_date'], name: 'index_todos_on_due_date'
   end
+
+  create_table 'schedules', force: :cascade do |table|
+    table.string 'name', null: false
+    table.datetime 'scheduled_for', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
 end
