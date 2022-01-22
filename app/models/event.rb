@@ -47,11 +47,7 @@ class Event < ApplicationRecord
   end
 
   def start_and_finish_datetime
-    "#{format_datetime(start_at)} ~ #{format_datetime(finish_at)}"
-  end
-
-  def format_datetime(datetime)
-    datetime.strftime("%F %H:%M")
+    "#{I18n.l(start_at, format: :long)} ~ #{I18n.l(finish_at, format: :short)}"
   end
 
   private

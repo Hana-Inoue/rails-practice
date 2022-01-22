@@ -14,7 +14,7 @@
 
     <p>
       <%= "#{User.human_attribute_name(:birthday)}:" %>
-      <%= @user.birthday %>
+      <%= l(@user.birthday, format: :default) %>
     </p>
 
     <p>

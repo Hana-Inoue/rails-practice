@@ -42,8 +42,8 @@
         <tr>
           <td><%= todo.id %></td>
           <td><%= todo.name %></td>
-          <td><%= todo.due_date.strftime("%F") %></td>
-          <td><%= todo.completed_date.strftime("%F") %></td>
+          <td><%= l(todo.due_date, format: :default) %></td>
+          <td><%= l(todo.completed_date, format: :default) %></td>
         </tr>
       <% end %>
     </tbody>

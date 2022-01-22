@@ -14,7 +14,7 @@
 
     <p>
       <%= "#{UserDiary.human_attribute_name(:created_at)}:" %>
-      <%= @user_diary.created_at.strftime("%F") %>
+      <%= l(@user_diary.created_at, format: :long) %>
     </p>
 
   <% if current_user.authorized?('user_diaries', 'edit') %>
