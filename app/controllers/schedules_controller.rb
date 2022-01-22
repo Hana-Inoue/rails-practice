@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+  # SQL Injection が発生しないアクション
   def index
     @pages, @schedules = paginate(active_record: Schedule.all)
   end
