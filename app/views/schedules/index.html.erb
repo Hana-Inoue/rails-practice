@@ -1,0 +1,26 @@
+<div class="schedules">
+  <h1><%= t('schedules.index.title') %></h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.schedule.id') %></th>
+        <th><%= t('activerecord.attributes.schedule.name') %></th>
+        <th><%= t('activerecord.attributes.schedule.scheduled_for') %></th>
+        <th><%= t('activerecord.attributes.schedule.scheduled_by') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @schedules.each do |schedule| %>
+        <tr>
+          <td><%= schedule.id %></td>
+          <td><%= link_to schedule.name, schedule %></td>
+          <td><%= l(schedule.scheduled_for, format: :long) %></td>
+          <td><%= schedule.scheduled_by %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= render 'shared/pagination', pages: @pages %>
+</div>
