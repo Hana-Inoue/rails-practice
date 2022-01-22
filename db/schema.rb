@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table 'schedules', force: :cascade do |table|
     table.string 'name', null: false
     table.datetime 'scheduled_for', null: false
+    table.string 'scheduled_by', null: false
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
   end
