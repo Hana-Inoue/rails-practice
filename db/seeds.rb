@@ -93,6 +93,15 @@ end
                  host: 'user')
 end
 
+# schedulesデータを作成
+[admin, endo_san].each do |user|
+  1.upto(10).map do |number|
+    Schedule.create!(name: "スケジュール#{number}",
+                     scheduled_for: DateTime.now + number,
+                     scheduled_by: user.name)
+  end
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
