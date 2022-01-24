@@ -2,3 +2,10 @@ ja:
   schedules:
     index:
       title: スケジュール一覧
+    show:
+      title: スケジュール詳細
+      links:
+        edit: 編集
+        delete: 削除
+      confirm:
+        delete: "%{name}を削除しますか?"
