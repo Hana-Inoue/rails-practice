@@ -1,41 +1,39 @@
 <div class="schedules">
   <h1><%= t('schedules.show.title') %></h1>
 
-  <% @schedules.each do |schedule| %>
-    <div class="schedule-detail">
-      <p>
-        <%= "#{Schedule.human_attribute_name(:name)}:" %>
-        <%= schedule.name %>
-      </p>
+  <div class="schedule-detail">
+    <p>
+      <%= "#{Schedule.human_attribute_name(:name)}:" %>
+      <%= @schedule.name %>
+    </p>
 
-      <p>
-        <%= "#{Schedule.human_attribute_name(:scheduled_for)}:" %>
-        <%= l(schedule.scheduled_for, format: :long) %>
-      </p>
+    <p>
+      <%= "#{Schedule.human_attribute_name(:scheduled_for)}:" %>
+      <%= l(@schedule.scheduled_for, format: :long) %>
+    </p>
 
-      <p>
-        <%= "#{Schedule.human_attribute_name(:scheduled_by)}:" %>
-        <%= schedule.scheduled_by %>
-      </p>
+    <p>
+      <%= "#{Schedule.human_attribute_name(:scheduled_by)}:" %>
+      <%= @schedule.scheduled_by %>
+    </p>
 
-      <p>
-        <%= "#{Schedule.human_attribute_name(:created_at)}:" %>
-        <%= l(schedule.created_at, format: :long) %>
-      </p>
+    <p>
+      <%= "#{Schedule.human_attribute_name(:created_at)}:" %>
+      <%= l(@schedule.created_at, format: :long) %>
+    </p>
 
-    <% if current_user.authorized?('schedules', 'edit') %>
-      <p class="button edit-schedule">
-        <%= link_to t('schedules.show.links.edit'), edit_schedule_path(schedule) %>
-      </p>
-    <% end %>
-
-    <% if current_user.authorized?('schedules', 'destroy') %>
-      <p class="button delete-schedule">
-        <%= link_to t('schedules.show.links.delete'),
-                    schedule_path(schedule),
-                    method: :delete,
-                    data: { confirm: t('schedules.show.confirm.delete', name: schedule.name) } %>
-      </p>
-    <% end %>
+  <% if current_user.authorized?('schedules', 'edit') %>
+    <p class="button edit-schedule">
+      <%= link_to t('schedules.show.links.edit'), edit_schedule_path(@schedule) %>
+    </p>
   <% end %>
+
+  <% if current_user.authorized?('schedules', 'destroy') %>
+    <p class="button delete-schedule">
+      <%= link_to t('schedules.show.links.delete'),
+                  schedule_path(@schedule),
+                  method: :delete,
+                  data: { confirm: t('schedules.show.confirm.delete', name: @schedule.name) } %>
+    </p>
+    <% end %>
 </div>
