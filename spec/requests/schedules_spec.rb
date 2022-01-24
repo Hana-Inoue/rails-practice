@@ -31,6 +31,16 @@ RSpec.describe 'Schedules', type: :request do
     end
   end
 
+  describe 'GET editページ' do
+    let(:schedule) { create(:schedule) }
+    before { schedule }
+
+    it '200番ステータスを返す' do
+      get edit_schedule_path(schedule)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST 新規Schedule情報' do
     let(:schedule_params) { attributes_for(:schedule) }
 
