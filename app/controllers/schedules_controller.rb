@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   def index
+    @schedules_search_params = schedules_search_params
     @pages, @schedules = paginate(active_record: Schedule.all)
   end
 
@@ -13,6 +14,14 @@ class SchedulesController < ApplicationController
 
   def edit
     @schedule = Schedule.find(params[:id])
+  end
+
+  def search
+    @schedules_search_params = schedules_search_params
+    @pages, @schedules =
+      paginate(active_record: Schedule.search(@schedules_search_params).order(:id))
+
+    render :index
   end
 
   def create
@@ -49,5 +58,11 @@ class SchedulesController < ApplicationController
     params
       .require(:schedule)
       .permit(:name, :scheduled_for, :scheduled_by)
+  end
+
+  def schedules_search_params
+    params
+      .fetch(:search, {})
+      .permit(:name)
   end
 end
