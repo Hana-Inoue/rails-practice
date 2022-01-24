@@ -30,4 +30,30 @@ RSpec.describe 'Schedules', type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST 新規Schedule情報' do
+    let(:schedule_params) { attributes_for(:schedule) }
+
+    context '有効なリクエストパラメータが渡された場合' do
+      it 'showページへリダイレクトする' do
+        post schedules_path, params: { schedule: schedule_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to schedule_path(Schedule.last)
+      end
+
+      it 'Scheduleが1増える' do
+        expect {
+          post schedules_path, params: { schedule: schedule_params }
+        }.to change(Schedule, :count).by(1)
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      it '200番ステータスを返す' do
+        schedule_params[:name] = ''
+        post schedules_path, params: { schedule: schedule_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
