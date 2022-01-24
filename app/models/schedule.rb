@@ -8,5 +8,7 @@ class Schedule < ApplicationRecord
 
     name_like(schedules_search_params[:name])
   end
-  scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
+  scope :name_like, -> (name) do
+    where('name LIKE ?', "#{sanitize_sql_like(name)}") if name.present?
+  end
 end

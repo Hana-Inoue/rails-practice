@@ -19,8 +19,11 @@ class SchedulesController < ApplicationController
 
   def search
     @schedules_search_params = schedules_search_params
-    @pages, @schedules =
-      paginate(active_record: Schedule.search(@schedules_search_params).order(:id))
+    @schedules_sql_injection_search_params = schedules_sql_injection_search_params
+    @schedules = Schedule.search(@schedules_search_params).order(:id)
+
+    render :index
+  end
 
     render :index
   end
