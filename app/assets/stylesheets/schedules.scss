@@ -7,6 +7,9 @@
     margin-left: 10%;
     font-weight: normal;
     font-size: 22px;
+    span {
+      color: #6e99cf;
+    }
   }
 
   .button {
@@ -32,6 +35,10 @@
       }
     }
   }
+  .reset {
+    display: inline-block;
+  }
+
   .new-schedule {
     a {
       width: 150px;

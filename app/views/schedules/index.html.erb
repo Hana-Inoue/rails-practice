@@ -1,7 +1,7 @@
 <div class="schedules">
   <h1><%= t('schedules.index.title') %></h1>
 
-  <h3 class="form-title">検索</h2>
+  <h3 class="form-title">検索 ( <span>') OR 1=1--</span> と入力してください。)</h2>
   <%= form_with(scope: :search,
                 url: search_schedules_path,
                 method: :get,
@@ -9,6 +9,23 @@
     <div class="form">
       <%= form.label :name, t('schedules.index.labels.search.name') %>
       <%= form.text_field :name, value: @schedules_search_params[:name] %>
+    </div>
+
+    <div class="buttons">
+      <%= form.submit t('schedules.index.links.search') %>
+      <p class="button reset">
+        <%= link_to t('schedules.index.links.reset'), schedules_path %>
+      </p>
+    </div>
+  <% end %>
+
+  <%= form_with(scope: :sql_injection_search,
+                url: sql_injection_search_schedules_path,
+                method: :get,
+                local: true) do |form| %>
+    <div class="form">
+      <%= form.label :name, t('schedules.index.labels.sql_injection_search.name') %>
+      <%= form.text_field :name, value: @schedules_sql_injection_search_params[:name] %>
     </div>
 
     <div class="buttons">
@@ -45,6 +62,4 @@
       <% end %>
     </tbody>
   </table>
-
-  <%= render 'shared/pagination', pages: @pages %>
 </div>
