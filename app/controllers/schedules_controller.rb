@@ -1,7 +1,8 @@
 class SchedulesController < ApplicationController
   def index
     @schedules_search_params = schedules_search_params
-    @pages, @schedules = paginate(active_record: Schedule.all)
+    @schedules_sql_injection_search_params = schedules_sql_injection_search_params
+    @schedules = Schedule.all
   end
 
   def show
