@@ -66,4 +66,38 @@ RSpec.describe 'Schedules', type: :request do
       end
     end
   end
+
+  describe 'PATCH Schedule情報' do
+    let(:schedule_params) { attributes_for(:schedule) }
+    let(:schedule) { create(:schedule) }
+    before do
+      schedule
+      schedule_params[:name] = name
+    end
+
+    context '有効なリクエストパラメータが渡された場合' do
+      let(:name) { 'new schedule' }
+
+      it 'showページへリダイレクトする' do
+        patch schedule_path(schedule), params: { schedule: schedule_params }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to schedule_path(Schedule.last)
+      end
+
+      it '任意のScheduleの値を変更する' do
+        expect {
+          patch schedule_path(schedule), params: { schedule: schedule_params }
+        }.to change { Schedule.last[:name] }.from('schedule').to('new schedule')
+      end
+    end
+
+    context '無効なリクエストパラメータが渡された場合' do
+      let(:name) { '' }
+
+      it '200番ステータスを返す' do
+        patch schedule_path(schedule), params: { schedule: schedule_params }
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
