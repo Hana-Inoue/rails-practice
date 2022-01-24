@@ -41,6 +41,13 @@ RSpec.describe 'Schedules', type: :request do
     end
   end
 
+  describe 'GET search' do
+    it '200番ステータスを返す' do
+      get search_schedules_path
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST 新規Schedule情報' do
     let(:schedule_params) { attributes_for(:schedule) }
 
