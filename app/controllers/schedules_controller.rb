@@ -10,7 +10,9 @@ class SchedulesController < ApplicationController
     @schedules = Schedule.where("id = #{params[:id]}")
   end
 
+  # SQL Injection が発生しないアクション
   def new
+    @schedule = Schedule.new
   end
 
   def edit
