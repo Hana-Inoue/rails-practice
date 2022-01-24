@@ -4,6 +4,11 @@ ja:
       title: スケジュール一覧
       links:
         new: 新規作成
+        search: 検索
+        reset: リセット
+      labels:
+        search:
+          name: スケジュール名
     show:
       title: スケジュール詳細
       links:
