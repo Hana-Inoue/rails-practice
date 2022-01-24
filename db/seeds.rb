@@ -111,7 +111,9 @@ controllers = {
   user_post_comments: ['index', 'create', 'destroy'],
   events: ['index', 'show', 'new', 'edit', 'search', 'create', 'update', 'destroy'],
   todos: ['index', 'search'],
-  schedules: ['index', 'show', 'new', 'edit', 'create', 'update', 'destroy'],
+  schedules: [
+    'index', 'show', 'new', 'edit', 'search', 'sql_injection_search', 'create', 'update', 'destroy'
+  ],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
