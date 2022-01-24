@@ -13,3 +13,5 @@ ja:
         delete: "%{name}を削除しますか?"
     new:
       title: スケジュール作成
+    edit:
+      title: スケジュール編集
