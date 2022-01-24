@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :schedules
+  resources :schedules do
+    collection do
+      get :search
+      get :sql_injection_search
+    end
+  end
 
   root 'users#index'
 end
