@@ -100,4 +100,19 @@ RSpec.describe 'Schedules', type: :request do
       end
     end
   end
+
+  describe 'DELETE Schedule' do
+    let(:schedule) { create(:schedule) }
+    before { schedule }
+
+    it 'indexページへリダイレクトする' do
+      delete schedule_path(schedule)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to schedules_path
+    end
+
+    it 'Scheduleが1減る' do
+      expect { delete schedule_path(schedule) }.to change(Schedule, :count).by(-1)
+    end
+  end
 end
