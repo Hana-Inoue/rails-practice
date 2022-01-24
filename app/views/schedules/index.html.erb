@@ -1,6 +1,10 @@
 <div class="schedules">
   <h1><%= t('schedules.index.title') %></h1>
 
+  <% if current_user.authorized?('schedules', 'new') %>
+    <p class="button new-schedule"><%= link_to t('schedules.index.links.new'), new_schedule_path %></p>
+  <% end %>
+
   <table class="table">
     <thead>
       <tr>

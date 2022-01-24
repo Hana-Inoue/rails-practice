@@ -2,6 +2,8 @@ ja:
   schedules:
     index:
       title: スケジュール一覧
+      links:
+        new: 新規作成
     show:
       title: スケジュール詳細
       links:
