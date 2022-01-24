@@ -28,6 +28,7 @@ ja:
         created_event: イベントを投稿しました。
         updated_event: イベントを編集しました。
         deleted_event: "%{title}を削除しました。"
+        created_schedule: スケジュールを作成しました。
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。
