@@ -36,6 +36,11 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
+    schedule = Schedule.find(params[:id])
+
+    schedule.destroy
+    redirect_to schedules_path,
+                notice: t('layouts.flash.messages.deleted_schedule', name: schedule.name)
   end
 
   private
