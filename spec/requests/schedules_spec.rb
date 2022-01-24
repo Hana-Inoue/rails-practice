@@ -13,4 +13,14 @@ RSpec.describe 'Schedules', type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'GET showページ' do
+    let(:schedule) { create(:schedule) }
+    before { schedule }
+
+    it '200番ステータスを返す' do
+      get schedule_path(schedule)
+      expect(response).to have_http_status(200)
+    end
+  end
 end
