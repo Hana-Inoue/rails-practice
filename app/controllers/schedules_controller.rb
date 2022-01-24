@@ -25,6 +25,11 @@ class SchedulesController < ApplicationController
     render :index
   end
 
+  def sql_injection_search
+    @schedules_search_params = schedules_search_params
+    @schedules_sql_injection_search_params = schedules_sql_injection_search_params
+    @schedules = Schedule.sql_injection_search(@schedules_sql_injection_search_params).order(:id)
+
     render :index
   end
 
@@ -67,6 +72,12 @@ class SchedulesController < ApplicationController
   def schedules_search_params
     params
       .fetch(:search, {})
+      .permit(:name)
+  end
+
+  def schedules_sql_injection_search_params
+    params
+      .fetch(:sql_injection_search, {})
       .permit(:name)
   end
 end
