@@ -6,15 +6,11 @@ class Schedule < ApplicationRecord
   scope :search, -> (schedules_search_params) do
     return if schedules_search_params.blank?
 
-    name_like(schedules_search_params[:name])
+    where('name LIKE ?', "#{sanitize_sql_like(schedules_search_params[:name])}") if name.present?
   end
   scope :sql_injection_search, -> (schedules_search_params) do
     return if schedules_search_params.blank?
 
-    sql_injection_name_like(schedules_search_params[:name])
+    where("name LIKE '#{schedules_search_params[:name]}'") if name.present?
   end
-  scope :name_like, -> (name) do
-    where('name LIKE ?', "#{sanitize_sql_like(name)}") if name.present?
-  end
-  scope :sql_injection_name_like, -> (name) { where("name LIKE '#{name}'") if name.present? }
 end
