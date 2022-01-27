@@ -34,5 +34,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :shops, only: [:index]
+
   root 'users#index'
 end
