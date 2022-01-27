@@ -102,6 +102,29 @@ end
   end
 end
 
+# products_before_normalizedテーブルへデータを挿入
+1.upto(3) do |shop_number|
+  1.upto(2) do |product_number|
+    ProductBeforeNormalized.create!(
+      shop_name: "shop#{shop_number}",
+      product_name: "product#{product_number}",
+      price: product_number * 100
+    )
+  end
+end
+
+# shopsテーブルへデータを挿入
+shops = 1.upto(3).map do |number|
+  Shop.create!(name: "shop#{number}")
+end
+
+# productsテーブルへデータを挿入
+shops.each do |shop|
+  1.upto(2) do |number|
+    ShopProduct.create!(shop_id: shop.id, name: "product#{number}", price: number * 100)
+  end
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
