@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      schedule:
+    attributes:
+      schedule:
+        id: ID
+        name: 内容
+        scheduled_for: 予定日
+        scheduled_by: 作成者
+        created_at: 作成日

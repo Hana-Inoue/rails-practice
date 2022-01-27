@@ -1,0 +1,24 @@
+ja:
+  schedules:
+    index:
+      title: スケジュール一覧
+      links:
+        new: 新規作成
+        search: 検索
+        reset: リセット
+      labels:
+        search:
+          name: スケジュール名(SQL インジェクション発生不可)
+        sql_injection_search:
+          name: スケジュール名(SQL インジェクション発生可)
+    show:
+      title: スケジュール詳細
+      links:
+        edit: 編集
+        delete: 削除
+      confirm:
+        delete: "%{name}を削除しますか?"
+    new:
+      title: スケジュール作成
+    edit:
+      title: スケジュール編集

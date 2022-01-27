@@ -93,6 +93,15 @@ end
                  host: 'user')
 end
 
+# schedulesデータを作成
+[admin, endo_san].each do |user|
+  1.upto(10).map do |number|
+    Schedule.create!(name: "スケジュール#{number}",
+                     scheduled_for: DateTime.now + number,
+                     scheduled_by: user.name)
+  end
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
@@ -102,6 +111,9 @@ controllers = {
   user_post_comments: ['index', 'create', 'destroy'],
   events: ['index', 'show', 'new', 'edit', 'search', 'create', 'update', 'destroy'],
   todos: ['index', 'search'],
+  schedules: [
+    'index', 'show', 'new', 'edit', 'search', 'sql_injection_search', 'create', 'update', 'destroy'
+  ],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -153,6 +165,11 @@ users.each do |user|
   controllers[:todos].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'todos', action: action).id
+    )
+  end
+  controllers[:schedules].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'schedules', action: action).id
     )
   end
 end

@@ -21,6 +21,11 @@
                         user_user_diaries_path(current_user.id) %></li>
     <% end %>
 
+    <% if current_user.authorized?('schedules', 'index') %>
+      <li><%= link_to t('layouts.menu.links.schedules.index'),
+                        schedules_path %></li>
+    <% end %>
+
     <% if current_user.authorized?('static_pages', 'about_server_logs') %>
       <li><%= link_to t('layouts.menu.links.static_pages.about_server_logs'),
                       static_pages_about_server_logs_path %></li>

@@ -28,6 +28,9 @@ ja:
         created_event: イベントを投稿しました。
         updated_event: イベントを編集しました。
         deleted_event: "%{title}を削除しました。"
+        created_schedule: スケジュールを作成しました。
+        updated_schedule: スケジュールを編集しました。
+        deleted_schedule: "%{name}を削除しました。"
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。
@@ -44,6 +47,8 @@ ja:
           index: ToDoリスト
         user_diaries:
           index: 日記一覧
+        schedules:
+          index: スケジュール一覧
         static_pages:
           about_server_logs: サーバログ概要
           about_activerecord_logs: アクティブレコードログ概要
