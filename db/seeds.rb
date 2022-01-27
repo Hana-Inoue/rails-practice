@@ -102,10 +102,10 @@ end
   end
 end
 
-# products_before_normalizedテーブルへデータを挿入
+# shop_products_unnormalizedテーブルへデータを挿入
 1.upto(3) do |shop_number|
   1.upto(2) do |product_number|
-    ProductBeforeNormalized.create!(
+    ShopProductUnnormalized.create!(
       shop_name: "shop#{shop_number}",
       product_name: "product#{product_number}",
       price: product_number * 100

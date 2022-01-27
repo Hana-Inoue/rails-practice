@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   # 正規化前テーブル
-  create_table 'products_before_normalized', force: :cascade do |table|
+  create_table 'shop_products_unnormalized', force: :cascade do |table|
     table.string 'shop_name', null: false
     table.string 'product_name', null: false
     table.integer 'price', null: false
