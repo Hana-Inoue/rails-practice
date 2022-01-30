@@ -137,6 +137,7 @@ controllers = {
   schedules: [
     'index', 'show', 'new', 'edit', 'search', 'sql_injection_search', 'create', 'update', 'destroy'
   ],
+  shops: ['index'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -193,6 +194,11 @@ users.each do |user|
   controllers[:schedules].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'schedules', action: action).id
+    )
+  end
+  controllers[:shops].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'shops', action: action).id
     )
   end
 end
