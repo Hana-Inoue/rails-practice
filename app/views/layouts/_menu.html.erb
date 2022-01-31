@@ -39,5 +39,10 @@
       <li><%= link_to t('layouts.menu.links.static_pages.about_activerecord_logs'),
                       static_pages_about_activerecord_logs_path %></li>
     <% end %>
+
+    <% if current_user.authorized?('static_pages', 'search_functions_summary') %>
+      <li><%= link_to t('layouts.menu.links.static_pages.search_functions_summary'),
+                      static_pages_search_functions_summary_path %></li>
+    <% end %>
   </ul>
 </div>
