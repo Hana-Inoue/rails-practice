@@ -37,3 +37,6 @@ yarn-debug.log*
 
 # 環境変数の設定ファイルをIgnore
 /.env
+
+# ctags用のtagsファイルをIgnore
+tags
