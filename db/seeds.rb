@@ -139,7 +139,7 @@ controllers = {
   ],
   shops: ['index'],
   authorizations: ['update', 'edit'],
-  static_pages: ['about_server_logs', 'about_activerecord_logs']
+  static_pages: ['about_server_logs', 'about_activerecord_logs', 'search_functions_summary']
 }
 
 # authorizationsテーブルへ値を挿入
