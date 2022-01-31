@@ -54,3 +54,4 @@ ja:
         static_pages:
           about_server_logs: サーバログ概要
           about_activerecord_logs: アクティブレコードログ概要
+          search_functions_summary: 検索技術まとめ
