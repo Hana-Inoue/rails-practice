@@ -113,4 +113,29 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
   end
+
+  # 正規化前テーブル
+  create_table 'shop_products_unnormalized', force: :cascade do |table|
+    table.string 'shop_name', null: false
+    table.string 'product_name', null: false
+    table.integer 'price', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
+
+  # 正規化後テーブル1
+  create_table 'shops', force: :cascade do |table|
+    table.string 'name', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
+
+  # 正規化後テーブル2
+  create_table 'shop_products', force: :cascade do |table|
+    table.references :shop, foreign_key: true
+    table.string 'name', null: false
+    table.integer 'price', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
 end

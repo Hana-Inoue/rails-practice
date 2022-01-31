@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      shop_product_unnormalized:
+    attributes:
+      shop_product_unnormalized:
+        id: ID
+        shop_name: 店舗名
+        product_name: 商品名
+        price: 価格

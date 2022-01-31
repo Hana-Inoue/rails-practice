@@ -102,6 +102,29 @@ end
   end
 end
 
+# shop_products_unnormalizedテーブルへデータを挿入
+1.upto(3) do |shop_number|
+  1.upto(2) do |product_number|
+    ShopProductUnnormalized.create!(
+      shop_name: "shop#{shop_number}",
+      product_name: "product#{product_number}",
+      price: product_number * 100
+    )
+  end
+end
+
+# shopsテーブルへデータを挿入
+shops = 1.upto(3).map do |number|
+  Shop.create!(name: "shop#{number}")
+end
+
+# productsテーブルへデータを挿入
+shops.each do |shop|
+  1.upto(2) do |number|
+    ShopProduct.create!(shop_id: shop.id, name: "product#{number}", price: number * 100)
+  end
+end
+
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
   users: ['index', 'show', 'new', 'create', 'destroy', 'update', 'edit'],
@@ -114,6 +137,7 @@ controllers = {
   schedules: [
     'index', 'show', 'new', 'edit', 'search', 'sql_injection_search', 'create', 'update', 'destroy'
   ],
+  shops: ['index'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs']
 }
@@ -170,6 +194,11 @@ users.each do |user|
   controllers[:schedules].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'schedules', action: action).id
+    )
+  end
+  controllers[:shops].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'shops', action: action).id
     )
   end
 end
