@@ -41,6 +41,9 @@ Rails.application.routes.draw do
     member do
       post :add_product_to_cart
     end
+    collection do
+      get :show_cart
+    end
   end
 
   root 'users#index'
