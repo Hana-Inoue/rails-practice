@@ -37,7 +37,11 @@ Rails.application.routes.draw do
 
   resources :shops, only: [:index]
 
-  resources :products, only: [:index]
+  resources :products, only: [:index] do
+    member do
+      post :add_product_to_cart
+    end
+  end
 
   root 'users#index'
 end
