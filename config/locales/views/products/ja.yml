@@ -1,0 +1,6 @@
+ja:
+  products:
+    index:
+      title: 商品一覧
+      values:
+        price: "%{price}円"

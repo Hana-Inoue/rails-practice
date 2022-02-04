@@ -1,0 +1,24 @@
+<div class="products">
+  <h1><%= t('products.index.title') %></h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Product.human_attribute_name(:id) %></th>
+        <th><%= Product.human_attribute_name(:name) %></th>
+        <th><%= Product.human_attribute_name(:price) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= product.name %></td>
+          <td><%= t('products.index.values.price', price: product.price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= render 'shared/pagination', pages: @pages %>
+</div>
