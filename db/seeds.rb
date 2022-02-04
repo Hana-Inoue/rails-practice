@@ -141,6 +141,7 @@ controllers = {
     'index', 'show', 'new', 'edit', 'search', 'sql_injection_search', 'create', 'update', 'destroy'
   ],
   shops: ['index'],
+  products: ['index'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs', 'search_functions_summary']
 }
