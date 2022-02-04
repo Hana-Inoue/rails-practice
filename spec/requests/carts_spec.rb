@@ -8,8 +8,6 @@ RSpec.describe 'Carts', type: :request do
   end
 
   describe 'GET showページ' do
-    before { session[:cart] = ['1', '5'] }
-
     it '200番ステータスを返す' do
       get cart_path
       expect(response).to have_http_status(200)
@@ -24,6 +22,22 @@ RSpec.describe 'Carts', type: :request do
       post cart_path, params: params
       expect(response).to have_http_status(302)
       expect(response).to redirect_to products_path
+    end
+  end
+
+  describe 'DELETE 商品を買い物かごから削除' do
+    let(:params) { { product_index: 0 } }
+    let(:product) { create(:product) }
+    before do
+      allow_any_instance_of(ActionDispatch::Request)
+        .to receive(:session)
+        .and_return({ user_id: user.id, cart: ["#{product.id}", '5'] })
+    end
+
+    it '商品一覧ページへリダイレクトする' do
+      delete cart_path, params: params
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to cart_path
     end
   end
 end
