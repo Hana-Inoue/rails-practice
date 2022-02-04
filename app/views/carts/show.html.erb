@@ -1,7 +1,7 @@
 <div class="carts">
   <h1><%= t('carts.show.title') %></h1>
 
-  <% if @products.empty? %>
+  <% if @cart.empty? %>
     <p><%= t('carts.show.messages.empty') %></p>
   <% else %>
     <table class="table">
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @products.each_with_index do |product, index| %>
+        <% @cart.each_with_index do |product, index| %>
           <tr>
             <td><%= product.id %></td>
             <td><%= product.name %></td>
