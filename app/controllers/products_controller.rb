@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     session[:cart].unshift(params[:id])
     redirect_to products_path,
                 notice: t('layouts.flash.messages.added_to_cart',
-                        product: Product.find(params[:id]).name)
+                          product: Product.find(params[:id]).name)
   end
 
   def show_cart
