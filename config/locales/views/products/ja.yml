@@ -4,3 +4,5 @@ ja:
       title: 商品一覧
       values:
         price: "%{price}円"
+      links:
+        add_product_to_cart: 買い物かごに追加

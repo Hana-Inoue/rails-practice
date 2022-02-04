@@ -7,6 +7,7 @@
         <th><%= Product.human_attribute_name(:id) %></th>
         <th><%= Product.human_attribute_name(:name) %></th>
         <th><%= Product.human_attribute_name(:price) %></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,9 @@
           <td><%= product.id %></td>
           <td><%= product.name %></td>
           <td><%= t('products.index.values.price', price: product.price) %></td>
+          <td><%= link_to t('products.index.links.add_product_to_cart'),
+                          add_product_to_cart_product_path(product),
+                          method: :post %></td>
         </tr>
       <% end %>
     </tbody>
