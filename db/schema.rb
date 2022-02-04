@@ -138,4 +138,11 @@ ActiveRecord::Schema.define(version: 0) do
     table.datetime 'created_at', precision: 6, null: false
     table.datetime 'updated_at', precision: 6, null: false
   end
+
+  create_table 'products', force: :cascade do |table|
+    table.string 'name', null: false
+    table.integer 'price', null: false
+    table.datetime 'created_at', precision: 6, null: false
+    table.datetime 'updated_at', precision: 6, null: false
+  end
 end
