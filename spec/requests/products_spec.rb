@@ -13,23 +13,4 @@ RSpec.describe 'Products', type: :request do
       expect(response).to have_http_status(200)
     end
   end
-
-  describe 'POST 商品を買い物かごに追加' do
-    let(:product) { create(:product) }
-
-    it '商品一覧ページへリダイレクトする' do
-      post add_product_to_cart_product_path(product)
-      expect(response).to have_http_status(302)
-      expect(response).to redirect_to products_path
-    end
-  end
-
-  describe 'GET 買い物かごページ' do
-    before { session[:cart] = ['1', '5'] }
-
-    it '200番ステータスを返す' do
-      get show_cart_products_path
-      expect(response).to have_http_status(200)
-    end
-  end
 end
