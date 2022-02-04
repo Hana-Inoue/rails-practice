@@ -5,4 +5,7 @@ ja:
       values:
         price: "%{price}円"
       links:
+        show_cart: 買い物かご
         add_product_to_cart: 買い物かごに追加
+    show_cart:
+      title: 買い物かご
