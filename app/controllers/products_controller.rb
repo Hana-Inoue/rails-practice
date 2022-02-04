@@ -10,4 +10,8 @@ class ProductsController < ApplicationController
                 notice: t('layouts.flash.messages.added_to_cart',
                         product: Product.find(params[:id]).name)
   end
+
+  def show_cart
+    @products = session[:cart].map(&:to_i).map { |cart_id| Product.find(cart_id) }
+  end
 end
