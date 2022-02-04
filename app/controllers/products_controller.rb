@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def show_cart
+    return @products = nil if session[:cart] == nil
     @products = session[:cart].map(&:to_i).map { |cart_id| Product.find(cart_id) }
   end
 end

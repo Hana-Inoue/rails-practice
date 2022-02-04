@@ -9,3 +9,5 @@ ja:
         add_product_to_cart: 買い物かごに追加
     show_cart:
       title: 買い物かご
+      messages:
+        empty: 買い物かごは空です。
