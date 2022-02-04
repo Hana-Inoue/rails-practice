@@ -51,6 +51,8 @@ ja:
           index: スケジュール一覧
         shops:
           index: 店舗情報(データベース正規化)
+        products:
+          index: 商品一覧
         static_pages:
           about_server_logs: サーバログ概要
           about_activerecord_logs: アクティブレコードログ概要
