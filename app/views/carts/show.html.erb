@@ -1,0 +1,26 @@
+<div class="carts">
+  <h1><%= t('carts.show.title') %></h1>
+
+  <% if @products.empty? %>
+    <p><%= t('carts.show.messages.empty') %></p>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Product.human_attribute_name(:id) %></th>
+          <th><%= Product.human_attribute_name(:name) %></th>
+          <th><%= Product.human_attribute_name(:price) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= t('carts.show.values.price', price: product.price) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

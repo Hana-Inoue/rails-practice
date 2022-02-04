@@ -1,0 +1,8 @@
+ja:
+  carts:
+    show:
+      title: 買い物かご
+      values:
+        price: "%{price}円"
+      messages:
+        empty: 買い物かごは空です。

@@ -1,9 +1,0 @@
-<div class="products">
-  <h1><%= t('products.show_cart.title') %></h1>
-
-  <% if @products.empty? %>
-    <p><%= t('products.show_cart.messages.empty') %></p>
-  <% else %>
-    <%= render 'table', products: @products %>
-  <% end %>
-</div>
