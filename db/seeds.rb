@@ -141,7 +141,8 @@ controllers = {
     'index', 'show', 'new', 'edit', 'search', 'sql_injection_search', 'create', 'update', 'destroy'
   ],
   shops: ['index'],
-  products: ['index', 'add_product_to_cart', 'show_cart'],
+  products: ['index'],
+  carts: ['show', 'create', 'destroy'],
   authorizations: ['update', 'edit'],
   static_pages: ['about_server_logs', 'about_activerecord_logs', 'search_functions_summary']
 }
@@ -208,6 +209,11 @@ users.each do |user|
   controllers[:products].each do |action|
     user.user_authorizations.create!(
       authorization_id: Authorization.find_by(controller: 'products', action: action).id
+    )
+  end
+  controllers[:carts].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'carts', action: action).id
     )
   end
 end
