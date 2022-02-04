@@ -1,7 +1,7 @@
 <div class="products">
   <h1><%= t('products.index.title') %></h1>
 
-  <% if current_user.authorized?('products', 'show_cart') %>
+  <% if current_user.authorized?('carts', 'show') %>
     <p class="button show-cart">
       <%= link_to t('products.index.links.show_cart'), cart_path %>
     </p>
@@ -28,7 +28,7 @@
             <td><%= button_to t('products.index.links.add_product_to_cart'),
                             cart_path,
                             method: :post,
-                            product_id: product.id %></td>
+                            params: { product_id: product.id } %></td>
           <% end %>
         </tr>
       <% end %>
