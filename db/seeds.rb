@@ -205,4 +205,9 @@ users.each do |user|
       authorization_id: Authorization.find_by(controller: 'shops', action: action).id
     )
   end
+  controllers[:products].each do |action|
+    user.user_authorizations.create!(
+      authorization_id: Authorization.find_by(controller: 'products', action: action).id
+    )
+  end
 end
