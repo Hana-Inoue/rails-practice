@@ -23,4 +23,13 @@ RSpec.describe 'Products', type: :request do
       expect(response).to redirect_to products_path
     end
   end
+
+  describe 'GET 買い物かごページ' do
+    before { session[:cart] = ['1', '5'] }
+
+    it '200番ステータスを返す' do
+      get show_cart_products_path
+      expect(response).to have_http_status(200)
+    end
+  end
 end
