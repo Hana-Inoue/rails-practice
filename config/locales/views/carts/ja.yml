@@ -4,5 +4,9 @@ ja:
       title: 買い物かご
       values:
         price: "%{price}円"
+      links:
+        delete: 削除
       messages:
         empty: 買い物かごは空です。
+      confirm:
+        delete: "%{product_name}を買い物かごから削除しますか？"
