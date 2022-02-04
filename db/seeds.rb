@@ -118,12 +118,15 @@ shops = 1.upto(3).map do |number|
   Shop.create!(name: "shop#{number}")
 end
 
-# productsテーブルへデータを挿入
+# shop_productsテーブルへデータを挿入
 shops.each do |shop|
   1.upto(2) do |number|
     ShopProduct.create!(shop_id: shop.id, name: "product#{number}", price: number * 100)
   end
 end
+
+# productsテーブルへデータを挿入
+1.upto(10) { |number| Product.create!(name: "product#{number}", price: number * 100) }
 
 # controllerとそのcontrollerが持つactionをcontrollers変数に定義
 controllers = {
