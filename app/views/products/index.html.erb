@@ -22,10 +22,9 @@
           <td><%= product.id %></td>
           <td><%= product.name %></td>
           <td><%= t('products.index.values.price', price: product.price) %></td>
-          <td><%= button_to t('products.index.links.carts.create'),
-                          cart_path,
-                          method: :post,
-                          params: { product_id: product.id } %></td>
+          <td><%= link_to t('products.index.links.carts.create'),
+                          cart_path(product_id: product.id),
+                          method: :post %></td>
         </tr>
       <% end %>
     </tbody>
