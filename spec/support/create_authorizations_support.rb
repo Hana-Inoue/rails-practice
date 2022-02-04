@@ -10,6 +10,7 @@ module CreateAuthorizationsSupport
       TodosController,
       SchedulesController,
       ShopsController,
+      ProductsController,
       AuthorizationsController,
       StaticPagesController
     ] .each do |controller|
