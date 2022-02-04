@@ -3,7 +3,7 @@
 
   <% if current_user.authorized?('carts', 'show') %>
     <p class="button show-cart">
-      <%= link_to t('products.index.links.show_cart'), cart_path %>
+      <%= link_to t('products.index.links.carts.show'), cart_path %>
     </p>
   <% end %>
 
@@ -13,9 +13,7 @@
         <th><%= Product.human_attribute_name(:id) %></th>
         <th><%= Product.human_attribute_name(:name) %></th>
         <th><%= Product.human_attribute_name(:price) %></th>
-        <% if controller.action_name == 'index' %>
-          <th></th>
-        <% end %>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,12 +22,10 @@
           <td><%= product.id %></td>
           <td><%= product.name %></td>
           <td><%= t('products.index.values.price', price: product.price) %></td>
-          <% if controller.action_name == 'index' %>
-            <td><%= button_to t('products.index.links.add_product_to_cart'),
-                            cart_path,
-                            method: :post,
-                            params: { product_id: product.id } %></td>
-          <% end %>
+          <td><%= button_to t('products.index.links.carts.create'),
+                          cart_path,
+                          method: :post,
+                          params: { product_id: product.id } %></td>
         </tr>
       <% end %>
     </tbody>
