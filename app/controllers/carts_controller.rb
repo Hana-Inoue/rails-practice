@@ -13,9 +13,9 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    product = Product.find(session[:cart][params[:product_index].to_i])
-    session[:cart].delete_at(params[:product_index].to_i)
+    session[:cart].delete(params[:product_id])
     redirect_to cart_path,
-                notice: t('layouts.flash.messages.deleted_product_from_cart', product: product.name)
+                notice: t('layouts.flash.messages.deleted_product_from_cart',
+                          product: Product.find(params[:product_id].to_i).name)
   end
 end
