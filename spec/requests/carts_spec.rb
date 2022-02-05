@@ -26,7 +26,7 @@ RSpec.describe 'Carts', type: :request do
   end
 
   describe 'DELETE 商品を買い物かごから削除' do
-    let(:params) { { product_index: 0 } }
+    let(:params) { { product_id: product.id } }
     let(:product) { create(:product) }
     before do
       allow_any_instance_of(ActionDispatch::Request)
