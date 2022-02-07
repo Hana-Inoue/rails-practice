@@ -9,7 +9,7 @@ class CartsController < ApplicationController
 
   def create
     session[:cart] ||= []
-    session[:cart].unshift(params[:product_id]).uniq!
+    session[:cart].unshift(params[:product_id])
     redirect_to products_path,
                 notice: t('layouts.flash.messages.added_product_to_cart',
                           product: Product.find(params[:product_id]).name)
