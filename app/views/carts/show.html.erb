@@ -10,15 +10,17 @@
           <th><%= Product.human_attribute_name(:id) %></th>
           <th><%= Product.human_attribute_name(:name) %></th>
           <th><%= Product.human_attribute_name(:price) %></th>
+          <th><%= t('carts.show.labels.count') %></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <% @cart.each do |product| %>
+        <% @cart.each do |product, count| %>
           <tr>
             <td><%= product.id %></td>
             <td><%= product.name %></td>
             <td><%= t('carts.show.values.price', price: product.price) %></td>
+            <td><%= count %></td>
             <td>
               <%= link_to t('carts.show.links.delete'),
                           cart_path(product_id: product.id),

@@ -1,7 +1,10 @@
 class CartsController < ApplicationController
   def show
     return @cart = [] if session[:cart].nil?
-    @cart = session[:cart].map(&:to_i).map { |product_id| Product.find(product_id) }
+    @cart = session[:cart]
+      .group_by(&:itself)
+      .map { |key, value| [Product.find(key.to_i), value.count] }
+      .to_h
   end
 
   def create

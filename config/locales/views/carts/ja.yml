@@ -2,11 +2,13 @@ ja:
   carts:
     show:
       title: 買い物かご
+      labels:
+        count: 個数
       values:
         price: "%{price}円"
       links:
-        delete: 削除
+        delete: 1つ削除
       messages:
         empty: 買い物かごは空です。
       confirm:
-        delete: "%{product_name}を買い物かごから削除しますか？"
+        delete: "%{product_name}を買い物かごから1つ削除しますか？"
