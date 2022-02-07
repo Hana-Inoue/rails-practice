@@ -1,0 +1,10 @@
+ja:
+  products:
+    index:
+      title: 商品一覧
+      values:
+        price: "%{price}円"
+      links:
+        carts:
+          show: 買い物かご
+          create: 買い物かごに追加

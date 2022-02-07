@@ -1,0 +1,36 @@
+<div class="carts">
+  <h1><%= t('carts.show.title') %></h1>
+
+  <% if @cart.empty? %>
+    <p><%= t('carts.show.messages.empty') %></p>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Product.human_attribute_name(:id) %></th>
+          <th><%= Product.human_attribute_name(:name) %></th>
+          <th><%= Product.human_attribute_name(:price) %></th>
+          <th><%= t('carts.show.labels.count') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart.each do |product, count| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= t('carts.show.values.price', price: product.price) %></td>
+            <td><%= count %></td>
+            <td>
+              <%= link_to t('carts.show.links.delete'),
+                          cart_path(product_id: product.id),
+                          method: :delete,
+                          data: { confirm: t('carts.show.confirm.delete',
+                                             product_name: product.name) } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

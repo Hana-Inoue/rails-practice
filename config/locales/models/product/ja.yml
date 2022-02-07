@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      product:
+    attributes:
+      product:
+        id: ID
+        name: 商品名
+        price: 価格

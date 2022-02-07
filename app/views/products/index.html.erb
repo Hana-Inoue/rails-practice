@@ -1,0 +1,34 @@
+<div class="products">
+  <h1><%= t('products.index.title') %></h1>
+
+  <% if current_user.authorized?('carts', 'show') %>
+    <p class="button show-cart">
+      <%= link_to t('products.index.links.carts.show'), cart_path %>
+    </p>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Product.human_attribute_name(:id) %></th>
+        <th><%= Product.human_attribute_name(:name) %></th>
+        <th><%= Product.human_attribute_name(:price) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= product.name %></td>
+          <td><%= t('products.index.values.price', price: product.price) %></td>
+          <td><%= link_to t('products.index.links.carts.create'),
+                          cart_path(product_id: product.id),
+                          method: :post %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= render 'shared/pagination', pages: @pages %>
+</div>
