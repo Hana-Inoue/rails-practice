@@ -22,18 +22,19 @@
       <%= l(@schedule.created_at, format: :long) %>
     </p>
 
-  <% if current_user.authorized?('schedules', 'edit') %>
-    <p class="button edit-schedule">
-      <%= link_to t('schedules.show.links.edit'), edit_schedule_path(@schedule) %>
-    </p>
-  <% end %>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <% if current_user.authorized?('schedules', 'edit') %>
+      <%= link_to t('schedules.show.links.edit'),
+                  edit_schedule_path(@schedule),
+                  class: 'btn btn-primary' %>
+    <% end %>
 
-  <% if current_user.authorized?('schedules', 'destroy') %>
-    <p class="button delete-schedule">
+    <% if current_user.authorized?('schedules', 'destroy') %>
       <%= link_to t('schedules.show.links.delete'),
                   schedule_path(@schedule),
                   method: :delete,
-                  data: { confirm: t('schedules.show.confirm.delete', name: @schedule.name) } %>
-    </p>
+                  data: { confirm: t('schedules.show.confirm.delete', name: @schedule.name) },
+                  class: 'btn btn-danger'%>
     <% end %>
+  </div>
 </div>
