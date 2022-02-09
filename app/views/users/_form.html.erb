@@ -1,62 +1,64 @@
-<%= form_with model: user do |form| %>
-  <div class="form">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<%= form_with model: user, class: 'max-auto' do |form| %>
+  <div class="row mb-3">
+    <%= form.label :name, class: 'col-sm-3 col-form-label' %>
+    <%= form.text_field :name, class: 'col-sm-9' %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: user, attribute: :name } %>
     </div>
   </div>
 
-  <div class="form">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="row mb-3">
+    <%= form.label :email, class: 'col-sm-3 col-form-label' %>
+    <%= form.text_field :email, class: 'col-sm-9' %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: user, attribute: :email } %>
     </div>
   </div>
 
-  <div class="form">
-    <%= form.label :gender %>
+  <div class="row mb-3">
+    <%= form.label :gender, class: 'col-sm-3 col-form-label' %>
     <%= form.select :gender,
                     User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] },
-                    include_blank: true %>
+                    { include_blank: true },
+                    class: 'col-sm-9' %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: user, attribute: :gender } %>
     </div>
   </div>
 
-  <div class="form">
-    <%= form.label :birthday %>
-    <%= form.date_field :birthday %>
+  <div class="row mb-3">
+    <%= form.label :birthday, class: 'col-sm-3 col-form-label' %>
+    <%= form.date_field :birthday, class: 'col-sm-9' %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: user, attribute: :birthday } %>
     </div>
   </div>
 
-  <div class="form">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+  <div class="row mb-3">
+    <%= form.label :password, class: 'col-sm-3 col-form-label' %>
+    <%= form.password_field :password, class: 'col-sm-9' %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: user, attribute: :password } %>
     </div>
   </div>
 
-  <div class="form">
+  <div class="row mb-3">
     <%= form.label :password_confirmation,
-                   t('activerecord.attributes.user.password_confirmation') %>
-    <%= form.password_field :password_confirmation %>
+                   t('activerecord.attributes.user.password_confirmation'),
+                   class: 'col-sm-3 col-form-label' %>
+    <%= form.password_field :password_confirmation, class: 'col-sm-9' %>
     <div class="error_messages">
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: user, attribute: :password_confirmation } %>
     </div>
   </div>
 
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <div class="d-grid gap-3 d-md-flex justify-content-md-end">
     <%= form.submit class: 'btn btn-primary btn-sm' %>
   </div>
 <% end %>
