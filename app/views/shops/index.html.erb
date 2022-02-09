@@ -1,72 +1,75 @@
 <div class="shops">
-  <h1><%= t('shops.index.title') %></h1>
+  <h1 class="mb-5"><%= t('shops.index.title') %></h1>
 
-  <h3><%= t('shops.index.unnormalized') %></h3>
-  <div class="shop-products-unnormalized-table">
-    <h4><%= t('shops.index.tables.shop_products_unnormalized') %></h4>
-    <table class="table">
-      <thead>
+  <h3 class="fs-5 mb-3"><%= t('shops.index.unnormalized') %></h3>
+  <p class="fw-bold mb-2"><%= t('shops.index.tables.shop_products_unnormalized') %></p>
+  <table class="table table-striped border mb-5">
+    <thead>
+      <tr>
+        <th><%= ShopProductUnnormalized.human_attribute_name(:id) %></th>
+        <th><%= ShopProductUnnormalized.human_attribute_name(:shop_name) %></th>
+        <th><%= ShopProductUnnormalized.human_attribute_name(:product_name) %></th>
+        <th><%= ShopProductUnnormalized.human_attribute_name(:price) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shop_products_unnormalized.each do |shop_product_unnormalized| %>
         <tr>
-          <th><%= ShopProductUnnormalized.human_attribute_name(:id) %></th>
-          <th><%= ShopProductUnnormalized.human_attribute_name(:shop_name) %></th>
-          <th><%= ShopProductUnnormalized.human_attribute_name(:product_name) %></th>
-          <th><%= ShopProductUnnormalized.human_attribute_name(:price) %></th>
+          <td><%= shop_product_unnormalized.id %></td>
+          <td><%= shop_product_unnormalized.shop_name %></td>
+          <td><%= shop_product_unnormalized.product_name %></td>
+          <td><%= t('shops.index.values.price', price: shop_product_unnormalized.price) %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% @shop_products_unnormalized.each do |shop_product_unnormalized| %>
-          <tr>
-            <td><%= shop_product_unnormalized.id %></td>
-            <td><%= shop_product_unnormalized.shop_name %></td>
-            <td><%= shop_product_unnormalized.product_name %></td>
-            <td><%= t('shops.index.values.price', price: shop_product_unnormalized.price) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
 
-  <h3><%= t('shops.index.normalized') %></h3>
-  <div class="shops-table">
-    <h4><%= t('shops.index.tables.shops') %></h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th><%= Shop.human_attribute_name(:id) %></th>
-          <th><%= Shop.human_attribute_name(:name) %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @shops.each do |shop| %>
-          <tr>
-            <td><%= shop.id %></td>
-            <td><%= shop.name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <h3 class="fs-5 mb-3"><%= t('shops.index.normalized') %></h3>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="fw-bold mb-2"><%= t('shops.index.tables.shops') %></p>
+        <table class="table table-striped border">
+          <thead>
+            <tr>
+              <th><%= Shop.human_attribute_name(:id) %></th>
+              <th><%= Shop.human_attribute_name(:name) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @shops.each do |shop| %>
+              <tr>
+                <td><%= shop.id %></td>
+                <td><%= shop.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="shop-products-table">
-    <h4><%= t('shops.index.tables.shop_products') %></h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th><%= ShopProduct.human_attribute_name(:id) %></th>
-          <th><%= ShopProduct.human_attribute_name(:shop_id) %></th>
-          <th><%= ShopProduct.human_attribute_name(:name) %></th>
-          <th><%= ShopProduct.human_attribute_name(:price) %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @shop_products.each do |shop_product| %> <tr>
-            <td><%= shop_product.id %></td>
-            <td><%= shop_product.shop_id %></td>
-            <td><%= shop_product.name %></td>
-            <td><%= t('shops.index.values.price', price: shop_product.price) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <div class="col">
+        <p class="fw-bold mb-2"><%= t('shops.index.tables.shop_products') %></p>
+        <table class="table table-striped border">
+          <thead>
+            <tr>
+              <th><%= ShopProduct.human_attribute_name(:id) %></th>
+              <th><%= ShopProduct.human_attribute_name(:shop_id) %></th>
+              <th><%= ShopProduct.human_attribute_name(:name) %></th>
+              <th><%= ShopProduct.human_attribute_name(:price) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @shop_products.each do |shop_product| %>
+              <tr>
+                <td><%= shop_product.id %></td>
+                <td><%= shop_product.shop_id %></td>
+                <td><%= shop_product.name %></td>
+                <td><%= t('shops.index.values.price', price: shop_product.price) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
