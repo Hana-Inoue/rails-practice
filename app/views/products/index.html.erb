@@ -1,13 +1,15 @@
 <div class="products">
-  <h1><%= t('products.index.title') %></h1>
+  <h1 class="mb-5"><%= t('products.index.title') %></h1>
 
   <% if current_user.authorized?('carts', 'show') %>
-    <p class="button show-cart">
-      <%= link_to t('products.index.links.carts.show'), cart_path %>
-    </p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+      <%= link_to t('products.index.links.carts.show'),
+                  cart_path,
+                  class: 'btn btn-primary btn-sm' %>
+    </div>
   <% end %>
 
-  <table class="table">
+  <table class="table table-striped border">
     <thead>
       <tr>
         <th><%= Product.human_attribute_name(:id) %></th>
@@ -24,7 +26,8 @@
           <td><%= t('products.index.values.price', price: product.price) %></td>
           <td><%= link_to t('products.index.links.carts.create'),
                           cart_path(product_id: product.id),
-                          method: :post %></td>
+                          method: :post,
+                          class: 'text-decoration-none' %></td>
         </tr>
       <% end %>
     </tbody>

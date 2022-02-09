@@ -1,10 +1,10 @@
 <div class="carts">
-  <h1><%= t('carts.show.title') %></h1>
+  <h1 class="mb-5"><%= t('carts.show.title') %></h1>
 
   <% if @cart.empty? %>
     <p><%= t('carts.show.messages.empty') %></p>
   <% else %>
-    <table class="table">
+    <table class="table table-striped border">
       <thead>
         <tr>
           <th><%= Product.human_attribute_name(:id) %></th>
@@ -26,7 +26,8 @@
                           cart_path(product_id: product.id),
                           method: :delete,
                           data: { confirm: t('carts.show.confirm.delete',
-                                             product_name: product.name) } %>
+                                             product_name: product.name) },
+                          class: 'text-decoration-none' %>
             </td>
           </tr>
         <% end %>
