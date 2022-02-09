@@ -1,5 +1,5 @@
 <div class="events">
-  <h1><%= t('events.show.title') %></h1>
+  <h1 class="mb-5"><%= t('events.show.title') %></h1>
 
   <div class="event-profile">
     <p>
@@ -27,18 +27,19 @@
       <%= @event.host %>
     </p>
 
-  <% if current_user.authorized?('events', 'edit') %>
-    <p class="button edit-event">
-      <%= link_to t('events.show.links.edit'), edit_event_path(@event) %>
-    </p>
-  <% end %>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+    <% if current_user.authorized?('events', 'edit') %>
+      <%= link_to t('events.show.links.edit'),
+                  edit_event_path(@event),
+                  class: 'btn btn-primary btn-sm' %>
+    <% end %>
 
-  <% if current_user.authorized?('events', 'destroy') %>
-    <p class="button delete-event">
+    <% if current_user.authorized?('events', 'destroy') %>
       <%= link_to t('events.show.links.delete'),
                   event_path(@event),
                   method: :delete,
-                  data: { confirm: t('events.show.confirm.delete', title: @event.title) } %>
-    </p>
-  <% end %>
+                  data: { confirm: t('events.show.confirm.delete', title: @event.title) },
+                  class: 'btn btn-danger btn-sm' %>
+    <% end %>
+  </div>
 </div>
