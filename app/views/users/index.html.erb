@@ -2,12 +2,12 @@
   <h1 class="mb-5"><%= t('users.index.title') %></h1>
 
   <% if current_user.authorized?('users', 'new') %>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
       <%= link_to t('users.index.links.new'), new_user_path, class: 'btn btn-primary btn-sm' %>
   </div>
   <% end %>
 
-  <table class="table table-striped">
+  <table class="table table-striped border">
     <thead>
       <tr>
         <th><%= t('activerecord.attributes.user.id') %></th>
