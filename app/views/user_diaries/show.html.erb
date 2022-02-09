@@ -1,5 +1,5 @@
 <div class="user-diaries">
-  <h1><%= t('user_diaries.show.title') %></h1>
+  <h1 class="mb-5"><%= t('user_diaries.show.title') %></h1>
 
   <div class="user-diary-detail">
     <p>
@@ -16,21 +16,21 @@
       <%= "#{UserDiary.human_attribute_name(:created_at)}:" %>
       <%= @user_diary.created_at.strftime("%F") %>
     </p>
+  </div>
 
-  <% if current_user.authorized?('user_diaries', 'edit') %>
-    <p class="button edit-user-diary">
+  <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+    <% if current_user.authorized?('user_diaries', 'edit') %>
       <%= link_to t('user_diaries.show.links.edit'),
-                  edit_user_user_diary_path(@user, @user_diary) %>
-    </p>
-  <% end %>
+                  edit_user_user_diary_path(@user, @user_diary),
+                  class: 'btn btn-primary btn-sm' %>
+    <% end %>
 
-  <% if current_user.authorized?('user_diaries', 'destroy') %>
-    <p class="button delete-user-diary">
+    <% if current_user.authorized?('user_diaries', 'destroy') %>
       <%= link_to t('user_diaries.show.links.delete'),
                   user_user_diary_path(@user, @user_diary),
                   method: :delete,
                   data: { confirm: t('user_diaries.show.confirm.delete',
-                                   title: @user_diary.title) } %>
-    </p>
-  <% end %>
+                                   title: @user_diary.title) },
+                  class: 'btn btn-danger btn-sm' %>
+    <% end %>
 </div>

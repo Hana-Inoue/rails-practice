@@ -1,13 +1,15 @@
 <div class="user-diaries">
-  <h1><%= t('user_diaries.index.title') %></h1>
+  <h1 class="mb-5"><%= t('user_diaries.index.title') %></h1>
 
   <% if current_user.authorized?('user_diaries', 'new') %>
-    <p class="button new-user-diary">
-      <%= link_to t('user_diaries.index.links.new'), new_user_user_diary_path(@user) %>
-    </p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+      <%= link_to t('user_diaries.index.links.new'),
+                  new_user_user_diary_path(@user),
+                  class: 'btn btn-primary btn-sm' %>
+    </div>
   <% end %>
 
-  <table class="table">
+  <table class="table table-striped border">
     <thead>
       <tr>
         <th><%= UserDiary.human_attribute_name(:id) %></th>
@@ -20,7 +22,11 @@
       <% @user_diaries.each do |user_diary| %>
         <tr>
           <td><%= user_diary.id %></td>
-          <td><%= link_to user_diary.title, user_user_diary_path(@user, user_diary) %></td>
+          <td>
+            <%= link_to user_diary.title,
+                        user_user_diary_path(@user, user_diary),
+                        class: 'text-decoration-none' %>
+          </td>
           <td><%= user_diary.body %></td>
           <td><%= user_diary.created_at.strftime("%F") %></td>
         </tr>
