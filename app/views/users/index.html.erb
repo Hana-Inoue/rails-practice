@@ -23,7 +23,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.name, user %></td>
+          <td><%= link_to user.name, user, class: 'text-decoration-none' %></td>
           <td><%= user.email %></td>
           <td><%= t("enums.user.gender.#{user.gender}") %></td>
           <td><%= user.birthday %></td>
