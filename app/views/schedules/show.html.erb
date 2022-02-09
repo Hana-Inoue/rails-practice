@@ -1,5 +1,5 @@
 <div class="schedules">
-  <h1><%= t('schedules.show.title') %></h1>
+  <h1 class="mb-5"><%= t('schedules.show.title') %></h1>
 
   <div class="schedule-detail">
     <p>
@@ -26,7 +26,7 @@
     <% if current_user.authorized?('schedules', 'edit') %>
       <%= link_to t('schedules.show.links.edit'),
                   edit_schedule_path(@schedule),
-                  class: 'btn btn-primary' %>
+                  class: 'btn btn-primary btn-sm' %>
     <% end %>
 
     <% if current_user.authorized?('schedules', 'destroy') %>
@@ -34,7 +34,7 @@
                   schedule_path(@schedule),
                   method: :delete,
                   data: { confirm: t('schedules.show.confirm.delete', name: @schedule.name) },
-                  class: 'btn btn-danger'%>
+                  class: 'btn btn-danger btn-sm' %>
     <% end %>
   </div>
 </div>

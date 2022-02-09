@@ -1,7 +1,9 @@
 <div class="schedules">
   <h1 class="mb-5"><%= t('schedules.index.title') %></h1>
 
-  <p class="fw-bold mb-2">検索： <span class="text-danger">') OR 1=1--</span> と入力してください。</p>
+  <p class="fw-bold mb-2">
+    検索： <span class="text-danger">') OR 1=1--</span> と入力してください。
+  </p>
   <%= form_with(scope: :search,
                 url: search_schedules_path,
                 method: :get,
@@ -16,7 +18,9 @@
         <%= form.submit t('schedules.index.links.search'), class: 'btn btn-primary btn-sm' %>
       </div>
       <div class="col-auto">
-        <%= link_to t('schedules.index.links.reset'), schedules_path, class: 'btn btn-primary btn-sm' %>
+        <%= link_to t('schedules.index.links.reset'),
+                    schedules_path,
+                    class: 'btn btn-primary btn-sm' %>
       </div>
     </div>
   <% end %>
@@ -29,26 +33,30 @@
     <%= form.label :name, t('schedules.index.labels.sql_injection_search.name'), class: 'mb-2' %>
     <div class="row g-3">
       <div class="col-4">
-        <%= form.text_field :name, value: @schedules_sql_injection_search_params[:name], class: 'w-100' %>
+        <%= form.text_field :name,
+                            value: @schedules_sql_injection_search_params[:name],
+                            class: 'w-100' %>
       </div>
       <div class="col-auto">
         <%= form.submit t('schedules.index.links.search'), class: 'btn btn-primary btn-sm' %>
       </div>
       <div class="col-auto">
-        <%= link_to t('schedules.index.links.reset'), schedules_path, class: 'btn btn-primary btn-sm' %>
+        <%= link_to t('schedules.index.links.reset'),
+                    schedules_path,
+                    class: 'btn btn-primary btn-sm' %>
       </div>
     </div>
   <% end %>
 
   <% if current_user.authorized?('schedules', 'new') %>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <%= link_to t('schedules.index.links.new'),
                   new_schedule_path,
-                  class: 'btn btn-primary' %>
+                  class: 'btn btn-primary btn-sm' %>
     </div>
   <% end %>
 
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th><%= Schedule.human_attribute_name(:id) %></th>
