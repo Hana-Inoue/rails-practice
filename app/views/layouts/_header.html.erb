@@ -1,11 +1,16 @@
-<header>
-  <h1 class="title"><%= link_to t('layouts.header.title'), users_path %></h1>
-  <% if logged_in? %>
-    <div class="user-info">
-      <ul>
-        <li><%= current_user.name %></li>
-        <li><%= link_to t('layouts.header.links.logout'), logout_path, method: :delete %></li>
-      </ul>
-    </div>
-  <% end %>
+<header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <%= link_to t('layouts.header.title'), users_path, class: 'navbar-brand fs-4' %>
+    <% if logged_in? %>
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav">
+            <%= link_to current_user.name, current_user, class: 'nav-link' %>
+            <%= link_to t('layouts.header.links.logout'),
+                        logout_path,
+                        method: :delete,
+                        class: 'nav-link' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </header>
