@@ -18,13 +18,20 @@
     <%= render 'layouts/header' %>
     <div class="row mx-4">
       <% if logged_in? %>
-        <div class="col-3">
+        <div class="col-3 me-4 pe-0 border-end">
           <%= render 'layouts/menu' %>
         </div>
       <% end %>
       <div class="col">
-        <%= render 'layouts/flash' %>
-        <%= yield %>
+        <% if logged_in? %>
+          <%= render 'layouts/flash' %>
+          <%= yield %>
+        <% else %>
+          <div class="w-50 mx-auto">
+            <%= render 'layouts/flash' %>
+            <%= yield %>
+          </div>
+        <% end %>
       </div>
     </div>
 
