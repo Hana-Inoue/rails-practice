@@ -1,5 +1,5 @@
 <div class="user-post-comments">
-  <h1 class="mb-5"><%= t('user_post_comments.index.title') %></h1>
+  <h1 class="fs-2 mb-5"><%= t('user_post_comments.index.title') %></h1>
 
   <% if current_user.authorized?('user_post_comments', 'create') %>
     <%= form_with model: @user_post_comment,

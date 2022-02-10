@@ -23,15 +23,10 @@
         </div>
       <% end %>
       <div class="col">
-        <% if logged_in? %>
+        <div class="main-content pb-5<%= ' w-50 mx-auto' unless logged_in? %>">
           <%= render 'layouts/flash' %>
           <%= yield %>
-        <% else %>
-          <div class="w-50 mx-auto">
-            <%= render 'layouts/flash' %>
-            <%= yield %>
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
 
