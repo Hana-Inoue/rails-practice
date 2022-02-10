@@ -2,19 +2,15 @@
   <div class="row mb-3">
     <%= form.label :name, class: 'col-sm-3 col-form-label' %>
     <%= form.text_field :name, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: user, attribute: :name } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :name } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :email, class: 'col-sm-3 col-form-label' %>
     <%= form.text_field :email, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: user, attribute: :email } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :email } %>
   </div>
 
   <div class="row mb-3">
@@ -23,28 +19,22 @@
                     User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] },
                     { include_blank: true },
                     class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: user, attribute: :gender } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :gender } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :birthday, class: 'col-sm-3 col-form-label' %>
     <%= form.date_field :birthday, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: user, attribute: :birthday } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :birthday } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :password, class: 'col-sm-3 col-form-label' %>
     <%= form.password_field :password, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: user, attribute: :password } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :password } %>
   </div>
 
   <div class="row mb-3">
@@ -52,10 +42,8 @@
                    t('activerecord.attributes.user.password_confirmation'),
                    class: 'col-sm-3 col-form-label' %>
     <%= form.password_field :password_confirmation, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: user, attribute: :password_confirmation } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: user, attribute: :password_confirmation } %>
   </div>
 
   <div class="d-grid gap-3 d-md-flex justify-content-md-end">

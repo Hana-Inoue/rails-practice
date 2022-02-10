@@ -27,5 +27,8 @@ module App
         controller_specs: false,
         routing_specs: false
     end
+
+    # バリデーションエラー時に field_with_errors クラスのついた div を生成しないようにする
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end

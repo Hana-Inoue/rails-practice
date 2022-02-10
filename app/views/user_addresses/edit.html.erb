@@ -6,37 +6,29 @@
     <%= form.text_field :postal_code,
                         placeholder: t('user_addresses.edit.examples.postal_code'),
                         class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :postal_code } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :postal_code } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :prefecture, class: 'col-sm-3 col-form-label' %>
     <%= form.text_field :prefecture, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :prefecture } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :prefecture } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :city, class: 'col-sm-3 col-form-label' %>
     <%= form.text_field :city, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :city } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :city } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :address_line, class: 'col-sm-3 col-form-label' %>
     <%= form.text_field :address_line, class: 'col-sm-9' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :address_line } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :address_line } %>
   </div>
 
   <div class="d-grid gap-3 d-md-flex justify-content-md-end">

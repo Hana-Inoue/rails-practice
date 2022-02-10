@@ -2,46 +2,36 @@
   <div class="row mb-3">
     <%= form.label :title, class: 'col-sm-2 col-form-label' %>
     <%= form.text_field :title, class: 'col-sm-10' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: event, attribute: :title } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: event, attribute: :title } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :start_at, class: 'col-sm-2 col-form-label' %>
     <%= form.datetime_field :start_at, class: 'col-sm-10' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: event, attribute: :start_at } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: event, attribute: :start_at } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :finish_at, class: 'col-sm-2 col-form-label' %>
     <%= form.datetime_field :finish_at, class: 'col-sm-10' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: event, attribute: :finish_at } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: event, attribute: :finish_at } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :max_participants, class: 'col-sm-2 col-form-label' %>
     <%= form.number_field :max_participants, class: 'col-sm-10' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: event, attribute: :max_participants } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: event, attribute: :max_participants } %>
   </div>
 
   <div class="row mb-3">
     <%= form.label :body, class: 'col-sm-2 col-form-label' %>
     <%= form.text_area :body, class: 'col-sm-10' %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: event, attribute: :body } %>
-    </div>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: event, attribute: :body } %>
   </div>
 
   <div class="d-grid gap-3 d-md-flex justify-content-md-end">
