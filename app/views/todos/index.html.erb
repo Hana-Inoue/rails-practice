@@ -12,8 +12,8 @@
                      Todo.human_attribute_name(:due_date),
                      class: 'col-sm-3 col-form-label' %>
       <%= form.date_field :due_date,
-                     value: @todos_search_params[:due_date],
-                     class: 'col-sm-9' %>
+                          value: @todos_search_params[:due_date],
+                          class: 'col-sm-9' %>
     </div>
 
     <div class="row mb-3">
@@ -21,8 +21,8 @@
                      Todo.human_attribute_name(:completed_date),
                      class: 'col-sm-3 col-form-label' %>
       <%= form.date_field :completed_date,
-                     value: @todos_search_params[:completed_date],
-                     class: 'col-sm-9' %>
+                          value: @todos_search_params[:completed_date],
+                          class: 'col-sm-9' %>
     </div>
 
     <div class="d-grid gap-3 d-md-flex justify-content-md-end">
