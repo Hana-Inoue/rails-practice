@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   $('.js-toggle-form-target').hide();
   var buttonText = $('.js-toggle-form-button').text();
   $('.js-toggle-form-button').click(function() {
