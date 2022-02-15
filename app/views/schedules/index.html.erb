@@ -11,7 +11,7 @@
                 class: 'mb-3') do |form| %>
     <%= form.label :name, t('schedules.index.labels.search.name'), class: 'mb-2' %>
     <div class="row g-3">
-      <div class="col-4">
+      <div class="col-9">
         <%= form.text_field :name, value: @schedules_search_params[:name], class: 'w-100' %>
       </div>
       <div class="col-auto">
@@ -32,7 +32,7 @@
                 class: 'mb-5') do |form| %>
     <%= form.label :name, t('schedules.index.labels.sql_injection_search.name'), class: 'mb-2' %>
     <div class="row g-3">
-      <div class="col-4">
+      <div class="col-9">
         <%= form.text_field :name,
                             value: @schedules_sql_injection_search_params[:name],
                             class: 'w-100' %>
