@@ -1,60 +1,64 @@
 <div class="schedules">
-  <h1 class="fs-2 mb-5"><%= t('schedules.index.title') %></h1>
+  <h1 class="fs-2 mb-0"><%= t('schedules.index.title') %></h1>
 
-  <p class="fw-bold mb-2">
-    検索： <span class="text-danger">') OR 1=1--</span> と入力してください。
-  </p>
-  <%= form_with(scope: :search,
-                url: search_schedules_path,
-                method: :get,
-                local: true,
-                class: 'mb-3') do |form| %>
-    <%= form.label :name, t('schedules.index.labels.search.name'), class: 'mb-2' %>
-    <div class="row g-3">
-      <div class="col-4">
-        <%= form.text_field :name, value: @schedules_search_params[:name], class: 'w-100' %>
-      </div>
-      <div class="col-auto">
-        <%= form.submit t('schedules.index.links.search'), class: 'btn btn-primary btn-sm' %>
-      </div>
-      <div class="col-auto">
-        <%= link_to t('schedules.index.links.reset'),
-                    schedules_path,
-                    class: 'btn btn-danger btn-sm' %>
-      </div>
-    </div>
-  <% end %>
-
-  <%= form_with(scope: :sql_injection_search,
-                url: sql_injection_search_schedules_path,
-                method: :get,
-                local: true,
-                class: 'mb-5') do |form| %>
-    <%= form.label :name, t('schedules.index.labels.sql_injection_search.name'), class: 'mb-2' %>
-    <div class="row g-3">
-      <div class="col-4">
-        <%= form.text_field :name,
-                            value: @schedules_sql_injection_search_params[:name],
-                            class: 'w-100' %>
-      </div>
-      <div class="col-auto">
-        <%= form.submit t('schedules.index.links.search'), class: 'btn btn-primary btn-sm' %>
-      </div>
-      <div class="col-auto">
-        <%= link_to t('schedules.index.links.reset'),
-                    schedules_path,
-                    class: 'btn btn-danger btn-sm' %>
-      </div>
-    </div>
-  <% end %>
-
-  <% if current_user.authorized?('schedules', 'new') %>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+    <% if current_user.authorized?('schedules', 'search') %>
+      <button class="btn btn-primary btn-sm js-toggle-form-button">検索</button>
+    <% end %>
+    <% if current_user.authorized?('schedules', 'new') %>
       <%= link_to t('schedules.index.links.new'),
                   new_schedule_path,
                   class: 'btn btn-primary btn-sm' %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-4 p-4 border js-toggle-form-target">
+    <p class="fw-bold mb-2">
+      <span class="text-danger">') OR 1=1--</span> と入力してください。
+    </p>
+    <%= form_with(scope: :search,
+                  url: search_schedules_path,
+                  method: :get,
+                  local: true,
+                  class: 'mb-3') do |form| %>
+      <%= form.label :name, t('schedules.index.labels.search.name'), class: 'mb-2' %>
+      <div class="row g-3">
+        <div class="col-4">
+          <%= form.text_field :name, value: @schedules_search_params[:name], class: 'w-100' %>
+        </div>
+        <div class="col-auto">
+          <%= form.submit t('schedules.index.links.search'), class: 'btn btn-primary btn-sm' %>
+        </div>
+        <div class="col-auto">
+          <%= link_to t('schedules.index.links.reset'),
+                      schedules_path,
+                      class: 'btn btn-danger btn-sm' %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form_with(scope: :sql_injection_search,
+                  url: sql_injection_search_schedules_path,
+                  method: :get,
+                  local: true) do |form| %>
+      <%= form.label :name, t('schedules.index.labels.sql_injection_search.name'), class: 'mb-2' %>
+      <div class="row g-3">
+        <div class="col-4">
+          <%= form.text_field :name,
+                              value: @schedules_sql_injection_search_params[:name],
+                              class: 'w-100' %>
+        </div>
+        <div class="col-auto">
+          <%= form.submit t('schedules.index.links.search'), class: 'btn btn-primary btn-sm' %>
+        </div>
+        <div class="col-auto">
+          <%= link_to t('schedules.index.links.reset'),
+                      schedules_path,
+                      class: 'btn btn-danger btn-sm' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
   <table class="table table-striped border">
     <thead>
