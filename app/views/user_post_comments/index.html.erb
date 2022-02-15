@@ -1,22 +1,25 @@
 <div class="user-post-comments">
-  <h1 class="fs-2 mb-5"><%= t('user_post_comments.index.title') %></h1>
+  <h1 class="fs-2 mb-0"><%= t('user_post_comments.index.title') %></h1>
 
-  <% if current_user.authorized?('user_post_comments', 'create') %>
-    <%= form_with model: @user_post_comment,
-                  url: user_post_user_post_comments_path(@user_post),
-                  class: 'mb-4' do |form| %>
-      <div class="row mb-3">
-        <%= form.label :body, class: 'col-sm-2 col-form-label' %>
-        <%= form.text_area :body, class: 'col-sm-10' %>
-        <%= render partial: 'shared/attribute_error_messages',
-                   locals: { model: @user_post_comment, attribute: :body } %>
-      </div>
-
-      <div class="d-grid gap-3 d-md-flex justify-content-md-end">
-        <%= form.submit t('user_post_comments.index.links.submit'),
-                        class: 'btn btn-primary btn-sm' %>
-      </div>
+  <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
+    <% if current_user.authorized?('user_post_comments', 'create') %>
+      <button class="btn btn-primary btn-sm js-toggle-form-button">コメント</button>
     <% end %>
+  </div>
+  <%= form_with model: @user_post_comment,
+                url: user_post_user_post_comments_path(@user_post),
+                class: 'mb-4 p-4 border js-toggle-form-target' do |form| %>
+    <div class="row mb-3">
+      <%= form.label :body, class: 'col-sm-2 col-form-label' %>
+      <%= form.text_area :body, class: 'col-sm-10' %>
+      <%= render partial: 'shared/attribute_error_messages',
+                 locals: { model: @user_post_comment, attribute: :body } %>
+    </div>
+
+    <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+      <%= form.submit t('user_post_comments.index.links.submit'),
+                      class: 'btn btn-primary btn-sm' %>
+    </div>
   <% end %>
 
   <table class="table table-striped border">
