@@ -1,26 +1,33 @@
 <div class="todos">
-  <h1><%= t('todos.index.title') %></h1>
+  <h1 class="fs-2 mb-5"><%= t('todos.index.title') %></h1>
 
-  <h3 class="form-title"><%= t('todos.index.form_title') %></h2>
-  <%= form_with(scope: :search,
+  <p class="fw-bold mb-2">イベント検索</p>
+  <%= form_with scope: :search,
                 url: search_todos_path,
                 method: :get,
-                local: true) do |form| %>
-    <div class="form">
-      <%= form.label :due_date, Todo.human_attribute_name(:due_date) %>
-      <%= form.date_field :due_date, value: @todos_search_params[:due_date] %>
+                local: true,
+                class: 'mb-4' do |form| %>
+    <div class="row mb-3">
+      <%= form.label :due_date,
+                     Todo.human_attribute_name(:due_date),
+                     class: 'col-sm-3 col-form-label' %>
+      <%= form.date_field :due_date,
+                          value: @todos_search_params[:due_date],
+                          class: 'col-sm-9' %>
     </div>
 
-    <div class="form">
-      <%= form.label :completed_date, Todo.human_attribute_name(:completed_date) %>
-      <%= form.date_field :completed_date, value: @todos_search_params[:completed_date] %>
+    <div class="row mb-3">
+      <%= form.label :completed_date,
+                     Todo.human_attribute_name(:completed_date),
+                     class: 'col-sm-3 col-form-label' %>
+      <%= form.date_field :completed_date,
+                          value: @todos_search_params[:completed_date],
+                          class: 'col-sm-9' %>
     </div>
 
-    <div class="buttons">
-      <%= form.submit t('todos.index.links.search') %>
-      <p class="button reset">
-        <%= link_to t('todos.index.links.reset'), todos_path %>
-      </p>
+    <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+      <%= form.submit t('todos.index.links.search'), class: 'btn btn-primary btn-sm' %>
+      <%= link_to t('todos.index.links.reset'), todos_path, class: 'btn btn-danger btn-sm' %>
     </div>
   <% end %>
 
@@ -28,7 +35,7 @@
     <%= t('todos.index.search_time', search_time: @search_time) %>
   <% end %>
 
-  <table class="table">
+  <table class="table table-striped border">
     <thead>
       <tr>
         <th><%= Todo.human_attribute_name(:id) %></th>

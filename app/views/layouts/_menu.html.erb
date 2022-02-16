@@ -1,52 +1,89 @@
-<div class="menu">
-  <ul>
-    <% if current_user.authorized?('users', 'index') %>
-      <li><%= link_to t('layouts.menu.links.users.index'), users_path %></li>
-    <% end %>
+<ul class="nav flex-column sticky-top">
+  <% if current_user.authorized?('users', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.users.index'),
+                  users_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('user_posts', 'index') %>
-      <li><%= link_to t('layouts.menu.links.user_posts.index'), user_posts_path %></li>
-    <% end %>
+  <% if current_user.authorized?('user_posts', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.user_posts.index'),
+                  user_posts_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('events', 'index') %>
-      <li><%= link_to t('layouts.menu.links.events.index'), events_path %></li>
-    <% end %>
+  <% if current_user.authorized?('events', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.events.index'),
+                  events_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('todos', 'index') %>
-      <li><%= link_to t('layouts.menu.links.todos.index'), todos_path %></li>
-    <% end %>
+  <% if current_user.authorized?('todos', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.todos.index'),
+                  todos_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('user_diaries', 'index') %>
-      <li><%= link_to t('layouts.menu.links.user_diaries.index'),
-                        user_user_diaries_path(current_user.id) %></li>
-    <% end %>
+  <% if current_user.authorized?('user_diaries', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.user_diaries.index'),
+                  user_user_diaries_path(current_user.id),
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('schedules', 'index') %>
-      <li><%= link_to t('layouts.menu.links.schedules.index'),
-                        schedules_path %></li>
-    <% end %>
+  <% if current_user.authorized?('schedules', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.schedules.index'),
+                  schedules_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('shops', 'index') %>
-      <li><%= link_to t('layouts.menu.links.shops.index'), shops_path %></li>
-    <% end %>
+  <% if current_user.authorized?('shops', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.shops.index'),
+                  shops_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('products', 'index') %>
-      <li><%= link_to t('layouts.menu.links.products.index'), products_path %></li>
-    <% end %>
+  <% if current_user.authorized?('products', 'index') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.products.index'),
+                  products_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('static_pages', 'about_server_logs') %>
-      <li><%= link_to t('layouts.menu.links.static_pages.about_server_logs'),
-                      static_pages_about_server_logs_path %></li>
-    <% end %>
+  <% if current_user.authorized?('static_pages', 'about_server_logs') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.static_pages.about_server_logs'),
+                  static_pages_about_server_logs_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('static_pages', 'about_activerecord_logs') %>
-      <li><%= link_to t('layouts.menu.links.static_pages.about_activerecord_logs'),
-                      static_pages_about_activerecord_logs_path %></li>
-    <% end %>
+  <% if current_user.authorized?('static_pages', 'about_activerecord_logs') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.static_pages.about_activerecord_logs'),
+                  static_pages_about_activerecord_logs_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
 
-    <% if current_user.authorized?('static_pages', 'search_functions_summary') %>
-      <li><%= link_to t('layouts.menu.links.static_pages.search_functions_summary'),
-                      static_pages_search_functions_summary_path %></li>
-    <% end %>
-  </ul>
-</div>
+  <% if current_user.authorized?('static_pages', 'search_functions_summary') %>
+    <li class="nav-item mb-2">
+      <%= link_to t('layouts.menu.links.static_pages.search_functions_summary'),
+                  static_pages_search_functions_summary_path,
+                  class: 'nav-link link-dark ps-0' %>
+    </li>
+  <% end %>
+</ul>

@@ -1,5 +1,5 @@
 <div class="users">
-  <h1><%= t('users.show.title') %></h1>
+  <h1 class="fs-2 mb-5"><%= t('users.show.title') %></h1>
 
   <div class="user-profile">
     <p>
@@ -36,30 +36,31 @@
     </p>
   </div>
 
-  <% if current_user.authorized?('users', 'edit') %>
-    <p class="button edit-user">
-      <%= link_to t('users.show.links.users.edit'), edit_user_path(@user) %>
-    </p>
-  <% end %>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <% if current_user.authorized?('users', 'edit') %>
+      <%= link_to t('users.show.links.users.edit'),
+                  edit_user_path(@user),
+                  class: 'btn btn-primary btn-sm' %>
+    <% end %>
 
-  <% if current_user.authorized?('user_addresses', 'edit') %>
-    <p class="button edit-user-addresses">
-      <%= link_to t('users.show.links.user_addresses.edit'), edit_user_user_address_path(@user) %>
-    </p>
-  <% end %>
+    <% if current_user.authorized?('user_addresses', 'edit') %>
+      <%= link_to t('users.show.links.user_addresses.edit'),
+                  edit_user_user_address_path(@user),
+                  class: 'btn btn-primary btn-sm' %>
+    <% end %>
 
-  <% if current_user.authorized?('authorizations', 'edit') %>
-    <p class="button edit-user-authorizations">
-      <%= link_to t('users.show.links.authorizations.edit'), edit_user_authorizations_path(@user) %>
-    </p>
-  <% end %>
+    <% if current_user.authorized?('authorizations', 'edit') %>
+      <%= link_to t('users.show.links.authorizations.edit'),
+                  edit_user_authorizations_path(@user),
+                  class: 'btn btn-primary btn-sm' %>
+    <% end %>
 
-  <% if current_user.authorized?('users', 'destroy') %>
-    <p class="button delete-user">
+    <% if current_user.authorized?('users', 'destroy') %>
       <%= link_to t('users.show.links.users.delete'),
                   user_path(@user),
                   method: :delete,
-                  data: { confirm: t('users.show.confirm.delete', name: @user.name) } %>
-    </p>
-  <% end %>
+                  data: { confirm: t('users.show.confirm.delete', name: @user.name) },
+                  class: 'btn btn-danger btn-sm' %>
+    <% end %>
+  </div>
 </div>

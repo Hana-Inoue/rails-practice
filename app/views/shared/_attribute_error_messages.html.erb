@@ -1,7 +1,7 @@
 <% if model.errors.include?(attribute) %>
-  <ul>
+  <ul class="list-unstyled">
     <% model.errors.full_messages_for(attribute).each do |message| %>
-      <li><%= message %></li>
+      <li class="text-danger"><%= message %></li>
     <% end %>
   </ul>
 <% end %>

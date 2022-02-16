@@ -1,33 +1,49 @@
-<div class="pagination">
-  <%= link_to_unless pages[:current_page] == 1,
-                     t('shared.pagination.links.first_page'),
-                     request.path + '?page=1' %>
+<ul class="pagination justify-content-center mt-3">
+  <li class="page-item<%= ' disabled' if pages[:current_page] == 1 %>">
+    <%= link_to t('shared.pagination.links.first_page'),
+                 request.path + '?page=1',
+                 class: 'page-link' %>
+  </li>
 
-  <%= link_to_unless pages[:current_page] == 1,
-                     t('shared.pagination.links.previous_page'),
-                     request.path + "?page=#{pages[:current_page] - 1}" %>
+  <li class="page-item<%= ' disabled' if pages[:current_page] == 1 %>">
+    <%= link_to t('shared.pagination.links.previous_page'),
+                request.path + "?page=#{pages[:current_page] - 1}",
+                class: 'page-link' %>
+  </li>
 
   <% pages[:previous_and_next_page_count].times do |number| %>
     <% previous_page = pages[:current_page] - pages[:previous_and_next_page_count] + number %>
     <% if previous_page >= 1 %>
-      <%= link_to previous_page, request.path + "?page=#{previous_page}" %>
+      <li class="page-item">
+        <%= link_to previous_page, request.path + "?page=#{previous_page}", class: 'page-link' %>
+      </li>
     <% end %>
   <% end %>
 
-  <%= pages[:current_page] %>
+  <li class="page-item active">
+    <%= link_to pages[:current_page],
+                request.path + "?page=#{pages[:current_page]}",
+                class: 'page-link' %>
+  </li>
 
   <% pages[:previous_and_next_page_count].times do |number| %>
     <% next_page = pages[:current_page] + number + 1 %>
     <% if next_page <= pages[:last_page] %>
-      <%= link_to next_page, request.path + "?page=#{next_page}" %>
+      <li class="page-item">
+        <%= link_to next_page, request.path + "?page=#{next_page}", class: 'page-link' %>
+      </li>
     <% end %>
   <% end %>
 
-  <%= link_to_unless pages[:current_page] == pages[:last_page],
-                     t('shared.pagination.links.next_page'),
-                     request.path + "?page=#{pages[:current_page] + 1}" %>
+  <li class="page-item<%= ' disabled' if pages[:current_page] == pages[:last_page] %>">
+    <%= link_to t('shared.pagination.links.next_page'),
+                request.path + "?page=#{pages[:current_page] + 1}",
+                class: 'page-link' %>
+  </li>
 
-  <%= link_to_unless pages[:current_page] == pages[:last_page],
-                     t('shared.pagination.links.last_page'),
-                     request.path + "?page=#{pages[:last_page]}" %>
-</div>
+  <li class="page-item<%= ' disabled' if pages[:current_page] == pages[:last_page] %>">
+    <%= link_to t('shared.pagination.links.last_page'),
+                request.path + "?page=#{pages[:last_page]}",
+                class: 'page-link' %>
+  </li>
+</ul>

@@ -1,50 +1,44 @@
-<h1><%= t('user_addresses.edit.title') %></h1>
+<h1 class="fs-2 mb-5"><%= t('user_addresses.edit.title') %></h1>
 
 <%= form_with model: @user_address, url: user_user_address_path(@user), method: :patch do |form| %>
-  <div class="form">
-    <%= form.label :postal_code %>
-    <%= form.text_field :postal_code, placeholder: t('user_addresses.edit.examples.postal_code') %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :postal_code } %>
-    </div>
+  <div class="row mb-3">
+    <%= form.label :postal_code, class: 'col-sm-3 col-form-label' %>
+    <%= form.text_field :postal_code,
+                        placeholder: t('user_addresses.edit.examples.postal_code'),
+                        class: 'col-sm-9' %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :postal_code } %>
   </div>
 
-  <div class="form">
-    <%= form.label :prefecture %>
-    <%= form.text_field :prefecture %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :prefecture } %>
-    </div>
+  <div class="row mb-3">
+    <%= form.label :prefecture, class: 'col-sm-3 col-form-label' %>
+    <%= form.text_field :prefecture, class: 'col-sm-9' %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :prefecture } %>
   </div>
 
-  <div class="form">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :city } %>
-    </div>
+  <div class="row mb-3">
+    <%= form.label :city, class: 'col-sm-3 col-form-label' %>
+    <%= form.text_field :city, class: 'col-sm-9' %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :city } %>
   </div>
 
-  <div class="form">
-    <%= form.label :address_line %>
-    <%= form.text_field :address_line %>
-    <div class="error_messages">
-      <%= render partial: 'shared/attribute_error_messages',
-                 locals: { model: @user_address, attribute: :address_line } %>
-    </div>
+  <div class="row mb-3">
+    <%= form.label :address_line, class: 'col-sm-3 col-form-label' %>
+    <%= form.text_field :address_line, class: 'col-sm-9' %>
+    <%= render partial: 'shared/attribute_error_messages',
+               locals: { model: @user_address, attribute: :address_line } %>
   </div>
 
-  <div class="buttons">
-    <%= form.submit t('user_addresses.edit.links.update')  %>
+  <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+    <%= form.submit t('user_addresses.edit.links.update'), class: 'btn btn-primary btn-sm' %>
     <% if @user_address.persisted? %>
       <%= link_to t('user_addresses.edit.links.delete'),
                   user_user_address_path(@user),
                   method: :delete,
                   data: { confirm: t('user_addresses.edit.confirm.delete') },
-                  class: 'danger' %>
+                  class: 'btn btn-danger btn-sm' %>
     <% end %>
   </div>
 <% end %>

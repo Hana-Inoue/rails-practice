@@ -1,17 +1,19 @@
-<h1><%= t('sessions.new.title') %></h1>
+<h1 class="fs-2 my-5 text-center"><%= t('sessions.new.title') %></h1>
 
 <%= form_with(scope: :session, url: login_path) do |form| %>
-  <div class="form">
-    <%= form.label :email, User.human_attribute_name(:email) %>
-    <%= form.text_field :email %>
+  <div class="row mb-3">
+    <%= form.label :email, User.human_attribute_name(:email), class: 'col-sm-3 col-form-label' %>
+    <%= form.text_field :email, class: 'col-sm-9' %>
   </div>
 
-  <div class="form">
-    <%= form.label :password, User.human_attribute_name(:password) %>
-    <%= form.password_field :password %>
+  <div class="row mb-3">
+    <%= form.label :password,
+                   User.human_attribute_name(:password),
+                   class: 'col-sm-3 col-form-label' %>
+    <%= form.password_field :password, class: 'col-sm-9' %>
   </div>
 
-  <div class="buttons">
-    <%= form.submit t('sessions.new.buttons.create') %>
+  <div class="d-grid gap-2">
+    <%= form.submit t('sessions.new.buttons.create'), class: 'btn btn-primary btn-sm' %>
   </div>
 <% end %>
