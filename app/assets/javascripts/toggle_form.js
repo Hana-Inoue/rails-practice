@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
 
   $('.js-toggle-form-button').click(function() {
     $('.js-toggle-form-target').slideToggle(1000);
-    if ($(this).text() === buttonText) return $(this).text('閉じる');
-    $(this).text(buttonText);
+    let textToRender = $(this).text() === buttonText ? '閉じる' : buttonText;
+    $(this).text(textToRender);
   });
 });
