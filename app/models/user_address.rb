@@ -1,7 +1,7 @@
 class UserAddress < ApplicationRecord
   belongs_to :user
 
-  VALID_POSTAL_CODE_REGEX = /\d{3}-\d{4}/
+  VALID_POSTAL_CODE_REGEX = /\A\d{3}-\d{4}\z/
 
   validates :postal_code, presence: true, format: { with: VALID_POSTAL_CODE_REGEX }
   validates :prefecture, presence: true, length: { maximum: 20 }
