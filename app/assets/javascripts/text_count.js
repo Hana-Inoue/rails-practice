@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  let maxTextCount = 30;
+  let maxTextCount = $('.js-text-count-target').data('max-length');
   let textCount = $('.js-text-count-target').val().length;
   $('.js-text-count').text(textCount);
   $('.js-max-text-count').text(maxTextCount);

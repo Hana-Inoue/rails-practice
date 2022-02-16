@@ -44,6 +44,10 @@ class User < ApplicationRecord
     return false
   end
 
+  def max_length(attribute)
+    length_validator(attribute).options[:maximum]
+  end
+
   private
 
   def downcase_email
@@ -57,6 +61,12 @@ class User < ApplicationRecord
   def add_user_authorizations(authorization_ids)
     authorization_ids.each do |authorization_id|
       Authorization.find_by(id: authorization_id).users << self
+    end
+  end
+
+  def length_validator(attribute)
+    User.validators_on(attribute).detect do |validator|
+      validator.is_a?(ActiveModel::Validations::LengthValidator)
     end
   end
 end
