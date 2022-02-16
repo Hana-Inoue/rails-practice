@@ -1,12 +1,16 @@
 <div class="todos">
-  <h1 class="fs-2 mb-5"><%= t('todos.index.title') %></h1>
+  <h1 class="fs-2 mb-0"><%= t('todos.index.title') %></h1>
 
-  <p class="fw-bold mb-2">イベント検索</p>
+  <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
+    <% if current_user.authorized?('todos', 'search') %>
+      <button class="btn btn-primary btn-sm js-toggle-form-button">検索</button>
+    <% end %>
+  </div>
   <%= form_with scope: :search,
                 url: search_todos_path,
                 method: :get,
                 local: true,
-                class: 'mb-4' do |form| %>
+                class: 'mb-4 p-4 border js-toggle-form-target' do |form| %>
     <div class="row mb-3">
       <%= form.label :due_date,
                      Todo.human_attribute_name(:due_date),
