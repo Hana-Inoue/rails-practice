@@ -1,7 +1,10 @@
 <%= form_with model: user, class: 'max-auto' do |form| %>
+  <p class="js-text-count-area">
+    <span class="js-text-count">0</span>/<span class="js-max-text-count">0</span>
+  </p>
   <div class="row mb-3">
     <%= form.label :name, class: 'col-sm-3 col-form-label' %>
-    <%= form.text_field :name, class: 'col-sm-9' %>
+    <%= form.text_field :name, class: 'col-sm-9 js-text-count-target' %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: user, attribute: :name } %>
   </div>
