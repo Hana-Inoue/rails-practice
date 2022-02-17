@@ -1,16 +1,25 @@
 $(document).on('turbolinks:load', function() {
-  let maxTextCount = $('.js-text-count-target').data('max-length');
-  let textCount = $('.js-text-count-target').val().length;
-  $('.js-text-count').text(textCount);
-  $('.js-max-text-count').text(maxTextCount);
+  function countText(targetId) {
+    let target = $(`#${targetId}`);
+    let maxTextCount = target.data('max-length');
+    let textCount = target.val().length;
+    let textCounter = $(`#${targetId}-counter`);
+    textCounter.text(`${textCount}/${maxTextCount}`);
+    return { maxTextCount: maxTextCount, textCount: textCount, textCounter: textCounter }
+  }
 
-  $('.js-text-count-target').keyup(function() {
-    let textCount = $(this).val().length;
-    $('.js-text-count').text(textCount);
-    if (maxTextCount < textCount && !$('.js-text-count-area').hasClass('text-danger')) {
-      $('.js-text-count-area').addClass('text-danger');
-    } else if (maxTextCount >= textCount && $('.js-text-count-area').hasClass('text-danger')) {
-      $('.js-text-count-area').removeClass('text-danger');
+  function changeTextCounterColor(textCounter) {
+    textCounter.toggleClass('text-danger');
+  }
+
+  $('.js-text-counter-target').each(function() {
+    countText($(this).attr('id'));
+  });
+  $('.js-text-counter-target').keyup(function() {
+    let { maxTextCount, textCount, textCounter } = countText($(this).attr('id'));
+    if ((maxTextCount < textCount && !textCounter.hasClass('text-danger')) ||
+        (maxTextCount >= textCount && textCounter.hasClass('text-danger'))) {
+      changeTextCounterColor(textCounter);
     }
   });
 });
