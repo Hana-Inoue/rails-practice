@@ -1,7 +1,10 @@
 <%= form_with model: schedule, class: 'mx-auto' do |form| %>
   <div class="row mb-3">
+    <p class="mb-1 p-0 text-end" id="schedule_name-count-area">0/0</p>
     <%= form.label :name, class: 'col-sm-2 col-form-label' %>
-    <%= form.text_field :name, class: 'col-sm-10' %>
+    <%= form.text_field :name,
+                        class: 'col-sm-10 js-text-count-target',
+                        data: { max_length: Schedule.max_length(:name) }  %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: schedule, attribute: :name } %>
   </div>
@@ -14,8 +17,11 @@
   </div>
 
   <div class="row mb-3">
+    <p class="mb-1 p-0 text-end" id="schedule_scheduled_by-count-area">0/0</p>
     <%= form.label :scheduled_by, class: 'col-sm-2 col-form-label' %>
-    <%= form.text_field :scheduled_by, class: 'col-sm-10' %>
+    <%= form.text_field :scheduled_by,
+                        class: 'col-sm-10 js-text-count-target',
+                        data: { max_length: Schedule.max_length(:scheduled_by) }  %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: schedule, attribute: :scheduled_by } %>
   </div>
