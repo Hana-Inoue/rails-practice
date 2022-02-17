@@ -10,8 +10,11 @@
                 url: user_post_user_post_comments_path(@user_post),
                 class: 'mb-4 p-4 border js-toggle-form-target' do |form| %>
     <div class="row mb-3">
+      <p class="mb-1 p-0 text-end" id="user_post_comment_body-count-area">0/0</p>
       <%= form.label :body, class: 'col-sm-2 col-form-label' %>
-      <%= form.text_area :body, class: 'col-sm-10' %>
+      <%= form.text_area :body,
+                         class: 'col-sm-10 js-text-count-target',
+                         data: { max_length: UserPostComment.max_length(:body) }  %>
       <%= render partial: 'shared/attribute_error_messages',
                  locals: { model: @user_post_comment, attribute: :body } %>
     </div>
