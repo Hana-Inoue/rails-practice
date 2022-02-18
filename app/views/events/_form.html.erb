@@ -1,7 +1,10 @@
 <%= form_with model: event do |form| %>
   <div class="row mb-3">
+    <p class="mb-1 p-0 text-end" id="event_title-count-area">0/0</p>
     <%= form.label :title, class: 'col-sm-2 col-form-label' %>
-    <%= form.text_field :title, class: 'col-sm-10' %>
+    <%= form.text_field :title,
+                        class: 'col-sm-10 js-text-count-target',
+                        data: { max_length: Event.max_length(:title) }  %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: event, attribute: :title } %>
   </div>
@@ -28,8 +31,11 @@
   </div>
 
   <div class="row mb-3">
+    <p class="mb-1 p-0 text-end" id="event_body-count-area">0/0</p>
     <%= form.label :body, class: 'col-sm-2 col-form-label' %>
-    <%= form.text_area :body, class: 'col-sm-10' %>
+    <%= form.text_area :body,
+                        class: 'col-sm-10 js-text-count-target',
+                        data: { max_length: Event.max_length(:body) }  %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: event, attribute: :body } %>
   </div>

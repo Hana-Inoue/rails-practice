@@ -11,22 +11,31 @@
   </div>
 
   <div class="row mb-3">
+    <p class="mb-1 p-0 text-end" id="user_address_prefecture-count-area">0/0</p>
     <%= form.label :prefecture, class: 'col-sm-3 col-form-label' %>
-    <%= form.text_field :prefecture, class: 'col-sm-9' %>
+    <%= form.text_field :prefecture,
+                        class: 'col-sm-9 js-text-count-target',
+                        data: { max_length: UserAddress.max_length(:prefecture) }  %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: @user_address, attribute: :prefecture } %>
   </div>
 
   <div class="row mb-3">
+    <p class="mb-1 p-0 text-end" id="user_address_city-count-area">0/0</p>
     <%= form.label :city, class: 'col-sm-3 col-form-label' %>
-    <%= form.text_field :city, class: 'col-sm-9' %>
+    <%= form.text_field :city,
+                        class: 'col-sm-9 js-text-count-target',
+                        data: { max_length: UserAddress.max_length(:city) }  %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: @user_address, attribute: :city } %>
   </div>
 
   <div class="row mb-3">
+    <p class="mb-1 p-0 text-end" id="user_address_address_line-count-area">0/0</p>
     <%= form.label :address_line, class: 'col-sm-3 col-form-label' %>
-    <%= form.text_field :address_line, class: 'col-sm-9' %>
+    <%= form.text_field :address_line,
+                        class: 'col-sm-9 js-text-count-target',
+                        data: { max_length: UserAddress.max_length(:address_line) }  %>
     <%= render partial: 'shared/attribute_error_messages',
                locals: { model: @user_address, attribute: :address_line } %>
   </div>
