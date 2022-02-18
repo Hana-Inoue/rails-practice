@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'brakeman'
+  gem 'bundler-audit'
 end
 
 group :development do
