@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "UserAddresses", type: :request do
+RSpec.describe 'UserAddresses', type: :request do
+  let(:user) { create(:user, :admin) }
   before do
     create_authorizations
     log_in(user)
   end
-  let(:user) { create(:user, :admin) }
 
   describe 'GET editページ' do
     it '200番ステータスを返す' do
@@ -15,11 +15,11 @@ RSpec.describe "UserAddresses", type: :request do
   end
 
   describe 'PATCH 住所情報' do
+    let(:user_address_params) { attributes_for(:user_address) }
     before do
       create(:user_address, user: user)
       user_address_params[:postal_code] = postal_code
     end
-    let(:user_address_params) { attributes_for(:user_address) }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:postal_code) { '111-1111' }
@@ -33,9 +33,7 @@ RSpec.describe "UserAddresses", type: :request do
       it '任意のUserAddressの値を変更する' do
         expect {
           patch user_user_address_path(user), params: { user_address: user_address_params }
-        }.to change { UserAddress.find_by(user_id: user.id)[:postal_code] }
-          .from('000-0000')
-          .to(postal_code)
+        }.to change { user.user_address.reload.postal_code }.from('000-0000').to(postal_code)
       end
     end
 
