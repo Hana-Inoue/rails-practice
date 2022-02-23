@@ -99,17 +99,14 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'DELETE User情報' do
-    let(:other_user) { create(:user) }
-    before { other_user }
-
     it 'indexページへリダイレクトする' do
-      delete user_path(other_user)
+      delete user_path(user)
       expect(response).to have_http_status(302)
       expect(response).to redirect_to root_path
     end
 
     it 'Userが1減る' do
-      expect { delete user_path(other_user) }.to change(User, :count).by(-1)
+      expect { delete user_path(user) }.to change(User, :count).by(-1)
     end
   end
 end
