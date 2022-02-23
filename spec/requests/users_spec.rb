@@ -73,7 +73,7 @@ RSpec.describe 'Users', type: :request do
     before { user_params[:gender] = gender }
 
     context '有効なリクエストパラメータが渡された場合' do
-      let(:gender) { :women }
+      let(:gender) { 'women' }
 
       it 'showページへリダイレクトする' do
         patch user_path(user), params: { user: user_params }
@@ -84,7 +84,7 @@ RSpec.describe 'Users', type: :request do
       it '任意のUserの値を変更する' do
         expect {
           patch user_path(user), params: { user: user_params }
-        }.to change { user.reload.gender }.from('men').to('women')
+        }.to change { user.reload.gender }.from(user.gender).to(gender)
       end
     end
 
