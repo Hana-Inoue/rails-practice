@@ -1,13 +1,10 @@
 class UserAddressesController < ApplicationController
-  def edit
-    @user = User.find_by(id: params[:user_id])
-    @user_address = @user.user_address || @user.build_user_address
-  end
+  before_action :user, only: [:edit, :update]
+  before_action :user_address, only: [:edit, :update]
+
+  def edit; end
 
   def update
-    @user = User.find_by(id: params[:user_id])
-    @user_address = @user.user_address || @user.build_user_address
-
     if @user_address.update(user_address_params)
       redirect_to @user, notice: t('layouts.flash.messages.update_address.success')
     else
@@ -17,13 +14,25 @@ class UserAddressesController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(id: params[:user_id])
+    user = find_user
 
     user.user_address.destroy
     redirect_to user, notice: t('layouts.flash.messages.deleted_address')
   end
 
   private
+
+  def user
+    @user ||= find_user
+  end
+
+  def user_address
+    @user_address = @user.user_address || @user.build_user_address
+  end
+
+  def find_user
+    User.find(params[:user_id])
+  end
 
   def user_address_params
     params
