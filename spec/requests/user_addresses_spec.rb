@@ -15,11 +15,9 @@ RSpec.describe 'UserAddresses', type: :request do
   end
 
   describe 'PATCH 住所情報' do
+    let!(:user_address) { create(:user_address, user: user) }
     let(:user_address_params) { attributes_for(:user_address) }
-    before do
-      create(:user_address, user: user)
-      user_address_params[:postal_code] = postal_code
-    end
+    before { user_address_params[:postal_code] = postal_code }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:postal_code) { '111-1111' }
@@ -33,7 +31,9 @@ RSpec.describe 'UserAddresses', type: :request do
       it '任意のUserAddressの値を変更する' do
         expect {
           patch user_user_address_path(user), params: { user_address: user_address_params }
-        }.to change { user.user_address.reload.postal_code }.from('000-0000').to(postal_code)
+        }.to change { user_address.reload.postal_code }
+          .from(user_address.postal_code)
+          .to(postal_code)
       end
     end
 
