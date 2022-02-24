@@ -1,19 +1,21 @@
 class UsersController < ApplicationController
-  before_action :user, only: [:show, :edit, :update]
-
   def index
     @pages, @users = paginate(active_record: User.order(:id),
                               previous_and_next_page_count: 3,
                               max_item_count: 10)
   end
 
-  def show; end
+  def show
+    @user = find_user
+  end
 
   def new
     @user = User.new
   end
 
-  def edit; end
+  def edit
+    @user = find_user
+  end
 
   def create
     @user = User.new(user_params)
@@ -23,6 +25,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = find_user
+
     redirect_to @user and return if @user.update(user_params)
     render :edit
   end
@@ -35,10 +39,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def user
-    @user ||= find_user
-  end
 
   def find_user
     User.find(params[:id])
