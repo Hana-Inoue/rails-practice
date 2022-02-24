@@ -9,7 +9,7 @@ class UserDiariesController < ApplicationController
 
   def show
     @user = find_user
-    @user_diary = UserDiary.find(params[:id])
+    @user_diary = find_user_diary
   end
 
   def new
@@ -19,7 +19,7 @@ class UserDiariesController < ApplicationController
 
   def edit
     @user = find_user
-    @user_diary = UserDiary.find(params[:id])
+    @user_diary = find_user_diary
   end
 
   def create
@@ -36,7 +36,7 @@ class UserDiariesController < ApplicationController
 
   def update
     @user = find_user
-    @user_diary = UserDiary.find(params[:id])
+    @user_diary = find_user_diary
 
     if @user_diary.update(user_diary_params)
       redirect_to user_user_diary_path(@user, @user_diary),
@@ -47,7 +47,7 @@ class UserDiariesController < ApplicationController
   end
 
   def destroy
-    user_diary = UserDiary.find(params[:id])
+    user_diary = find_user_diary
 
     user_diary.destroy
     redirect_to user_user_diaries_path(find_user),
@@ -61,11 +61,15 @@ class UserDiariesController < ApplicationController
   end
 
   def check_access_right_with_user_diary_id
-    raise NotAuthorizedError unless current_user.id == UserDiary.find(params[:id]).user_id
+    raise NotAuthorizedError unless current_user.id == find_user_diary.user_id
   end
 
   def find_user
     User.find(params[:user_id])
+  end
+
+  def find_user_diary
+    UserDiary.find(params[:id])
   end
 
   def user_diary_params
