@@ -2,8 +2,7 @@ class UserPostCommentsController < ApplicationController
   def index
     @user_post = find_user_post
     @user_post_comment = @user_post.user_post_comments.build
-    @pages, @user_post_comments =
-      paginate(active_record: UserPostComment.where(user_post_id: params[:user_post_id]).order(:id))
+    @pages, @user_post_comments = paginate(active_record: @user_post.user_post_comments.order(:id))
   end
 
   def create
@@ -16,9 +15,7 @@ class UserPostCommentsController < ApplicationController
         notice: t('layouts.flash.messages.created_user_post_comment')
       ) and return
     end
-    @pages, @user_post_comments =
-      paginate(
-        active_record: UserPostComment.where(user_post_id: params[:user_post_id]).order(:id))
+    @pages, @user_post_comments = paginate(active_record: @user_post.user_post_comments.order(:id))
     render :index
   end
 
