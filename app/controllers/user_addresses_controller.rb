@@ -1,10 +1,13 @@
 class UserAddressesController < ApplicationController
-  before_action :user, only: [:edit, :update]
-  before_action :user_address, only: [:edit, :update]
-
-  def edit; end
+  def edit
+    @user = find_user
+    @user_address = @user.user_address || @user.build_user_address
+  end
 
   def update
+    @user = find_user
+    @user_address = @user.user_address || @user.build_user_address
+
     if @user_address.update(user_address_params)
       redirect_to @user, notice: t('layouts.flash.messages.update_address.success') and return
     end
@@ -20,14 +23,6 @@ class UserAddressesController < ApplicationController
   end
 
   private
-
-  def user
-    @user ||= find_user
-  end
-
-  def user_address
-    @user_address = @user.user_address || @user.build_user_address
-  end
 
   def find_user
     User.find(params[:user_id])
