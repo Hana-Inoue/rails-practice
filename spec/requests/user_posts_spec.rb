@@ -31,7 +31,7 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'POST 新規UserPost情報' do
-    let(:user_post_params) { attributes_for(:user_post).merge!(tag_ids: [create(:tag).id]) }
+    let(:user_post_params) { attributes_for(:user_post, tag_ids: [create(:tag).id]) }
 
     context '有効なリクエストパラメータが渡された場合' do
       it 'indexページへリダイレクトする' do
