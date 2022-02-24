@@ -6,11 +6,10 @@ class UserAddressesController < ApplicationController
 
   def update
     if @user_address.update(user_address_params)
-      redirect_to @user, notice: t('layouts.flash.messages.update_address.success')
-    else
-      flash.now[:alert] = t('layouts.flash.messages.update_address.fail')
-      render :edit
+      redirect_to @user, notice: t('layouts.flash.messages.update_address.success') and return
     end
+    flash.now[:alert] = t('layouts.flash.messages.update_address.fail')
+    render :edit
   end
 
   def destroy
