@@ -10,13 +10,13 @@ class UserPostCommentsController < ApplicationController
     @user_post_comment = @user_post.user_post_comments.build(user_post_comment_params)
 
     if @user_post_comment.save
-      redirect_to(
-        user_post_user_post_comments_path(@user_post),
-        notice: t('layouts.flash.messages.created_user_post_comment')
-      ) and return
+      redirect_to user_post_user_post_comments_path(@user_post),
+                  notice: t('layouts.flash.messages.created_user_post_comment')
+    else
+      @pages, @user_post_comments =
+        paginate(active_record: @user_post.user_post_comments.order(:id))
+      render :index
     end
-    @pages, @user_post_comments = paginate(active_record: @user_post.user_post_comments.order(:id))
-    render :index
   end
 
   def destroy
