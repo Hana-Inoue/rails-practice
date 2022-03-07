@@ -20,15 +20,21 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    redirect_to @user, notice: t('layouts.flash.messages.created_user') and return if @user.save
-    render :new
+    if @user.save
+      redirect_to @user, notice: t('layouts.flash.messages.created_user')
+    else
+      render :new
+    end
   end
 
   def update
     @user = User.find(params[:id])
 
-    redirect_to @user and return if @user.update(user_params)
-    render :edit
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
+    end
   end
 
   def destroy
