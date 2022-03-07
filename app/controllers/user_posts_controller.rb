@@ -19,20 +19,22 @@ class UserPostsController < ApplicationController
     @user_post = current_user.user_posts.build(user_post_params)
 
     if @user_post.save
-      redirect_to user_posts_path, notice: t('layouts.flash.messages.created_user_post') and return
+      redirect_to user_posts_path, notice: t('layouts.flash.messages.created_user_post')
+    else
+      @tags = Tag.all
+      render :new
     end
-    @tags = Tag.all
-    render :new
   end
 
   def update
     @user_post = UserPost.find(params[:id])
 
     if @user_post.update(user_post_params)
-      redirect_to user_posts_path, notice: t('layouts.flash.messages.updated_user_post') and return
+      redirect_to user_posts_path, notice: t('layouts.flash.messages.updated_user_post')
+    else
+      @tags = Tag.all
+      render :edit
     end
-    @tags = Tag.all
-    render :edit
   end
 
   def destroy
