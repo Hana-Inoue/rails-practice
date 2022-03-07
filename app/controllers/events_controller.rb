@@ -26,17 +26,21 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
 
-    redirect_to @event, notice: t('layouts.flash.messages.created_event') and return if @event.save
-    render :new
+    if @event.save
+      redirect_to @event, notice: t('layouts.flash.messages.created_event')
+    else
+      render :new
+    end
   end
 
   def update
     @event = Event.find(params[:id])
 
     if @event.update(event_params)
-      redirect_to @event, notice: t('layouts.flash.messages.updated_event') and return
+      redirect_to @event, notice: t('layouts.flash.messages.updated_event')
+    else
+      render :edit
     end
-    render :edit
   end
 
   def destroy
