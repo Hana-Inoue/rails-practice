@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = find_user
+    @user = User.find(params[:id])
   end
 
   def new
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = find_user
+    @user = User.find(params[:id])
   end
 
   def create
@@ -25,24 +25,20 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = find_user
+    @user = User.find(params[:id])
 
     redirect_to @user and return if @user.update(user_params)
     render :edit
   end
 
   def destroy
-    user = find_user
+    user = User.find(params[:id])
 
     user.destroy
     redirect_to root_path, notice: t('layouts.flash.messages.deleted_user', name: user.name)
   end
 
   private
-
-  def find_user
-    User.find(params[:id])
-  end
 
   def user_params
     params
