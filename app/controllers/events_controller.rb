@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = find_event
+    @event = Event.find(params[:id])
   end
 
   def new
@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = find_event
+    @event = Event.find(params[:id])
   end
 
   def search
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = find_event
+    @event = Event.find(params[:id])
 
     if @event.update(event_params)
       redirect_to @event, notice: t('layouts.flash.messages.updated_event') and return
@@ -40,17 +40,13 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    event = find_event
+    event = Event.find(params[:id])
 
     event.destroy
     redirect_to events_path, notice: t('layouts.flash.messages.deleted_event', title: event.title)
   end
 
   private
-
-  def find_event
-    Event.find(params[:id])
-  end
 
   def event_params
     params
