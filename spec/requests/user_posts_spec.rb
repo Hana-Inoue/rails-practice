@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "UserPosts", type: :request do
   let(:user) { create(:user, :admin) }
-  let(:user_post) { create(:user_post, user: user) }
-
   before do
     create_authorizations
     log_in(user)
@@ -24,6 +22,8 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'GET editページ' do
+    let(:user_post) { create(:user_post, user: user) }
+
     it '200番ステータスを返す' do
       get edit_user_post_path(user_post)
       expect(response).to have_http_status(200)
@@ -31,8 +31,7 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'POST 新規UserPost情報' do
-    let(:tag) { create(:tag) }
-    let(:user_post_params) { attributes_for(:user_post).merge!(tag_ids: [tag.id]) }
+    let(:user_post_params) { attributes_for(:user_post, tag_ids: [create(:tag).id]) }
 
     context '有効なリクエストパラメータが渡された場合' do
       it 'indexページへリダイレクトする' do
@@ -64,14 +63,9 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'PATCH UserPost情報' do
-    let(:old_tag) { create(:tag, name: 'fashion') }
-    let(:new_tag) { create(:tag) }
-    let(:user_post_params) { attributes_for(:user_post).merge!(tag_ids: [new_tag.id]) }
-
-    before do
-      user_post.tag_ids = old_tag.id
-      user_post_params[:body] = body
-    end
+    let(:user_post) { create(:user_post, user: user) }
+    let(:user_post_params) { attributes_for(:user_post) }
+    before { user_post_params[:body] = body }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:body) { 'aaa' }
@@ -85,13 +79,7 @@ RSpec.describe "UserPosts", type: :request do
       it '任意のUserPostの値を変更する' do
         expect {
           patch user_post_path(user_post), params: { user_post: user_post_params }
-        }.to change { UserPost.last.body }.from('こんにちは').to('aaa')
-      end
-
-      it '任意のUserPostTagの値を変更する' do
-        expect {
-          patch user_post_path(user_post), params: { user_post: user_post_params }
-        }.to change { UserPost.last.tags.first.name }.from('fashion').to('music')
+        }.to change { user_post.reload.body }.from(user_post.body).to(body)
       end
     end
 
@@ -106,11 +94,7 @@ RSpec.describe "UserPosts", type: :request do
   end
 
   describe 'DELETE UserPost' do
-    let(:tag) { create(:tag) }
-
-    before do
-      user_post.tag_ids = tag.id
-    end
+    let!(:user_post) { create(:user_post, user: user, tag_ids: [create(:tag).id]) }
 
     it 'indexページへリダイレクトする' do
       delete user_post_path(user_post)

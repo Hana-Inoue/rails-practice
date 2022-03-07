@@ -16,7 +16,7 @@ class UserPostsController < ApplicationController
   end
 
   def create
-    @user_post = current_user.user_posts.new(user_post_params)
+    @user_post = current_user.user_posts.build(user_post_params)
 
     if @user_post.save
       redirect_to user_posts_path, notice: t('layouts.flash.messages.created_user_post')
