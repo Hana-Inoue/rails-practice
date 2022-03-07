@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Events", type: :request do
+  let(:user) { create(:user, :admin) }
   before do
     create_authorizations
     log_in(user)
   end
-  let(:user) { create(:user, :admin) }
 
   describe 'GET indexページ' do
     it '200番ステータスを返す' do
@@ -16,7 +16,6 @@ RSpec.describe "Events", type: :request do
 
   describe 'GET showページ' do
     let(:event) { create(:event) }
-    before { event }
 
     it '200番ステータスを返す' do
       get event_path(event)
@@ -33,7 +32,6 @@ RSpec.describe "Events", type: :request do
 
   describe 'GET editページ' do
     let(:event) { create(:event) }
-    before { event }
 
     it '200番ステータスを返す' do
       get edit_event_path(event)
@@ -42,8 +40,10 @@ RSpec.describe "Events", type: :request do
   end
 
   describe 'GET search' do
+    let(:events_search_params) { { title: 'aaa', min_max_participants: '1' } }
+
     it '200番ステータスを返す' do
-      get search_events_path
+      get search_events_path, params: { search: events_search_params }
       expect(response).to have_http_status(200)
     end
   end
@@ -77,10 +77,7 @@ RSpec.describe "Events", type: :request do
   describe 'PATCH Event情報' do
     let(:event) { create(:event) }
     let(:event_params) { attributes_for(:event) }
-    before do
-      event
-      event_params[:title] = title
-    end
+    before { event_params[:title] = title }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:title) { 'event2' }
@@ -88,13 +85,13 @@ RSpec.describe "Events", type: :request do
       it 'showページへリダイレクトする' do
         patch event_path(event), params: { event: event_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to event_path(Event.last)
+        expect(response).to redirect_to event
       end
 
       it '任意のEventの値を変更する' do
         expect {
           patch event_path(event), params: { event: event_params }
-        }.to change { Event.last[:title] }.from('event').to('event2')
+        }.to change { event.reload.title }.from(event.title).to(title)
       end
     end
 
@@ -109,8 +106,7 @@ RSpec.describe "Events", type: :request do
   end
 
   describe 'DELETE Event情報' do
-    let(:event) { create(:event) }
-    before { event }
+    let!(:event) { create(:event) }
 
     it 'indexページへリダイレクトする' do
       delete event_path(event)
