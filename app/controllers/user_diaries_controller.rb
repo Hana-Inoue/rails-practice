@@ -3,27 +3,27 @@ class UserDiariesController < ApplicationController
   before_action :check_access_right_with_user_diary_id, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user = find_user
+    @user = User.find(params[:user_id])
     @pages, @user_diaries = paginate(active_record: @user.user_diaries.order(:id))
   end
 
   def show
-    @user = find_user
-    @user_diary = find_user_diary
+    @user = User.find(params[:user_id])
+    @user_diary = UserDiary.find(params[:id])
   end
 
   def new
-    @user = find_user
+    @user = User.find(params[:user_id])
     @user_diary = @user.user_diaries.build
   end
 
   def edit
-    @user = find_user
-    @user_diary = find_user_diary
+    @user = User.find(params[:user_id])
+    @user_diary = UserDiary.find(params[:id])
   end
 
   def create
-    @user = find_user
+    @user = User.find(params[:user_id])
     @user_diary = @user.user_diaries.build(user_diary_params)
 
     if @user_diary.save
@@ -35,8 +35,8 @@ class UserDiariesController < ApplicationController
   end
 
   def update
-    @user = find_user
-    @user_diary = find_user_diary
+    @user = User.find(params[:user_id])
+    @user_diary = UserDiary.find(params[:id])
 
     if @user_diary.update(user_diary_params)
       redirect_to user_user_diary_path(@user, @user_diary),
@@ -47,10 +47,10 @@ class UserDiariesController < ApplicationController
   end
 
   def destroy
-    user_diary = find_user_diary
+    user_diary = UserDiary.find(params[:id])
 
     user_diary.destroy
-    redirect_to user_user_diaries_path(find_user),
+    redirect_to user_user_diaries_path(User.find(params[:user_id])),
                 notice: t('layouts.flash.messages.deleted_user_diary', title: user_diary.title)
   end
 
@@ -61,15 +61,7 @@ class UserDiariesController < ApplicationController
   end
 
   def check_access_right_with_user_diary_id
-    raise NotAuthorizedError unless current_user.id == find_user_diary.user_id
-  end
-
-  def find_user
-    User.find(params[:user_id])
-  end
-
-  def find_user_diary
-    UserDiary.find(params[:id])
+    raise NotAuthorizedError unless current_user.id == UserDiary.find(params[:id]).user_id
   end
 
   def user_diary_params
