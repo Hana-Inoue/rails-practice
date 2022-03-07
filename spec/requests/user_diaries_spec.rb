@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'UserDiaries', type: :request do
   let(:user) { create(:user, :admin) }
-  let(:user_diary) { create(:user_diary, user: user) }
-
   before do
     create_authorizations
     log_in(user)
@@ -17,6 +15,8 @@ RSpec.describe 'UserDiaries', type: :request do
   end
 
   describe 'GET showページ' do
+    let(:user_diary) { create(:user_diary, user: user) }
+
     it '200番ステータスを返す' do
       get user_user_diary_path(user, user_diary)
       expect(response).to have_http_status(200)
@@ -31,6 +31,8 @@ RSpec.describe 'UserDiaries', type: :request do
   end
 
   describe 'GET editページ' do
+    let(:user_diary) { create(:user_diary, user: user) }
+
     it '200番ステータスを返す' do
       get edit_user_user_diary_path(user, user_diary)
       expect(response).to have_http_status(200)
@@ -64,11 +66,9 @@ RSpec.describe 'UserDiaries', type: :request do
   end
 
   describe 'PATCH UserDiary' do
+    let(:user_diary) { create(:user_diary, user: user) }
     let(:user_diary_params) { attributes_for(:user_diary, user: user) }
-    before do
-      user_diary
-      user_diary_params[:title] = title
-    end
+    before { user_diary_params[:title] = title }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:title) { 'new title' }
@@ -76,13 +76,13 @@ RSpec.describe 'UserDiaries', type: :request do
       it 'showページへリダイレクトする' do
         patch user_user_diary_path(user, user_diary), params: { user_diary: user_diary_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to user_user_diary_path(user, UserDiary.last)
+        expect(response).to redirect_to user_user_diary_path(user, user_diary)
       end
 
       it '任意のUserDiaryの値を変更する' do
         expect {
           patch user_user_diary_path(user, user_diary), params: { user_diary: user_diary_params }
-        }.to change { UserDiary.last[:title] }.from('diary').to('new title')
+        }.to change { user_diary.reload.title }.from(user_diary.title).to(title)
       end
     end
 
@@ -91,7 +91,6 @@ RSpec.describe 'UserDiaries', type: :request do
 
       it '200番ステータスを返す' do
         user_diary_params[:title] = ''
-
         patch user_user_diary_path(user, user_diary), params: { user_diary: user_diary_params }
         expect(response).to have_http_status(200)
       end
@@ -99,7 +98,7 @@ RSpec.describe 'UserDiaries', type: :request do
   end
 
   describe 'DELETE UserDiary' do
-    before { user_diary }
+    let!(:user_diary) { create(:user_diary, user: user) }
 
     it 'indexページへリダイレクトする' do
       delete user_user_diary_path(user, user_diary)
