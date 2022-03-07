@@ -7,12 +7,12 @@ class UserPostsController < ApplicationController
 
   def new
     @user_post = UserPost.new
-    @tags = tags
+    @tags = Tag.all
   end
 
   def edit
-    @user_post = find_user_post
-    @tags = tags
+    @user_post = UserPost.find(params[:id])
+    @tags = Tag.all
   end
 
   def create
@@ -21,34 +21,26 @@ class UserPostsController < ApplicationController
     if @user_post.save
       redirect_to user_posts_path, notice: t('layouts.flash.messages.created_user_post') and return
     end
-    @tags = tags
+    @tags = Tag.all
     render :new
   end
 
   def update
-    @user_post = find_user_post
+    @user_post = UserPost.find(params[:id])
 
     if @user_post.update(user_post_params)
       redirect_to user_posts_path, notice: t('layouts.flash.messages.updated_user_post') and return
     end
-    @tags = tags
+    @tags = Tag.all
     render :edit
   end
 
   def destroy
-    find_user_post.destroy
+    UserPost.find(params[:id]).destroy
     redirect_to user_posts_path, notice: t('layouts.flash.messages.deleted_user_post')
   end
 
   private
-
-  def tags
-    Tag.all
-  end
-
-  def find_user_post
-    UserPost.find(params[:id])
-  end
 
   def user_post_params
     params.require(:user_post).permit(:body, tag_ids: [])
