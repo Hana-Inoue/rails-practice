@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Schedules', type: :request do
+  let(:user) { create(:user, :admin) }
   before do
     create_authorizations
     log_in(user)
   end
-  let(:user) { create(:user, :admin) }
 
   describe 'GET indexページ' do
     it '200番ステータスを返す' do
@@ -16,7 +16,6 @@ RSpec.describe 'Schedules', type: :request do
 
   describe 'GET showページ' do
     let(:schedule) { create(:schedule) }
-    before { schedule }
 
     it '200番ステータスを返す' do
       get schedule_path(schedule)
@@ -33,7 +32,6 @@ RSpec.describe 'Schedules', type: :request do
 
   describe 'GET editページ' do
     let(:schedule) { create(:schedule) }
-    before { schedule }
 
     it '200番ステータスを返す' do
       get edit_schedule_path(schedule)
@@ -84,10 +82,7 @@ RSpec.describe 'Schedules', type: :request do
   describe 'PATCH Schedule情報' do
     let(:schedule_params) { attributes_for(:schedule) }
     let(:schedule) { create(:schedule) }
-    before do
-      schedule
-      schedule_params[:name] = name
-    end
+    before { schedule_params[:name] = name }
 
     context '有効なリクエストパラメータが渡された場合' do
       let(:name) { 'new schedule' }
@@ -95,13 +90,13 @@ RSpec.describe 'Schedules', type: :request do
       it 'showページへリダイレクトする' do
         patch schedule_path(schedule), params: { schedule: schedule_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to schedule_path(Schedule.last)
+        expect(response).to redirect_to schedule
       end
 
       it '任意のScheduleの値を変更する' do
         expect {
           patch schedule_path(schedule), params: { schedule: schedule_params }
-        }.to change { Schedule.last[:name] }.from('schedule').to('new schedule')
+        }.to change { schedule.reload.name }.from(schedule.name).to(name)
       end
     end
 
@@ -116,8 +111,7 @@ RSpec.describe 'Schedules', type: :request do
   end
 
   describe 'DELETE Schedule' do
-    let(:schedule) { create(:schedule) }
-    before { schedule }
+    let!(:schedule) { create(:schedule) }
 
     it 'indexページへリダイレクトする' do
       delete schedule_path(schedule)
