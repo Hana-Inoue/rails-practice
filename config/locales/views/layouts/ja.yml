@@ -4,11 +4,6 @@ ja:
       title: BootCamp
       links:
         logout: ログアウト
-    flash:
-      messages:
-        change_user_authorizations:
-          success: アクセス権限を変更しました。
-          fail: アクセス権限の変更に失敗しました。
     menu:
       links:
         users:
