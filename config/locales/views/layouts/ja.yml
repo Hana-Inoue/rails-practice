@@ -7,9 +7,6 @@ ja:
     flash:
       messages:
         require_login: ログインしてください。
-        created_event: イベントを投稿しました。
-        updated_event: イベントを編集しました。
-        deleted_event: "%{title}を削除しました。"
         created_schedule: スケジュールを作成しました。
         updated_schedule: スケジュールを編集しました。
         deleted_schedule: "%{name}を削除しました。"
