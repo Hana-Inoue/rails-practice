@@ -11,8 +11,6 @@ ja:
         change_user_authorizations:
           success: アクセス権限を変更しました。
           fail: アクセス権限の変更に失敗しました。
-        added_product_to_cart: "%{product}を買い物かごに追加しました。"
-        deleted_product_from_cart: "%{product}を買い物かごから削除しました。"
     menu:
       links:
         users:

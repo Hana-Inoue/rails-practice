@@ -12,3 +12,7 @@ ja:
         empty: 買い物かごは空です。
       confirm:
         delete: "%{product_name}を買い物かごから1つ削除しますか？"
+    flash:
+      messages:
+        added_product: "%{product}を買い物かごに追加しました。"
+        deleted_product: "%{product}を買い物かごから削除しました。"
