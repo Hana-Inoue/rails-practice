@@ -6,8 +6,6 @@ ja:
         logout: ログアウト
     flash:
       messages:
-        require_login: ログインしてください。
-        require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。
           fail: アクセス権限の変更に失敗しました。
