@@ -7,8 +7,6 @@ ja:
     flash:
       messages:
         require_login: ログインしてください。
-        created_user: ユーザー情報を登録しました。
-        deleted_user: "%{name}を削除しました。"
         update_address:
           success: 住所情報を更新しました。
           fail: 住所情報の更新に失敗しました。
