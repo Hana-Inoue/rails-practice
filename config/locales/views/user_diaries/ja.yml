@@ -18,3 +18,8 @@ ja:
     form:
       links:
         submit: 作成
+    flash:
+      messages:
+        created: 日記を作成しました。
+        updated: 日記を編集しました。
+        deleted: "%{title}を削除しました。"

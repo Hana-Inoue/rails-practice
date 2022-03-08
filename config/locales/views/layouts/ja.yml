@@ -7,9 +7,6 @@ ja:
     flash:
       messages:
         require_login: ログインしてください。
-        created_user_diary: 日記を作成しました。
-        updated_user_diary: 日記を編集しました。
-        deleted_user_diary: "%{title}を削除しました。"
         created_user_post: ポストを投稿しました。
         updated_user_post: ポストを編集しました。
         deleted_user_post: ポストを削除しました。
