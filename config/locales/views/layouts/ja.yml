@@ -7,9 +7,6 @@ ja:
     flash:
       messages:
         require_login: ログインしてください。
-        created_schedule: スケジュールを作成しました。
-        updated_schedule: スケジュールを編集しました。
-        deleted_schedule: "%{name}を削除しました。"
         require_authorization: アクセス権限がありません。
         change_user_authorizations:
           success: アクセス権限を変更しました。

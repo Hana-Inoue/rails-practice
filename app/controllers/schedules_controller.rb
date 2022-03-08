@@ -37,7 +37,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
 
     if @schedule.save
-      redirect_to @schedule, notice: t('layouts.flash.messages.created_schedule')
+      redirect_to @schedule, notice: t('schedules.flash.messages.created')
     else
       render :new
     end
@@ -47,7 +47,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
 
     if @schedule.update(schedule_params)
-      redirect_to @schedule, notice: t('layouts.flash.messages.updated_schedule')
+      redirect_to @schedule, notice: t('schedules.flash.messages.updated')
     else
       render :edit
     end
@@ -57,8 +57,7 @@ class SchedulesController < ApplicationController
     schedule = Schedule.find(params[:id])
 
     schedule.destroy
-    redirect_to schedules_path,
-                notice: t('layouts.flash.messages.deleted_schedule', name: schedule.name)
+    redirect_to schedules_path, notice: t('schedules.flash.messages.deleted', name: schedule.name)
   end
 
   private

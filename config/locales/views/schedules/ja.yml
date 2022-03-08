@@ -20,3 +20,8 @@ ja:
       title: スケジュール作成
     edit:
       title: スケジュール編集
+    flash:
+      messages:
+        created: スケジュールを作成しました。
+        updated: スケジュールを編集しました。
+        deleted: "%{name}を削除しました。"
