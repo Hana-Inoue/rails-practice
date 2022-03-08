@@ -9,3 +9,7 @@ ja:
         delete: 削除
       confirm:
         delete: 登録住所を削除しますか？
+    flash:
+      messages:
+        updated: 住所情報を更新しました。
+        deleted: 住所を削除しました。
