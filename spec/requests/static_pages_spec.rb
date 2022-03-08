@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'StaticPages', type: :request do
+  let(:user) { create(:user, :admin) }
   before do
     create_authorizations
     log_in(user)
   end
-  let(:user) { create(:user, :admin) }
-  let(:other_user) { create(:user) }
 
   describe 'GET about_server_logsページ' do
     it '200番ステータスを返す' do
