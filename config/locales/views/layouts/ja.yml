@@ -6,10 +6,6 @@ ja:
         logout: ログアウト
     flash:
       messages:
-        log_in:
-          success: ログインに成功しました。
-          fail: ログインに失敗しました。
-        log_out: ログアウトしました。
         require_login: ログインしてください。
         created_user: ユーザー情報を登録しました。
         deleted_user: "%{name}を削除しました。"
