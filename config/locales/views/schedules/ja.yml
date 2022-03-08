@@ -7,10 +7,8 @@ ja:
         search: 検索
         reset: リセット
       labels:
-        search:
-          name: スケジュール名(SQL インジェクション発生不可)
-        sql_injection_search:
-          name: スケジュール名(SQL インジェクション発生可)
+        search: スケジュール名(SQL インジェクション発生不可)
+        sql_injection_search: スケジュール名(SQL インジェクション発生可)
     show:
       title: スケジュール詳細
       links:
