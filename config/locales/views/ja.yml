@@ -1,0 +1,5 @@
+ja:
+  flash:
+    messages:
+      require_login: ログインしてください。
+      require_authorization: アクセス権限がありません。

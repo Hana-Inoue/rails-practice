@@ -4,39 +4,6 @@ ja:
       title: BootCamp
       links:
         logout: ログアウト
-    flash:
-      messages:
-        log_in:
-          success: ログインに成功しました。
-          fail: ログインに失敗しました。
-        log_out: ログアウトしました。
-        require_login: ログインしてください。
-        created_user: ユーザー情報を登録しました。
-        deleted_user: "%{name}を削除しました。"
-        update_address:
-          success: 住所情報を更新しました。
-          fail: 住所情報の更新に失敗しました。
-        deleted_address: 住所を削除しました。
-        created_user_diary: 日記を作成しました。
-        updated_user_diary: 日記を編集しました。
-        deleted_user_diary: "%{title}を削除しました。"
-        created_user_post: ポストを投稿しました。
-        updated_user_post: ポストを編集しました。
-        deleted_user_post: ポストを削除しました。
-        created_user_post_comment: コメントを投稿しました。
-        deleted_user_post_comment: コメントを削除しました。
-        created_event: イベントを投稿しました。
-        updated_event: イベントを編集しました。
-        deleted_event: "%{title}を削除しました。"
-        created_schedule: スケジュールを作成しました。
-        updated_schedule: スケジュールを編集しました。
-        deleted_schedule: "%{name}を削除しました。"
-        require_authorization: アクセス権限がありません。
-        change_user_authorizations:
-          success: アクセス権限を変更しました。
-          fail: アクセス権限の変更に失敗しました。
-        added_product_to_cart: "%{product}を買い物かごに追加しました。"
-        deleted_product_from_cart: "%{product}を買い物かごから削除しました。"
     menu:
       links:
         users:

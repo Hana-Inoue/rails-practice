@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless logged_in?
-      redirect_to login_path, alert: t('layouts.flash.messages.require_login')
+      redirect_to login_path, alert: t('flash.messages.require_login')
     end
   end
 
   def user_not_authorized
     log_out
-    redirect_to login_path, alert: t('layouts.flash.messages.require_authorization')
+    redirect_to login_path, alert: t('flash.messages.require_authorization')
   end
 
   def check_authorization

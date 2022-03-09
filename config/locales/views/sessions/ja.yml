@@ -4,3 +4,9 @@ ja:
       title: ログイン
       buttons:
         create: ログイン
+    flash:
+      messages:
+        log_in:
+          success: ログインに成功しました。
+          fail: ログインに失敗しました。
+        log_out: ログアウトしました。

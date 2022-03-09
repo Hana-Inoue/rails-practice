@@ -28,7 +28,7 @@ class UserDiariesController < ApplicationController
 
     if @user_diary.save
       redirect_to user_user_diary_path(@user, @user_diary),
-                  notice: t('layouts.flash.messages.created_user_diary')
+                  notice: t('user_diaries.flash.messages.created')
     else
       render :new
     end
@@ -40,7 +40,7 @@ class UserDiariesController < ApplicationController
 
     if @user_diary.update(user_diary_params)
       redirect_to user_user_diary_path(@user, @user_diary),
-                  notice: t('layouts.flash.messages.updated_user_diary')
+                  notice: t('user_diaries.flash.messages.updated')
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class UserDiariesController < ApplicationController
 
     user_diary.destroy
     redirect_to user_user_diaries_path(User.find(params[:user_id])),
-                notice: t('layouts.flash.messages.deleted_user_diary', title: user_diary.title)
+                notice: t('user_diaries.flash.messages.deleted', title: user_diary.title)
   end
 
   private

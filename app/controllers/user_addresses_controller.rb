@@ -9,9 +9,8 @@ class UserAddressesController < ApplicationController
     @user_address = @user.user_address || @user.build_user_address
 
     if @user_address.update(user_address_params)
-      redirect_to @user, notice: t('layouts.flash.messages.update_address.success') and return
+      redirect_to @user, notice: t('user_addresses.flash.messages.updated') and return
     end
-    flash.now[:alert] = t('layouts.flash.messages.update_address.fail')
     render :edit
   end
 
@@ -19,7 +18,7 @@ class UserAddressesController < ApplicationController
     user = User.find(params[:user_id])
 
     user.user_address.destroy
-    redirect_to user, notice: t('layouts.flash.messages.deleted_address')
+    redirect_to user, notice: t('user_addresses.flash.messages.deleted')
   end
 
   private

@@ -19,7 +19,7 @@ class UserPostsController < ApplicationController
     @user_post = current_user.user_posts.build(user_post_params)
 
     if @user_post.save
-      redirect_to user_posts_path, notice: t('layouts.flash.messages.created_user_post')
+      redirect_to user_posts_path, notice: t('user_posts.flash.messages.created')
     else
       @tags = Tag.all
       render :new
@@ -30,7 +30,7 @@ class UserPostsController < ApplicationController
     @user_post = UserPost.find(params[:id])
 
     if @user_post.update(user_post_params)
-      redirect_to user_posts_path, notice: t('layouts.flash.messages.updated_user_post')
+      redirect_to user_posts_path, notice: t('user_posts.flash.messages.updated')
     else
       @tags = Tag.all
       render :edit
@@ -39,7 +39,7 @@ class UserPostsController < ApplicationController
 
   def destroy
     UserPost.find(params[:id]).destroy
-    redirect_to user_posts_path, notice: t('layouts.flash.messages.deleted_user_post')
+    redirect_to user_posts_path, notice: t('user_posts.flash.messages.deleted')
   end
 
   private

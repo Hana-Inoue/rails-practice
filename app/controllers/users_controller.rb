@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: t('layouts.flash.messages.created_user')
+      redirect_to @user, notice: t('users.flash.messages.created')
     else
       render :new
     end
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
 
     user.destroy
-    redirect_to root_path, notice: t('layouts.flash.messages.deleted_user', name: user.name)
+    redirect_to root_path, notice: t('users.flash.messages.deleted', name: user.name)
   end
 
   private

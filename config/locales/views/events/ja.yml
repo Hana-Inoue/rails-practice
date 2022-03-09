@@ -32,3 +32,8 @@ ja:
     form:
       links:
         submit: 投稿
+    flash:
+      messages:
+        created: イベントを投稿しました。
+        updated: イベントを編集しました。
+        deleted: "%{title}を削除しました。"

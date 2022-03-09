@@ -21,7 +21,7 @@
                   method: :get,
                   local: true,
                   class: 'mb-3') do |form| %>
-      <%= form.label :name, t('schedules.index.labels.search.name'), class: 'mb-2' %>
+      <%= form.label :name, t('schedules.index.labels.search'), class: 'mb-2' %>
       <div class="row g-3">
         <div class="col-9">
           <%= form.text_field :name, value: @schedules_search_params[:name], class: 'w-100' %>
@@ -41,7 +41,7 @@
                   url: sql_injection_search_schedules_path,
                   method: :get,
                   local: true) do |form| %>
-      <%= form.label :name, t('schedules.index.labels.sql_injection_search.name'), class: 'mb-2' %>
+      <%= form.label :name, t('schedules.index.labels.sql_injection_search'), class: 'mb-2' %>
       <div class="row g-3">
         <div class="col-9">
           <%= form.text_field :name,
