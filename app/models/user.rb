@@ -36,10 +36,7 @@ class User < ApplicationRecord
   end
 
   def update_user_authorizations(authorization_ids)
-    ActiveRecord::Base.transaction do
-      delete_user_authorizations
-      add_user_authorizations(authorization_ids)
-    end
+    self.authorization_ids = authorization_ids
   rescue
     return false
   end
@@ -48,15 +45,5 @@ class User < ApplicationRecord
 
   def downcase_email
     email.downcase!
-  end
-
-  def delete_user_authorizations
-    user_authorizations.destroy_all
-  end
-
-  def add_user_authorizations(authorization_ids)
-    authorization_ids.each do |authorization_id|
-      Authorization.find_by(id: authorization_id).users << self
-    end
   end
 end
