@@ -1,7 +1,7 @@
 module MenuItemsHelper
   def menu_items
     [
-      { controller: 'users', action: 'index', path: "#{users_path}" },
+      { controller: 'users', action: 'index', path: users_path },
       { controller: 'user_posts', action: 'index', path: user_posts_path },
       { controller: 'events', action: 'index', path: events_path },
       { controller: 'todos', action: 'index', path: todos_path },
