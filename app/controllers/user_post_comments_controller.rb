@@ -11,7 +11,7 @@ class UserPostCommentsController < ApplicationController
 
     if @user_post_comment.save
       redirect_to user_post_user_post_comments_path(@user_post),
-                  notice: t('layouts.flash.messages.created_user_post_comment')
+                  notice: t('user_post_comments.flash.messages.created')
     else
       @pages, @user_post_comments =
         paginate(active_record: @user_post.user_post_comments.order(:id))
@@ -22,7 +22,7 @@ class UserPostCommentsController < ApplicationController
   def destroy
     UserPostComment.find(params[:id]).destroy
     redirect_to user_post_user_post_comments_path(UserPost.find(params[:user_post_id])),
-                notice: t('layouts.flash.messages.deleted_user_post_comment')
+                notice: t('user_post_comments.flash.messages.deleted')
   end
 
   private

@@ -7,10 +7,8 @@ ja:
         search: 検索
         reset: リセット
       labels:
-        search:
-          name: スケジュール名(SQL インジェクション発生不可)
-        sql_injection_search:
-          name: スケジュール名(SQL インジェクション発生可)
+        search: スケジュール名(SQL インジェクション発生不可)
+        sql_injection_search: スケジュール名(SQL インジェクション発生可)
     show:
       title: スケジュール詳細
       links:
@@ -22,3 +20,8 @@ ja:
       title: スケジュール作成
     edit:
       title: スケジュール編集
+    flash:
+      messages:
+        created: スケジュールを作成しました。
+        updated: スケジュールを編集しました。
+        deleted: "%{name}を削除しました。"

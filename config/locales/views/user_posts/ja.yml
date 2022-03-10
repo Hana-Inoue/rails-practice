@@ -19,3 +19,8 @@ ja:
     form:
       links:
         submit: 投稿
+    flash:
+      messages:
+        created: ポストを投稿しました。
+        updated: ポストを編集しました。
+        deleted: ポストを削除しました。

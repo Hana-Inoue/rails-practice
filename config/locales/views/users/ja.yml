@@ -25,3 +25,7 @@ ja:
       title: 新規ユーザ登録
     edit:
       title: ユーザ情報編集
+    flash:
+      messages:
+        created: ユーザー情報を登録しました。
+        deleted: "%{name}を削除しました。"

@@ -7,3 +7,7 @@ ja:
         delete: 削除
       confirm:
         delete: コメントを削除しますか?
+    flash:
+      messages:
+        created: コメントを投稿しました。
+        deleted: コメントを削除しました。

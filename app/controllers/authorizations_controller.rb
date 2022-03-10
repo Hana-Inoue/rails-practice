@@ -10,11 +10,12 @@ class AuthorizationsController < ApplicationController
     begin
       @user.authorization_ids = authorization_params[:authorization_ids]
     rescue
-      flash.now[:alert] = t('layouts.flash.messages.change_user_authorizations.fail')
+      flash.now[:alert] = t('authorizations.flash.messages.change_user_authorizations.fail')
       @authorizations = Authorization.all
       render :edit
     else
-      redirect_to @user, notice: t('layouts.flash.messages.change_user_authorizations.success')
+      redirect_to @user,
+                  notice: t('authorizations.flash.messages.change_user_authorizations.success')
     end
   end
 
