@@ -35,12 +35,6 @@ class User < ApplicationRecord
     end
   end
 
-  def update_user_authorizations(authorization_ids)
-    self.authorization_ids = authorization_ids
-  rescue
-    return false
-  end
-
   private
 
   def downcase_email
