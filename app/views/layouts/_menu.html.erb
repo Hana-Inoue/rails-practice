@@ -1,8 +1,31 @@
 <ul class="nav flex-column sticky-top">
-  <% menu_items.each do |menu_item| %>
-    <%= render 'layouts/menu_item',
-               controller: menu_item[:controller],
-               action: menu_item[:action],
-               path: menu_item[:path] %>
+  <% [
+    { controller: 'users', action: 'index', path: users_path },
+    { controller: 'user_posts', action: 'index', path: user_posts_path },
+    { controller: 'events', action: 'index', path: events_path },
+    { controller: 'todos', action: 'index', path: todos_path },
+    { controller: 'user_diaries',
+      action: 'index',
+      path: user_user_diaries_path(current_user.id) },
+    { controller: 'schedules', action: 'index', path: schedules_path },
+    { controller: 'shops', action: 'index', path: shops_path },
+    { controller: 'products', action: 'index', path: products_path },
+    { controller: 'static_pages',
+      action: 'about_server_logs',
+      path: static_pages_about_server_logs_path },
+    { controller: 'static_pages',
+      action: 'about_activerecord_logs',
+      path: static_pages_about_activerecord_logs_path },
+    { controller: 'static_pages',
+      action: 'search_functions_summary',
+      path: static_pages_search_functions_summary_path }
+  ].each do |menu_item| %>
+    <% if current_user.authorized?(menu_item[:controller], menu_item[:action]) %>
+      <li class="nav-item mb-2">
+        <%= link_to t("layouts.menu.links.#{menu_item[:controller]}.#{menu_item[:action]}"),
+                    menu_item[:path],
+                    class: 'nav-link link-dark ps-0' %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
