@@ -7,16 +7,8 @@ class AuthorizationsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
 
-    begin
-      @user.authorization_ids = authorization_params[:authorization_ids]
-    rescue
-      flash.now[:alert] = t('authorizations.flash.messages.change_user_authorizations.fail')
-      @authorizations = Authorization.all
-      render :edit
-    else
-      redirect_to @user,
-                  notice: t('authorizations.flash.messages.change_user_authorizations.success')
-    end
+    @user.authorization_ids = authorization_params[:authorization_ids]
+    redirect_to @user, notice: t('authorizations.flash.messages.change_user_authorizations.success')
   end
 
   private

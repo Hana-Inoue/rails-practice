@@ -36,14 +36,5 @@ RSpec.describe "Authorizations", type: :request do
         )
       end
     end
-
-    context '無効なリクエストパラメータが渡された場合' do
-      let(:new_authorization_ids) { [Authorization.last.id + 1] }
-
-      it '200番ステータスを返す' do
-        patch user_authorizations_path(user), params: { user: authorization_params }
-        expect(response).to have_http_status(200)
-      end
-    end
   end
 end
