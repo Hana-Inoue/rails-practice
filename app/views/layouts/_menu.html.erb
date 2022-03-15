@@ -1,5 +1,5 @@
-<ul class="nav flex-column sticky-top">
-  <% [
+<%
+  menu = [
     { controller: 'users', action: 'index', path: users_path },
     { controller: 'user_posts', action: 'index', path: user_posts_path },
     { controller: 'events', action: 'index', path: events_path },
@@ -19,7 +19,11 @@
     { controller: 'static_pages',
       action: 'search_functions_summary',
       path: static_pages_search_functions_summary_path }
-  ].each do |menu_item| %>
+  ]
+%>
+
+<ul class="nav flex-column sticky-top">
+  <% menu.each do |menu_item| %>
     <% if current_user.authorized?(menu_item[:controller], menu_item[:action]) %>
       <li class="nav-item mb-2">
         <%= link_to t("layouts.menu.links.#{menu_item[:controller]}.#{menu_item[:action]}"),
